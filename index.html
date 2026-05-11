@@ -1,486 +1,859 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>George Véras Valentim — Resume 2026</title>
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>George Véras Valentim — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 10.5pt;
-    color: #1a1a1a;
-    background: #fff;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 48px 52px;
-    line-height: 1.55;
-  }
+    :root {
+      --bg:          #0b1120;
+      --bg2:         #111827;
+      --card:        #1a2540;
+      --card-hover:  #1f2d50;
+      --border:      #1e3a5f;
+      --primary:     #4f8ef7;
+      --primary2:    #7c63f5;
+      --accent:      #00d4b4;
+      --text:        #e8eef8;
+      --muted:       #7a90b0;
+      --tag-bg:      #1a2e50;
+      --tag-text:    #7eb8ff;
+    }
 
-  /* ── Header ── */
-  header {
-    text-align: center;
-    margin-bottom: 24px;
-    padding-bottom: 18px;
-    border-bottom: 2px solid #1b4f72;
-  }
-  header h1 {
-    font-size: 26pt;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: #1b4f72;
-    margin-bottom: 6px;
-  }
-  .contact-line {
-    font-size: 9.5pt;
-    color: #444;
-    line-height: 1.8;
-  }
-  .contact-line a {
-    color: #1b4f72;
-    text-decoration: none;
-  }
-  .contact-line a:hover { text-decoration: underline; }
-  .contact-sep { margin: 0 6px; color: #aaa; }
+    html { scroll-behavior: smooth; }
 
-  /* ── Sections ── */
-  section { margin-bottom: 22px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-  h2 {
-    font-size: 11pt;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    color: #1b4f72;
-    border-bottom: 1px solid #b8cfe4;
-    padding-bottom: 4px;
-    margin-bottom: 12px;
-  }
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
 
-  /* ── Summary ── */
-  .summary p { color: #333; }
+    /* ─────────────────────────────────────────
+       NAVBAR
+    ───────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(11,17,32,0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo {
+      font-weight: 800; font-size: 1.1rem;
+      background: linear-gradient(90deg, var(--primary), var(--primary2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.875rem;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      color: #fff !important;
+      padding: 8px 20px; border-radius: 8px;
+      font-weight: 600 !important;
+    }
 
-  /* ── Skills table ── */
-  table.skills {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 9.5pt;
-  }
-  table.skills tr:nth-child(even) td { background: #f4f8fc; }
-  table.skills td {
-    padding: 5px 10px;
-    vertical-align: top;
-    border: 1px solid #dce8f0;
-  }
-  table.skills td:first-child {
-    font-weight: 600;
-    width: 30%;
-    white-space: nowrap;
-    color: #1b4f72;
-  }
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(79,142,247,0.12) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 80% 80%, rgba(124,99,245,0.08) 0%, transparent 60%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.3);
+      color: var(--primary); font-size: 0.8rem; font-weight: 600;
+      padding: 6px 16px; border-radius: 100px;
+      margin-bottom: 28px; letter-spacing: 0.5px;
+    }
+    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
 
-  /* ── Work entries ── */
-  .job { margin-bottom: 18px; }
-  .job-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    margin-bottom: 4px;
-  }
-  .job-header .job-title {
-    font-weight: 700;
-    font-size: 10.5pt;
-  }
-  .job-header .company {
-    font-weight: 600;
-    color: #1b4f72;
-  }
-  .job-header .dates {
-    font-size: 9.5pt;
-    color: #555;
-    white-space: nowrap;
-  }
-  .job ul {
-    padding-left: 18px;
-    margin-top: 4px;
-  }
-  .job ul li { margin-bottom: 3px; font-size: 10pt; }
-  .job .stack {
-    font-size: 9pt;
-    color: #555;
-    margin-top: 5px;
-    padding-left: 18px;
-  }
-  .job .stack strong { color: #333; }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--primary2), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .typewriter-wrap {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--muted); font-weight: 500;
+      margin-bottom: 32px; height: 2em;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .typewriter { color: var(--accent); font-weight: 600; }
+    .cursor { display: inline-block; width: 2px; height: 1.2em; background: var(--accent); animation: blink 0.8s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-  .accomplishments {
-    margin-top: 6px;
-    padding-left: 18px;
-  }
-  .accomplishments .acc-label {
-    font-size: 9.5pt;
-    font-weight: 700;
-    color: #1b4f72;
-    margin-bottom: 3px;
-  }
-  .accomplishments ul { padding-left: 18px; }
-  .accomplishments ul li { margin-bottom: 3px; font-size: 10pt; }
+    .hero-summary {
+      max-width: 600px; color: var(--muted); font-size: 1rem;
+      margin-bottom: 40px; line-height: 1.8;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      color: #fff; padding: 14px 32px; border-radius: 10px;
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(79,142,247,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(79,142,247,0.4); }
+    .btn-outline {
+      border: 1px solid var(--border); color: var(--text);
+      padding: 14px 32px; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--primary); background: rgba(79,142,247,0.05); }
 
-  /* ── Education ── */
-  .edu-entry {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 6px;
-  }
-  .edu-entry .degree { font-weight: 600; }
-  .edu-entry .school { color: #333; }
-  .edu-entry .dates { font-size: 9.5pt; color: #555; white-space: nowrap; }
+    .scroll-hint {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--muted); font-size: 0.75rem;
+    }
+    .scroll-arrow { width: 20px; height: 20px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); animation: bounce 1.5s infinite; }
+    @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
 
-  /* ── Certs & Courses ── */
-  ul.cert-list, ul.course-list {
-    padding-left: 18px;
-    font-size: 10pt;
-  }
-  ul.cert-list li, ul.course-list li { margin-bottom: 3px; }
+    /* ─────────────────────────────────────────
+       SECTION SHARED
+    ───────────────────────────────────────── */
+    section { padding: 96px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; margin-bottom: 16px; line-height: 1.2;
+    }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 560px; margin-bottom: 56px; }
 
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 32px;
-  }
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
 
-  /* ── Languages ── */
-  .lang-list { display: flex; gap: 32px; flex-wrap: wrap; }
-  .lang-list .lang { font-size: 10pt; }
-  .lang-list .lang strong { color: #1b4f72; }
+    /* ─────────────────────────────────────────
+       STATS
+    ───────────────────────────────────────── */
+    .stats-section {
+      background: linear-gradient(135deg, rgba(79,142,247,0.06), rgba(124,99,245,0.06));
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 72px 24px;
+    }
+    .stats-inner { max-width: 1100px; margin: 0 auto; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px; text-align: center;
+    }
+    .stat-item {}
+    .stat-number {
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      font-weight: 900; line-height: 1;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .stat-label { color: var(--muted); font-size: 0.875rem; font-weight: 500; }
+    .stat-sub { color: var(--muted); font-size: 0.75rem; margin-top: 4px; opacity: 0.7; }
 
-  /* ── Print ── */
-  @media print {
-    body { padding: 28px 36px; font-size: 10pt; }
-    header h1 { font-size: 22pt; }
-    a { color: #1b4f72 !important; }
-  }
-</style>
+    /* ─────────────────────────────────────────
+       EXPERIENCE
+    ───────────────────────────────────────── */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--primary2), transparent);
+    }
+    .job-card {
+      position: relative; padding: 0 0 48px 40px;
+    }
+    .job-card::before {
+      content: ''; position: absolute; left: -5px; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(79,142,247,0.15);
+    }
+    .job-card.featured::before {
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(0,212,180,0.15);
+      width: 14px; height: 14px; left: -6px;
+    }
+    .job-card-inner {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 32px;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .job-card-inner:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      border-color: rgba(79,142,247,0.3);
+    }
+    .job-meta {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 8px; margin-bottom: 6px;
+    }
+    .job-company { font-size: 1.15rem; font-weight: 800; color: var(--text); }
+    .job-dates { font-size: 0.8rem; color: var(--muted); font-weight: 500;
+      background: rgba(255,255,255,0.04); padding: 4px 12px; border-radius: 100px; }
+    .job-role { font-size: 0.875rem; color: var(--primary); font-weight: 600; margin-bottom: 16px; }
+    .job-bullets { padding-left: 18px; }
+    .job-bullets li { color: var(--muted); font-size: 0.9rem; margin-bottom: 8px; line-height: 1.6; }
+    .job-bullets li strong { color: var(--text); }
+    .job-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .tag {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.3px;
+      background: var(--tag-bg); color: var(--tag-text);
+      padding: 4px 10px; border-radius: 6px;
+      border: 1px solid rgba(79,142,247,0.15);
+    }
+    .achievements-box {
+      margin-top: 20px; padding: 16px 20px;
+      background: rgba(0,212,180,0.05);
+      border: 1px solid rgba(0,212,180,0.2);
+      border-radius: 10px;
+    }
+    .achievements-box .ach-title {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+    }
+    .achievements-box ul { padding-left: 16px; }
+    .achievements-box li { color: var(--muted); font-size: 0.875rem; margin-bottom: 6px; }
+    .achievements-box li strong { color: var(--text); }
+
+    .early-career {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px 28px; margin-top: 8px;
+    }
+    .early-career h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .early-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      flex-wrap: wrap; gap: 4px; padding: 8px 0;
+      border-bottom: 1px solid var(--border); font-size: 0.875rem;
+    }
+    .early-row:last-child { border-bottom: none; }
+    .early-row .co { font-weight: 600; color: var(--text); }
+    .early-row .ro { color: var(--muted); font-size: 0.825rem; }
+    .early-row .dt { color: var(--muted); font-size: 0.775rem; white-space: nowrap; }
+
+    /* ─────────────────────────────────────────
+       HIGHLIGHTS (big achievements)
+    ───────────────────────────────────────── */
+    .highlights-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .highlight-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .highlight-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(79,142,247,0.04), transparent);
+      pointer-events: none;
+    }
+    .highlight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+      border-color: rgba(79,142,247,0.35);
+    }
+    .highlight-icon { font-size: 2.2rem; margin-bottom: 16px; }
+    .highlight-number {
+      font-size: 2.4rem; font-weight: 900; line-height: 1;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .highlight-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .highlight-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.7; }
+
+    /* ─────────────────────────────────────────
+       SKILLS
+    ───────────────────────────────────────── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .skill-category {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 28px;
+      transition: border-color 0.2s;
+    }
+    .skill-category:hover { border-color: rgba(79,142,247,0.3); }
+    .skill-cat-title {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--primary); margin-bottom: 16px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      font-size: 0.8rem; font-weight: 500;
+      background: rgba(255,255,255,0.04); color: var(--text);
+      padding: 5px 12px; border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--primary); background: rgba(79,142,247,0.08); }
+
+    /* ─────────────────────────────────────────
+       CERTIFICATIONS
+    ───────────────────────────────────────── */
+    .certs-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .cert-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .cert-card:hover { transform: translateY(-2px); border-color: rgba(79,142,247,0.3); }
+    .cert-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .cert-name { font-size: 0.875rem; font-weight: 600; margin-bottom: 2px; }
+    .cert-issuer { font-size: 0.775rem; color: var(--muted); }
+
+    /* ─────────────────────────────────────────
+       CONTACT
+    ───────────────────────────────────────── */
+    .contact-section {
+      text-align: center; padding: 96px 24px;
+      background: linear-gradient(135deg, rgba(79,142,247,0.05), rgba(124,99,245,0.05));
+      border-top: 1px solid var(--border);
+    }
+    .contact-inner { max-width: 600px; margin: 0 auto; }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 40px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); text-decoration: none;
+      padding: 14px 24px; border-radius: 12px; font-weight: 600; font-size: 0.9rem;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .contact-link:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+      box-shadow: 0 8px 24px rgba(79,142,247,0.15);
+    }
+    .contact-link svg { width: 18px; height: 18px; }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 28px 24px;
+      color: var(--muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─────────────────────────────────────────
+       BACK TO TOP
+    ───────────────────────────────────────── */
+    #back-top {
+      position: fixed; bottom: 32px; right: 32px;
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      color: #fff; border: none; cursor: pointer; font-size: 1.1rem;
+      box-shadow: 0 4px 16px rgba(79,142,247,0.35);
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 99;
+    }
+    #back-top.show { opacity: 1; transform: translateY(0); }
+    #back-top:hover { transform: translateY(-2px); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      section { padding: 72px 20px; }
+      .timeline::before { display: none; }
+      .job-card { padding-left: 0; }
+      .job-card::before { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     HEADER
-════════════════════════════════════════════ -->
-<header>
-  <h1>George Véras Valentim</h1>
-  <div class="contact-line">
-    Greater Vancouver, BC, Canada
-    <span class="contact-sep">|</span>
-    +1 (604) 837-0524
-    <span class="contact-sep">|</span>
-    <a href="mailto:george.veras.valentim@gmail.com">george.veras.valentim@gmail.com</a>
-    <br>
-    <a href="https://www.linkedin.com/in/george-veras">linkedin.com/in/george-veras</a>
-    <span class="contact-sep">|</span>
-    <a href="https://github.com/george-veras">github.com/george-veras</a>
-    <span class="contact-sep">|</span>
-    <a href="https://george-veras.github.io">george-veras.github.io</a>
-  </div>
-</header>
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <div class="nav-logo">GVV</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="resume.html" class="nav-cta">View Resume</a></li>
+  </ul>
+</nav>
 
-<!-- ══════════════════════════════════════════
-     SUMMARY
-════════════════════════════════════════════ -->
-<section class="summary">
-  <h2>Professional Summary</h2>
-  <p>
-    Full-stack engineer with 15+ years of experience and a track record spanning ad-tech at Brazil's largest
-    e-commerce group, real-time booking SaaS for a global travel company, and government-scale identity systems.
-    Career highlights include designing the QR code now printed on every Brazilian driver's license and
-    designing and developing eCNH, the country's first digital ID mobile app — now used by over 40 million Brazilians. Equally at home owning a React/TypeScript
-    frontend, architecting Node.js microservices, or leading and growing an engineering team from scratch.
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-badge"><span></span> Available for new opportunities</div>
+  <h1>George <span class="gradient-text">Véras Valentim</span></h1>
+  <div class="typewriter-wrap">
+    I'm a &nbsp;<span class="typewriter" id="typewriter"></span><span class="cursor"></span>
+  </div>
+  <p class="hero-summary">
+    Full-stack engineer with 15+ years of experience building products at scale —
+    from government-grade identity systems used by 40M+ Brazilians to ad platforms
+    handling 1,200 requests per second. Based in Vancouver, BC.
   </p>
+  <div class="hero-btns">
+    <a href="#experience" class="btn-primary">See my work</a>
+    <a href="#contact" class="btn-outline">Get in touch</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- ── STATS ── -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number"><span class="counter" data-target="15">0</span>+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-number"><span class="counter" data-target="40">0</span>M+</div>
+        <div class="stat-label">Users Impacted</div>
+        <div class="stat-sub">via eCNH digital driver's license</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-number"><span class="counter" data-target="1200">0</span>/s</div>
+        <div class="stat-label">Ads Delivered at Peak</div>
+        <div class="stat-sub">B2W Black Friday traffic</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
+        <div class="stat-label">Storybook Components</div>
+        <div class="stat-sub">adopted company-wide at Jungle Scout</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Work Experience</h2>
+  <p class="section-sub">15+ years across startups, scale-ups, enterprise, and government-grade systems in Brazil and Canada.</p>
+
+  <div class="timeline">
+
+    <!-- Flight Centre -->
+    <div class="job-card reveal">
+      <div class="job-card-inner">
+        <div class="job-meta">
+          <div class="job-company">Flight Centre</div>
+          <div class="job-dates">Dec 2022 — Present · Vancouver, BC</div>
+        </div>
+        <div class="job-role">Senior Full Stack Engineer</div>
+        <ul class="job-bullets">
+          <li>Working on the company's <strong>real-time booking SaaS</strong> platform for flights, trains, hotels, and car rentals.</li>
+          <li>Acting across the full stack: <strong>React/TypeScript</strong> on the frontend and <strong>Node.js (Koa)</strong> on the backend.</li>
+        </ul>
+        <div class="job-stack">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Koa.js</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jungle Scout -->
+    <div class="job-card reveal">
+      <div class="job-card-inner">
+        <div class="job-meta">
+          <div class="job-company">Jungle Scout <span style="font-weight:400;color:var(--muted);font-size:0.85rem;">(Downstream / Ad Tech)</span></div>
+          <div class="job-dates">Jul 2021 — Oct 2022 · Vancouver, BC</div>
+        </div>
+        <div class="job-role">Frontend (React) Engineer</div>
+        <ul class="job-bullets">
+          <li><strong>Sole front-end engineer</strong> on Downstream, Jungle Scout's acquired Ad Tech subsidiary — independently owned the entire React codebase for over a year.</li>
+          <li>Introduced and built <strong>Storybook</strong> from the ground up with <strong>100+ reusable components</strong>, progressively adopted across the wider Jungle Scout organisation.</li>
+          <li>Mentored and onboarded the team's second front-end engineer, establishing component standards and documentation for a smooth handoff.</li>
+        </ul>
+        <div class="job-stack">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Storybook</span><span class="tag">Django</span><span class="tag">Docker</span><span class="tag">AWS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wonder -->
+    <div class="job-card reveal">
+      <div class="job-card-inner">
+        <div class="job-meta">
+          <div class="job-company">Wonder</div>
+          <div class="job-dates">Dec 2020 — May 2021 · New York (remote)</div>
+        </div>
+        <div class="job-role">Full Stack TypeScript Engineer</div>
+        <ul class="job-bullets">
+          <li>Joined at the founding stage of a <strong>Chrome extension</strong> that intelligently deep-crawled Google results to surface page-level summaries — dramatically cutting research time for <strong>journalists and academics</strong>.</li>
+          <li>One of <strong>4 engineers</strong> on a near-greenfield codebase; built features across the full stack from React frontend to the Node.js microservice mesh powering the crawler.</li>
+          <li>Introduced <strong>Storybook</strong> and built the product's <strong>dark theme</strong>, improving developer experience and UI polish.</li>
+        </ul>
+        <div class="job-stack">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Koa.js</span><span class="tag">Storybook</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Serverless</span><span class="tag">Redis</span><span class="tag">AWS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2W -->
+    <div class="job-card featured reveal">
+      <div class="job-card-inner">
+        <div class="job-meta">
+          <div class="job-company">B2W Digital</div>
+          <div class="job-dates">Mar 2018 — Dec 2020 · Rio de Janeiro</div>
+        </div>
+        <div class="job-role">Senior Backend Engineer</div>
+        <ul class="job-bullets">
+          <li>Built a fleet of <strong>7 domain-specific microservices</strong> (ad search, finances, user management, and more) powering ad delivery across Americanas, Submarino, and Shoptime — Latin America's largest e-commerce group.</li>
+          <li>Engineered a system sustaining <strong>peaks of 1,200 ads/second</strong> during Black Friday, with auto-scaling infrastructure that adjusted dynamically based on season.</li>
+          <li>Led infrastructure migration from <strong>Marathon/Mesos to Kubernetes</strong>, improving reliability and scalability.</li>
+          <li>The team's architecture became a <strong>reference model adopted company-wide</strong> across B2W.</li>
+        </ul>
+        <div class="job-stack">
+          <span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Jenkins</span><span class="tag">RabbitMQ</span><span class="tag">Redis</span><span class="tag">AWS</span><span class="tag">Google Cloud</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panorante -->
+    <div class="job-card reveal">
+      <div class="job-card-inner">
+        <div class="job-meta">
+          <div class="job-company">Panorante</div>
+          <div class="job-dates">Nov 2016 — Mar 2018 · Rio de Janeiro</div>
+        </div>
+        <div class="job-role">Founder &amp; Engineer</div>
+        <ul class="job-bullets">
+          <li>Founded and built a <strong>LinkedIn-style platform</strong> for construction and renovation professionals — architects, designers, painters, and electricians could create portfolio profiles and be discovered by clients.</li>
+          <li>Took product from zero to <strong>4 paying clients</strong>, handling product design, engineering, marketing, and UX independently.</li>
+          <li>Implemented advanced SEO with <strong>JSON-LD structured data</strong> and built with screen-reader accessibility as a first-class concern.</li>
+        </ul>
+        <div class="job-stack">
+          <span class="tag">.Net/C#</span><span class="tag">Node.js</span><span class="tag">Golang</span><span class="tag">React PWA</span><span class="tag">AWS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALID -->
+    <div class="job-card featured reveal">
+      <div class="job-card-inner">
+        <div class="job-meta">
+          <div class="job-company">VALID</div>
+          <div class="job-dates">Oct 2011 — Oct 2016 · Rio de Janeiro</div>
+        </div>
+        <div class="job-role">Technical Leader &amp; Senior Engineering Architect</div>
+        <ul class="job-bullets">
+          <li>Five years at Brazil's largest identity and information security company, serving federal government clients on a <strong>team of 10</strong>.</li>
+          <li>Acted as <strong>senior engineering architect</strong> — designed the architecture of most systems and coordinated the developers who implemented them.</li>
+          <li>Built and trained the company's <strong>first dedicated front-end team</strong> from scratch, introducing JavaScript, Angular, Sass, and Scrum.</li>
+          <li>Concurrently taught a C#.Net course at Digidata (Mar–Aug 2012).</li>
+        </ul>
+        <div class="achievements-box">
+          <div class="ach-title">🏆 Major Accomplishments</div>
+          <ul>
+            <li>Developed the <strong>first Brazilian government document production line in the cloud</strong> — Angular SPA consuming a microservices backend.</li>
+            <li>Designed &amp; developed <strong>eCNH</strong>, Brazil's first digital driver's license Android app — now used by <strong>40M+ Brazilians</strong> (≈44% of all licensed drivers).</li>
+            <li>Designed the <strong>QR Code security element</strong> now embedded in every Brazilian digital driver's license.</li>
+          </ul>
+        </div>
+        <div class="job-stack">
+          <span class="tag">Angular</span><span class="tag">Java (Android)</span><span class="tag">Asp.Net MVC</span><span class="tag">WebSockets</span><span class="tag">Sass</span><span class="tag">Oracle DB</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Early Career -->
+    <div class="job-card reveal">
+      <div class="early-career">
+        <h4>Earlier Career</h4>
+        <div class="early-row">
+          <span class="co">Oi Telecom</span>
+          <span class="ro">Systems Analyst / Consultant</span>
+          <span class="dt">Mar 2010 – Oct 2011</span>
+        </div>
+        <div class="early-row">
+          <span class="co">Spiderware</span>
+          <span class="ro">Software Developer</span>
+          <span class="dt">Apr 2008 – Mar 2010</span>
+        </div>
+        <div class="early-row">
+          <span class="co">Oswaldo Cruz Foundation</span>
+          <span class="ro">Web &amp; Database Scholarship</span>
+          <span class="dt">Mar 2006 – Oct 2007</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     TECHNICAL SUMMARY
-════════════════════════════════════════════ -->
+<!-- ── HIGHLIGHTS ── -->
+<div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<section id="highlights">
+  <div class="section-label">Impact</div>
+  <h2 class="section-title">Career Highlights</h2>
+  <p class="section-sub">The work I'm most proud of — systems that outlived the projects and reached national scale.</p>
+
+  <div class="highlights-grid">
+    <div class="highlight-card reveal">
+      <div class="highlight-icon">🪪</div>
+      <div class="highlight-number">40M+</div>
+      <div class="highlight-title">eCNH — Brazil's Digital Driver's License</div>
+      <div class="highlight-desc">Designed and developed the first Android app for civilian identification in Brazil, now used by over 40 million Brazilians — roughly 44% of all licensed drivers in the country.</div>
+    </div>
+    <div class="highlight-card reveal reveal-delay-1">
+      <div class="highlight-icon">🔲</div>
+      <div class="highlight-number">Nationwide</div>
+      <div class="highlight-title">The QR Code on Every Brazilian Driver's License</div>
+      <div class="highlight-desc">Designed the QR Code security element now printed on every Brazilian digital driver's license as the document's primary tamper-resistant authentication feature.</div>
+    </div>
+    <div class="highlight-card reveal reveal-delay-2">
+      <div class="highlight-icon">⚡</div>
+      <div class="highlight-number">1,200/s</div>
+      <div class="highlight-title">Ad Platform at Black Friday Scale</div>
+      <div class="highlight-desc">Built a microservice ad-delivery system sustaining 1,200 ads per second at peak — with auto-scaling infrastructure across Latin America's largest e-commerce group.</div>
+    </div>
+    <div class="highlight-card reveal reveal-delay-3">
+      <div class="highlight-icon">🧱</div>
+      <div class="highlight-number">100+</div>
+      <div class="highlight-title">Storybook Component Library</div>
+      <div class="highlight-desc">Introduced and built Storybook from scratch at Jungle Scout with 100+ components, which became the front-end foundation adopted across the wider organisation.</div>
+    </div>
+    <div class="highlight-card reveal">
+      <div class="highlight-icon">☁️</div>
+      <div class="highlight-number">First</div>
+      <div class="highlight-title">Brazil's First Cloud Document Production Line</div>
+      <div class="highlight-desc">Architected and delivered the first Brazilian government document production line in the cloud — an Angular SPA consuming a microservices backend for the federal government.</div>
+    </div>
+    <div class="highlight-card reveal reveal-delay-1">
+      <div class="highlight-icon">🚀</div>
+      <div class="highlight-number">Panorante</div>
+      <div class="highlight-title">Startup Founder</div>
+      <div class="highlight-desc">Founded and built a LinkedIn-style platform for construction professionals from zero to paying customers — handling product, engineering, marketing, and UX solo.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="section-label">Technical</div>
+  <h2 class="section-title">Skills &amp; Technologies</h2>
+  <p class="section-sub">15+ years of practical experience across the full stack.</p>
+
+  <div class="skills-grid">
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">JavaScript</span><span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">Python</span><span class="skill-tag">C#</span>
+        <span class="skill-tag">Golang</span><span class="skill-tag">Java (Android)</span>
+      </div>
+    </div>
+    <div class="skill-category reveal reveal-delay-1">
+      <div class="skill-cat-title">Frontend</div>
+      <div class="skill-tags">
+        <span class="skill-tag">React</span><span class="skill-tag">Redux</span>
+        <span class="skill-tag">Recoil.js</span><span class="skill-tag">Storybook</span>
+        <span class="skill-tag">HTML5/CSS</span><span class="skill-tag">Sass</span>
+        <span class="skill-tag">Flexbox</span><span class="skill-tag">CSS Grid</span>
+      </div>
+    </div>
+    <div class="skill-category reveal reveal-delay-2">
+      <div class="skill-cat-title">Backend</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Node.js</span><span class="skill-tag">Koa.js</span>
+        <span class="skill-tag">Express</span><span class="skill-tag">.Net/C#</span>
+        <span class="skill-tag">Django</span><span class="skill-tag">Golang</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Databases &amp; Caching</div>
+      <div class="skill-tags">
+        <span class="skill-tag">MongoDB</span><span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MySQL</span><span class="skill-tag">Redis</span>
+        <span class="skill-tag">Elasticsearch</span><span class="skill-tag">Snowflake</span>
+        <span class="skill-tag">Oracle</span><span class="skill-tag">SQL Server</span>
+      </div>
+    </div>
+    <div class="skill-category reveal reveal-delay-1">
+      <div class="skill-cat-title">DevOps &amp; Cloud</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span>
+        <span class="skill-tag">AWS</span><span class="skill-tag">Google Cloud</span>
+        <span class="skill-tag">GitHub Actions</span><span class="skill-tag">CircleCI</span>
+        <span class="skill-tag">Jenkins</span><span class="skill-tag">Serverless</span>
+      </div>
+    </div>
+    <div class="skill-category reveal reveal-delay-2">
+      <div class="skill-cat-title">Architecture &amp; Patterns</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Microservices</span><span class="skill-tag">RESTful API</span>
+        <span class="skill-tag">WebSockets</span><span class="skill-tag">RabbitMQ</span>
+        <span class="skill-tag">Design Patterns (GoF)</span><span class="skill-tag">SaaS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ── -->
+<div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
 <section>
-  <h2>Technical Summary</h2>
-  <table class="skills">
-    <tr>
-      <td>Languages</td>
-      <td>JavaScript/TypeScript (15+ years), C# (9 years), Python, Golang, Java for Android (2 years)</td>
-    </tr>
-    <tr>
-      <td>Web Front-end</td>
-      <td>React (7+ years), Redux, Recoil.js, Storybook.js, HTML5/CSS, Babel, Sass, Flexbox, CSS Grid</td>
-    </tr>
-    <tr>
-      <td>Web Back-end</td>
-      <td>Node.js (8+ years), .Net/C# (9 years), Django/Python, Koa.js, Golang</td>
-    </tr>
-    <tr>
-      <td>Architecture &amp; Patterns</td>
-      <td>RESTful API, Microservices, WebSockets, Design Patterns (GoF), SaaS, Chrome Extensions</td>
-    </tr>
-    <tr>
-      <td>Testing</td>
-      <td>Jest, Cypress, Mocha, Chai.js, Sinon.js, Enzyme, Selenium</td>
-    </tr>
-    <tr>
-      <td>Databases &amp; Caching</td>
-      <td>MongoDB, PostgreSQL, MySQL, Redis, Elasticsearch, Kibana, Snowflake, SQL Server, Oracle, AWS RDS/Elasticache, Google Cloud Bigtable</td>
-    </tr>
-    <tr>
-      <td>Messaging &amp; Storage</td>
-      <td>RabbitMQ, AWS SQS, S3, Athena, Kinesis, Google BigQuery</td>
-    </tr>
-    <tr>
-      <td>DevOps &amp; CI/CD</td>
-      <td>Docker, Kubernetes, GitHub Actions, CircleCI, Jenkins, AWS (ECS, Lambda, Beanstalk, CloudWatch), Google Cloud Platform, Serverless Framework, Marathon/Mesos, CodeCov</td>
-    </tr>
-    <tr>
-      <td>Version Control &amp; Tools</td>
-      <td>Git, GitHub, GitLab, Bitbucket, npm, Yarn, Visual Studio TFS</td>
-    </tr>
-  </table>
-</section>
+  <div class="section-label">Credentials</div>
+  <h2 class="section-title">Certifications &amp; Education</h2>
 
-<!-- ══════════════════════════════════════════
-     WORK EXPERIENCE
-════════════════════════════════════════════ -->
-<section>
-  <h2>Work Experience</h2>
-
-  <!-- Flight Centre -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">Flight Centre</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Senior Full Stack Engineer</span>
-      </div>
-      <div class="dates">Vancouver, BC &nbsp;|&nbsp; Dec 2022 – Present</div>
-    </div>
-    <ul>
-      <li>Working on the company's real-time booking SaaS platform for flights, trains, hotels, and car rentals.</li>
-      <li>Acting as a full-stack engineer across the React/TypeScript frontend and the Node.js (Koa) backend.</li>
-    </ul>
-    <div class="stack"><strong>Stack:</strong> React, TypeScript, Node.js, Koa.js</div>
+  <div class="certs-grid" style="margin-bottom: 48px;">
+    <div class="cert-card reveal"><div class="cert-icon">🏅</div><div><div class="cert-name">Project Management Professional (PMP)</div><div class="cert-issuer">PMI</div></div></div>
+    <div class="cert-card reveal reveal-delay-1"><div class="cert-icon">🔬</div><div><div class="cert-name">IEEE Certified Biometrics Professional</div><div class="cert-issuer">IEEE</div></div></div>
+    <div class="cert-card reveal reveal-delay-2"><div class="cert-icon">🔄</div><div><div class="cert-name">Certified ScrumMaster (CSM)</div><div class="cert-issuer">Scrum Alliance</div></div></div>
+    <div class="cert-card reveal"><div class="cert-icon">🌐</div><div><div class="cert-name">Arc Certified Remote Developer</div><div class="cert-issuer">Arc.dev</div></div></div>
+    <div class="cert-card reveal reveal-delay-1"><div class="cert-icon">💻</div><div><div class="cert-name">MCTS — Web Application</div><div class="cert-issuer">Microsoft</div></div></div>
+    <div class="cert-card reveal reveal-delay-2"><div class="cert-icon">🇫🇷</div><div><div class="cert-name">DELF Niveau A2</div><div class="cert-issuer">French Ministry of Education</div></div></div>
   </div>
 
-  <!-- Jungle Scout -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">Jungle Scout</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Frontend (React) Engineer</span>
-      </div>
-      <div class="dates">Vancouver, BC &nbsp;|&nbsp; Jul 2021 – Oct 2022</div>
-    </div>
-    <ul>
-      <li>Served as the <strong>sole front-end engineer</strong> on Downstream — Jungle Scout's acquired Ad Tech subsidiary — independently owning the entire React codebase for over a year.</li>
-      <li>Introduced and built out <strong>Storybook</strong> from the ground up, delivering <strong>100+ reusable components</strong> that were progressively adopted beyond the Ad Tech team and became a front-end foundation across Jungle Scout.</li>
-      <li>Mentored and onboarded the team's second front-end engineer, establishing component standards and documentation that enabled a smooth knowledge transfer before departing.</li>
-    </ul>
-    <div class="stack"><strong>Stack:</strong> React, TypeScript, JavaScript, Storybook, Django (Python), Docker, AWS</div>
-  </div>
-
-  <!-- Wonder -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">Wonder</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Full Stack TypeScript Engineer</span>
-      </div>
-      <div class="dates">New York (remote) &nbsp;|&nbsp; Dec 2020 – May 2021</div>
-    </div>
-    <ul>
-      <li>Joined at the founding stage of a Chrome extension that used intelligent deep-crawling to surface page-level summaries across Google search results — dramatically cutting research time for its primary users: <strong>journalists and academics</strong>.</li>
-      <li>As one of <strong>4 engineers</strong> on a near-greenfield codebase, built a broad range of features across the full TypeScript stack — from the React frontend to the Node.js microservice mesh (one service in Python) that powered the crawler.</li>
-      <li>Introduced <strong>Storybook</strong> for component documentation and delivered the product's <strong>dark theme</strong>, improving both developer experience and UI polish.</li>
-    </ul>
-    <div class="stack"><strong>Stack:</strong> React, TypeScript, Node.js, Koa.js, Storybook, MongoDB, PostgreSQL, Serverless Framework, Docker, Redis, AWS</div>
-  </div>
-
-  <!-- B2W -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">B2W Digital</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Senior Backend Engineer</span>
-      </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Mar 2018 – Dec 2020</div>
-    </div>
-    <ul>
-      <li>Built and maintained a fleet of <strong>7 domain-specific microservices</strong> (ad search, finances, user management, and more) powering ad delivery across Americanas, Submarino, and Shoptime — three of the largest e-commerce brands in Latin America.</li>
-      <li>Engineered a system capable of sustaining <strong>peaks of 1,200 ads delivered per second</strong> during Black Friday, with auto-scaling infrastructure that dynamically adjusted capacity based on traffic and season.</li>
-      <li>Led the infrastructure migration from <strong>Marathon/Mesos to Kubernetes</strong>, improving reliability and scalability of the ad platform.</li>
-      <li>The team's architectural patterns and operational practices were <strong>adopted broadly across B2W</strong>, one of the largest e-commerce groups in Latin America, as a reference model.</li>
-      <li>Shared full DevOps ownership — every engineer was responsible for the infrastructure, operating as a self-managed Scrum team.</li>
-    </ul>
-    <div class="stack"><strong>Stack:</strong> Node.js, MongoDB, MySQL, Docker, Jenkins, RabbitMQ, Redis, Kubernetes, Marathon/Mesos, AWS, Google Cloud, Spot.io</div>
-  </div>
-
-  <!-- Panorante -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">Panorante</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Founder &amp; Engineer</span>
-      </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Nov 2016 – Mar 2018</div>
-    </div>
-    <ul>
-      <li>Founded and built a <strong>LinkedIn-style platform for construction and renovation professionals</strong> — architects, interior designers, painters, and electricians could create portfolio profiles and be discovered by clients looking to hire them; store owners could list their businesses and addresses.</li>
-      <li>Took the product from zero to <strong>4 paying clients</strong>, handling every aspect of the business: product design, engineering, customer development, inbound marketing, and UX.</li>
-      <li>Implemented advanced SEO with JSON-LD structured data (Google-recommended format) to maximise organic search placement for professional profiles.</li>
-      <li>Built with accessibility as a first-class concern, ensuring screen-reader compatibility for users with visual impairments.</li>
-      <li>Evolved the tech stack independently — started on .Net/C#, migrated the backend to Node.js and Golang, and built the admin panel as a React PWA.</li>
-    </ul>
-    <div class="stack"><strong>Stack:</strong> .Net/C#, Node.js, Golang, React (PWA), AWS (EC2, S3, RDS, ElastiCache, CloudFront)</div>
-  </div>
-
-  <!-- VALID -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">VALID</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Technical Leader</span>
-      </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Oct 2011 – Oct 2016</div>
-    </div>
-    <ul>
-      <li>Five years at Brazil's largest identity solutions and information security company, serving government clients on a <strong>team of 10</strong> including testers.</li>
-      <li>Acted as <strong>senior engineering architect</strong> — designed the architecture of most systems and coordinated the developers responsible for implementing them, while also serving as the technical liaison between engineering and directors/managers.</li>
-      <li>Took ownership of R&amp;D projects to design and implement new identity solutions for the federal government.</li>
-      <li>Identified the gap in front-end expertise, assembled and trained the company's <em>first dedicated front-end team</em> from scratch — coaching developers in JavaScript, Angular, Sass, jQuery, and CSS animations. The team adopted Scrum, and measurable UX and support satisfaction improvements followed.</li>
-      <li>Concurrently taught a C#.Net course at Digidata (Mar–Aug 2012) as a part-time engagement.</li>
-    </ul>
-    <div class="accomplishments">
-      <div class="acc-label">Major Accomplishments</div>
-      <ul>
-        <li>Developed the <strong>first Brazilian government document production line in the cloud</strong> — an Angular SPA consuming a microservices backend.</li>
-        <li>Designed and developed <strong>eCNH</strong>, Brazil's first Android app for digital civilian identification and driver's license — now used by <strong>over 40 million Brazilians</strong> (≈44% of all licensed drivers in the country).</li>
-        <li>Designed the <strong>QR Code security element</strong> now embedded in every Brazilian digital driver's license, used nationwide as the document's primary tamper-resistant authentication feature.</li>
-      </ul>
-    </div>
-    <div class="stack"><strong>Stack:</strong> Angular, Asp.Net MVC, Java (Android), Jasmine, Karma, Bootstrap, Sass, WebSockets, Bouncy Castle (encryption), jQuery, Oracle Database</div>
-  </div>
-
-  <!-- Oi -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">Oi Telecom</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Systems Analyst / Consultant</span>
-      </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Mar 2010 – Oct 2011</div>
-    </div>
-    <ul>
-      <li>Modernized the software legacy of an internal department at one of Brazil's largest telecommunications companies, replacing manual processes with automated solutions.</li>
-    </ul>
-  </div>
-
-  <!-- Spiderware -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">Spiderware</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Software Developer</span>
-      </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Apr 2008 – Mar 2010</div>
-    </div>
-    <ul>
-      <li>Developed web applications using .Net and JavaScript/jQuery.</li>
-    </ul>
-  </div>
-
-  <!-- Oswaldo Cruz -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">Oswaldo Cruz Foundation (Fiocruz)</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Web &amp; Database Scholarship</span>
-      </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Mar 2006 – Oct 2007</div>
-    </div>
-    <ul>
-      <li>Built and maintained the website for the Third Brazilian Health and Environment Olympiad; managed the event's MySQL database.</li>
-    </ul>
-  </div>
-
-</section>
-
-<!-- ══════════════════════════════════════════
-     EDUCATION
-════════════════════════════════════════════ -->
-<section>
-  <h2>Education</h2>
-  <div class="edu-entry">
-    <div>
-      <span class="degree">Diploma in Software Projects Management</span>
-      &nbsp;—&nbsp;
-      <span class="school">PUC-Rio (Pontifícia Universidade Católica do Rio de Janeiro)</span>
-    </div>
-    <div class="dates">2011 – 2013</div>
-  </div>
-  <div class="edu-entry">
-    <div>
-      <span class="degree">Bachelor of Computer Science</span>
-      &nbsp;—&nbsp;
-      <span class="school">Castelo Branco University</span>
-    </div>
-    <div class="dates">2005 – 2010</div>
+  <div class="certs-grid">
+    <div class="cert-card reveal"><div class="cert-icon">🎓</div><div><div class="cert-name">Diploma in Software Projects Management</div><div class="cert-issuer">PUC-Rio &nbsp;·&nbsp; 2011–2013</div></div></div>
+    <div class="cert-card reveal reveal-delay-1"><div class="cert-icon">🎓</div><div><div class="cert-name">Bachelor of Computer Science</div><div class="cert-issuer">Castelo Branco University &nbsp;·&nbsp; 2005–2010</div></div></div>
   </div>
 </section>
+</div>
 
-<!-- ══════════════════════════════════════════
-     CERTIFICATIONS
-════════════════════════════════════════════ -->
-<section>
-  <h2>Certifications</h2>
-  <ul class="cert-list">
-    <li>Arc Certified Remote Developer — Arc.dev</li>
-    <li>Certified ScrumMaster (CSM) — Scrum Alliance</li>
-    <li>Project Management Professional (PMP)</li>
-    <li>IEEE Certified Biometrics Professional</li>
-    <li>Microsoft Certified Technology Specialist (MCTS) — Web Application</li>
-    <li>DELF: Diplôme d'Études en Langue Française — Niveau A2</li>
-  </ul>
-</section>
-
-<!-- ══════════════════════════════════════════
-     LANGUAGES
-════════════════════════════════════════════ -->
-<section>
-  <h2>Languages</h2>
-  <div class="lang-list">
-    <div class="lang"><strong>Portuguese</strong> — Native</div>
-    <div class="lang"><strong>English</strong> — Fluent</div>
-    <div class="lang"><strong>French</strong> — Intermediate</div>
+<!-- ── CONTACT ── -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="text-align:center;">Let's connect</div>
+    <h2 class="section-title reveal" style="text-align:center;">Get In Touch</h2>
+    <p class="reveal" style="color:var(--muted);font-size:1rem;margin-top:12px;">
+      Open to new opportunities, interesting projects, or just a good conversation about tech.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:george.veras.valentim@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email me
+      </a>
+      <a href="https://www.linkedin.com/in/george-veras" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/george-veras" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a href="resume.html" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        View Resume
+      </a>
+    </div>
   </div>
-</section>
+</div>
 
-<!-- ══════════════════════════════════════════
-     COURSES
-════════════════════════════════════════════ -->
-<section>
-  <h2>Courses &amp; Training</h2>
-  <ul class="course-list">
-    <li>Introduction to Data Science Bootcamp — Veiga de Almeida Foundation, 2018</li>
-    <li>Empretec (entrepreneurship programme) — SENAC, 2017</li>
-    <li>French Language — Alliance Française, 2015</li>
-  </ul>
-</section>
+<footer>
+  Built by George Véras Valentim &nbsp;·&nbsp; george-veras.github.io
+</footer>
 
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // ── Navbar scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    document.getElementById('back-top').classList.toggle('show', window.scrollY > 400);
+  });
+
+  // ── Typewriter
+  const roles = ['Full Stack Engineer', 'Engineering Architect', 'Startup Founder', 'Builder of Things'];
+  let ri = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typewriter');
+  function type() {
+    const word = roles[ri];
+    if (!deleting) {
+      el.textContent = word.slice(0, ++ci);
+      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      el.textContent = word.slice(0, --ci);
+      if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+    }
+    setTimeout(type, deleting ? 50 : 80);
+  }
+  type();
+
+  // ── Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Counter animation
+  function animateCounter(el) {
+    const target = +el.dataset.target;
+    const duration = 1800;
+    const start = performance.now();
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target).toLocaleString();
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(update);
+  }
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.counter').forEach(animateCounter);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.stats-grid').forEach(el => counterObserver.observe(el));
+</script>
 </body>
 </html>
