@@ -413,12 +413,15 @@
     .app-nav-item .nav-label { font-size: 4.5px; color: #888; }
     .app-nav-item.active .nav-label { color: #006B3C; font-weight: 700; }
 
-    /* Featured highlight card — text left, visuals right */
+    /* Featured highlight card — column: top row + full-width press section */
     .highlight-card--featured {
       grid-column: 1 / -1;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .hf-top {
       display: flex; align-items: flex-start; gap: 36px; flex-wrap: wrap;
     }
-    .hf-text { flex: 1; min-width: 260px; }
+    .hf-top .hf-text { flex: 1; min-width: 260px; }
     .hf-right {
       flex-shrink: 0; width: 520px;
       height: 390px;
@@ -505,7 +508,7 @@
     .cnhcard-caption strong { color: #FFDF00; }
 
     /* ── Press / media coverage ── */
-    .press-section { margin-top: 24px; }
+    .press-section { }
     .press-label {
       font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 1.5px; color: var(--muted); margin-bottom: 10px;
@@ -953,32 +956,18 @@
     <!-- eCNH featured card -->
     <div class="highlight-card highlight-card--featured reveal">
 
-      <!-- Text block -->
-      <div class="hf-text">
-        <div class="highlight-icon">🪪</div>
-        <div class="highlight-number">40M+</div>
-        <div class="highlight-title">eCNH — Brazil's Digital Driver's License</div>
-        <div class="highlight-desc" style="margin-bottom:16px;"><strong style="color:var(--accent)">Built entirely alone.</strong> Solely designed and developed the complete first version of Brazil's digital driver's license Android app — from scratch — which was then launched nationally. It now has over <strong style="color:var(--text)">40 million users</strong>, roughly 44% of all licensed drivers in the country.</div>
-        <div class="highlight-desc" style="margin-bottom:16px;">Also solely designed the <strong style="color:var(--text)">QR Code security element</strong> now printed on the back of every Brazilian driver's license. Before it existed, forged and tampered documents were widespread — the QR code made real-time verification possible for the first time.</div>
-        <div class="highlight-desc">Built the <strong style="color:var(--text)">companion authority app</strong> for police and traffic agents to scan any physical CNH and instantly verify its authenticity against the government database — completing a full end-to-end security system, all designed and built by one engineer.</div>
+      <!-- Top row: text left + visuals right -->
+      <div class="hf-top">
+        <div class="hf-text">
+          <div class="highlight-icon">🪪</div>
+          <div class="highlight-number">40M+</div>
+          <div class="highlight-title">eCNH — Brazil's Digital Driver's License</div>
+          <div class="highlight-desc" style="margin-bottom:16px;"><strong style="color:var(--accent)">Built entirely alone.</strong> Solely designed and developed the complete first version of Brazil's digital driver's license Android app — from scratch — which was then launched nationally. It now has over <strong style="color:var(--text)">40 million users</strong>, roughly 44% of all licensed drivers in the country.</div>
+          <div class="highlight-desc" style="margin-bottom:16px;">Also solely designed the <strong style="color:var(--text)">QR Code security element</strong> now printed on the back of every Brazilian driver's license. Before it existed, forged and tampered documents were widespread — the QR code made real-time verification possible for the first time.</div>
+          <div class="highlight-desc">Built the <strong style="color:var(--text)">companion authority app</strong> for police and traffic agents to scan any physical CNH and instantly verify its authenticity against the government database — completing a full end-to-end security system, all designed and built by one engineer.</div>
+        </div>
 
-          <div class="press-section">
-            <div class="press-label">Media Coverage</div>
-            <div class="press-links">
-              <a href="https://g1.globo.com/carros/noticia/contran-aprova-carteira-de-habilitacao-digital.ghtml" target="_blank" rel="noopener" class="press-link">G1 / Globo</a>
-              <a href="https://www.cnnbrasil.com.br/auto/cnh-do-brasil-substitui-app-carteira-digital-de-transito-veja-o-que-muda/" target="_blank" rel="noopener" class="press-link">CNN Brasil</a>
-              <a href="https://www.techtudo.com.br/listas/2022/06/nova-cnh-2022-4-perguntas-e-respostas-sobre-o-modelo.ghtml" target="_blank" rel="noopener" class="press-link">TechTudo</a>
-              <a href="https://www.infomoney.com.br/brasil/novas-regras-para-cnh-sem-autoescola-e-com-renovacao-automatica-valem-nesta-semana/" target="_blank" rel="noopener" class="press-link">Infomoney</a>
-              <a href="https://agenciabrasil.ebc.com.br/geral/noticia/2022-06/carteira-nacional-de-habilitacao-tem-novo-modelo-partir-de-hoje" target="_blank" rel="noopener" class="press-link">Agência Brasil</a>
-              <a href="https://www.serpro.gov.br/menu/noticias/noticias-2017/cnh-digital-traz-praticidade-a-motoristas" target="_blank" rel="noopener" class="press-link">SERPRO</a>
-              <a href="https://tecnoblog.net/noticias/governo-renova-app-da-cnh-para-baratear-obtencao-do-documento/" target="_blank" rel="noopener" class="press-link">Tecnoblog</a>
-              <a href="https://www.biometricupdate.com/202212/half-of-brazilians-now-using-mobile-id-biometrics-use-up" target="_blank" rel="noopener" class="press-link intl">🇺🇸 Biometric Update</a>
-              <a href="https://www.riotimesonline.com/brazil-news/brazil/digital-cpf-and-cnh-available-in-brazil-in-new-android-and-iphone-app/" target="_blank" rel="noopener" class="press-link intl">🌎 The Rio Times</a>
-            </div>
-          </div>
-      </div>
-
-      <!-- Right column: portrait carousel + document image -->
+        <!-- Right column: portrait carousel + document image -->
       <div class="hf-right">
         <div class="carousel" id="ecnh-carousel">
           <div class="carousel-track" id="ecnh-track">
@@ -1054,6 +1043,23 @@
             </div>
           </div>
           <div class="cnhcard-caption">The <strong>QR Code</strong> I designed — on the back of every Brazilian driver's license since 2017</div>
+        </div>
+      </div><!-- end hf-right -->
+      </div><!-- end hf-top -->
+
+      <!-- Full-width media coverage -->
+      <div class="press-section" style="margin-top:0">
+        <div class="press-label">Media Coverage</div>
+        <div class="press-links">
+          <a href="https://g1.globo.com/carros/noticia/contran-aprova-carteira-de-habilitacao-digital.ghtml" target="_blank" rel="noopener" class="press-link">G1 / Globo</a>
+          <a href="https://www.cnnbrasil.com.br/auto/cnh-do-brasil-substitui-app-carteira-digital-de-transito-veja-o-que-muda/" target="_blank" rel="noopener" class="press-link">CNN Brasil</a>
+          <a href="https://www.techtudo.com.br/listas/2022/06/nova-cnh-2022-4-perguntas-e-respostas-sobre-o-modelo.ghtml" target="_blank" rel="noopener" class="press-link">TechTudo</a>
+          <a href="https://www.infomoney.com.br/brasil/novas-regras-para-cnh-sem-autoescola-e-com-renovacao-automatica-valem-nesta-semana/" target="_blank" rel="noopener" class="press-link">Infomoney</a>
+          <a href="https://agenciabrasil.ebc.com.br/geral/noticia/2022-06/carteira-nacional-de-habilitacao-tem-novo-modelo-partir-de-hoje" target="_blank" rel="noopener" class="press-link">Agência Brasil</a>
+          <a href="https://www.serpro.gov.br/menu/noticias/noticias-2017/cnh-digital-traz-praticidade-a-motoristas" target="_blank" rel="noopener" class="press-link">SERPRO</a>
+          <a href="https://tecnoblog.net/noticias/governo-renova-app-da-cnh-para-baratear-obtencao-do-documento/" target="_blank" rel="noopener" class="press-link">Tecnoblog</a>
+          <a href="https://www.biometricupdate.com/202212/half-of-brazilians-now-using-mobile-id-biometrics-use-up" target="_blank" rel="noopener" class="press-link intl">🇺🇸 Biometric Update</a>
+          <a href="https://www.riotimesonline.com/brazil-news/brazil/digital-cpf-and-cnh-available-in-brazil-in-new-android-and-iphone-app/" target="_blank" rel="noopener" class="press-link intl">🌎 The Rio Times</a>
         </div>
       </div>
 
