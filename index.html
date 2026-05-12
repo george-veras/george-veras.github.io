@@ -411,20 +411,20 @@
     .app-nav-item .nav-label { font-size: 4.5px; color: #888; }
     .app-nav-item.active .nav-label { color: #006B3C; font-weight: 700; }
 
-    /* Featured highlight card — vertical stack layout */
+    /* Featured highlight card — text left, visuals right */
     .highlight-card--featured {
       grid-column: 1 / -1;
-      display: flex; flex-direction: column; gap: 28px;
+      display: flex; align-items: flex-start; gap: 36px; flex-wrap: wrap;
     }
-    .hf-top-row {
-      display: flex; align-items: flex-start; gap: 32px; flex-wrap: wrap;
+    .hf-text { flex: 1; min-width: 260px; }
+    .hf-right {
+      flex-shrink: 0; width: 320px;
+      display: flex; flex-direction: column; gap: 16px;
     }
-    .hf-top-row .hf-text { flex: 1; min-width: 260px; }
 
-    /* QR doc — portrait image, natural proportions */
+    /* QR doc — portrait, natural proportions */
     .cnh-doc-frame {
-      flex-shrink: 0; width: 180px;
-      position: relative; border-radius: 12px; overflow: hidden;
+      width: 100%; position: relative; border-radius: 12px; overflow: hidden;
       box-shadow: 0 8px 32px rgba(0,0,0,0.55);
       border: 2px solid rgba(255,223,0,0.4);
     }
@@ -437,7 +437,7 @@
     }
     .cnh-doc-caption strong { color: #FFDF00; }
 
-    /* ── Full-width prominent carousel ── */
+    /* ── Portrait carousel ── */
     .carousel {
       width: 100%; border-radius: 16px; overflow: hidden;
       box-shadow:
@@ -451,18 +451,18 @@
       display: flex; transition: transform 0.5s cubic-bezier(.4,0,.2,1);
     }
     .carousel-slide {
-      min-width: 100%; aspect-ratio: 16/7; overflow: hidden;
+      min-width: 100%; aspect-ratio: 3/4; overflow: hidden;
     }
     .carousel-slide img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      width: 100%; height: 100%; object-fit: cover;
       display: block;
     }
     .carousel-caption {
       position: absolute; bottom: 0; left: 0; right: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-      padding: 48px 20px 32px;
-      font-size: 0.8rem; color: rgba(255,255,255,0.92); text-align: center;
-      font-weight: 500;
+      padding: 40px 14px 32px;
+      font-size: 0.75rem; color: rgba(255,255,255,0.92); text-align: center;
+      font-weight: 500; line-height: 1.4;
     }
     .carousel-dots {
       position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
@@ -477,13 +477,13 @@
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15);
-      color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
-      font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+      color: #fff; width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
       transition: background 0.2s, transform 0.2s; backdrop-filter: blur(6px);
     }
     .carousel-btn:hover { background: rgba(79,142,247,0.5); transform: translateY(-50%) scale(1.05); }
-    .carousel-btn.prev { left: 14px; }
-    .carousel-btn.next { right: 14px; }
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
 
     /* Pause indicator */
     .carousel::after {
@@ -863,40 +863,43 @@
     <!-- eCNH featured card -->
     <div class="highlight-card highlight-card--featured reveal">
 
-      <!-- Top row: text + QR document portrait image -->
-      <div class="hf-top-row">
-        <div class="hf-text">
-          <div class="highlight-icon">🪪</div>
-          <div class="highlight-number">40M+</div>
-          <div class="highlight-title">eCNH — Brazil's Digital Driver's License</div>
-          <div class="highlight-desc" style="margin-bottom:16px;">Designed and developed the first Android app for civilian identification in Brazil, now used by over 40 million Brazilians — roughly 44% of all licensed drivers in the country.</div>
-          <div class="highlight-desc" style="margin-bottom:16px;">Designed the <strong style="color:var(--text)">QR Code security element</strong> now printed on the back of every Brazilian driver's license. Before it existed, forged and tampered documents were widespread — the QR code made real-time verification possible for the first time.</div>
-          <div class="highlight-desc">Also built a <strong style="color:var(--text)">companion authority app</strong> for police and traffic agents to scan any physical CNH and instantly verify its authenticity against the government database — completing the full end-to-end security system.</div>
-        </div>
-        <!-- Physical CNH back — portrait, natural proportions -->
-        <div class="cnh-doc-frame">
-          <img src="img-cnh-qr2.jpg" alt="Back of the Brazilian driver's license showing the QR Code security element">
-          <div class="cnh-doc-caption">The <strong>QR Code</strong> I designed — on the back of every Brazilian driver's license since 2017</div>
-        </div>
+      <!-- Text block -->
+      <div class="hf-text">
+        <div class="highlight-icon">🪪</div>
+        <div class="highlight-number">40M+</div>
+        <div class="highlight-title">eCNH — Brazil's Digital Driver's License</div>
+        <div class="highlight-desc" style="margin-bottom:16px;">Designed and developed the first Android app for civilian identification in Brazil, now used by over 40 million Brazilians — roughly 44% of all licensed drivers in the country.</div>
+        <div class="highlight-desc" style="margin-bottom:16px;">Designed the <strong style="color:var(--text)">QR Code security element</strong> now printed on the back of every Brazilian driver's license. Before it existed, forged and tampered documents were widespread — the QR code made real-time verification possible for the first time.</div>
+        <div class="highlight-desc">Also built a <strong style="color:var(--text)">companion authority app</strong> for police and traffic agents to scan any physical CNH and instantly verify its authenticity against the government database — completing the full end-to-end security system.</div>
       </div>
 
-      <!-- Full-width app carousel -->
-      <div class="carousel" id="ecnh-carousel">
-        <div class="carousel-track" id="ecnh-track">
-          <div class="carousel-slide">
-            <img src="img-serpro-app.png" alt="CNH do Brasil app — official launch by SERPRO">
+      <!-- Right column: portrait carousel + document image -->
+      <div class="hf-right">
+        <div class="carousel" id="ecnh-carousel">
+          <div class="carousel-track" id="ecnh-track">
+            <div class="carousel-slide">
+              <img src="img-serpro-app.png" alt="CNH do Brasil app — official launch by SERPRO"
+                   style="object-position: 62% center;">
+            </div>
+            <div class="carousel-slide">
+              <img src="img-cnn-app.jpg" alt="CNH do Brasil — new app interface"
+                   style="object-position: 42% 72%;">
+            </div>
+            <div class="carousel-slide">
+              <img src="img-cnh-security.jpg" alt="Digital driver's license displayed in the eCNH app"
+                   style="object-position: center center;">
+            </div>
           </div>
-          <div class="carousel-slide">
-            <img src="img-cnn-app.jpg" alt="CNH do Brasil — new app interface" style="object-position: center 70%;">
-          </div>
-          <div class="carousel-slide">
-            <img src="img-cnh-security.jpg" alt="Digital driver's license displayed in the eCNH app">
-          </div>
+          <div class="carousel-caption" id="ecnh-caption">CNH do Brasil — official app by SERPRO</div>
+          <button class="carousel-btn prev" onclick="carouselMove('ecnh',-1)">‹</button>
+          <button class="carousel-btn next" onclick="carouselMove('ecnh', 1)">›</button>
+          <div class="carousel-dots" id="ecnh-dots"></div>
         </div>
-        <div class="carousel-caption" id="ecnh-caption">CNH do Brasil — official app by SERPRO</div>
-        <button class="carousel-btn prev" onclick="carouselMove('ecnh',-1)">‹</button>
-        <button class="carousel-btn next" onclick="carouselMove('ecnh', 1)">›</button>
-        <div class="carousel-dots" id="ecnh-dots"></div>
+
+        <div class="cnh-doc-frame">
+          <img src="img-cnh-qr2.jpg" alt="Back of the Brazilian driver's license showing the QR Code">
+          <div class="cnh-doc-caption">The <strong>QR Code</strong> I designed — on the back of every Brazilian driver's license since 2017</div>
+        </div>
       </div>
 
     </div>
