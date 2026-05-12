@@ -418,7 +418,24 @@
       flex-wrap: wrap;
     }
     .highlight-card--featured .hf-text { flex: 1; min-width: 260px; }
-    .highlight-card--featured .hf-phone { flex-shrink: 0; }
+    .highlight-card--featured .hf-visuals {
+      flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 20px;
+    }
+    .cnh-doc-frame {
+      position: relative; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,223,0,0.25);
+      max-width: 260px;
+    }
+    .cnh-doc-frame img { width: 100%; display: block; border-radius: 10px; }
+    .cnh-doc-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 20px 10px 8px;
+      font-size: 8.5pt; color: rgba(255,255,255,0.85);
+      text-align: center; font-weight: 500;
+    }
+    .cnh-doc-caption strong { color: #FFDF00; }
 
     /* ─────────────────────────────────────────
        HIGHLIGHTS (big achievements)
@@ -741,7 +758,7 @@
           <ul>
             <li>Developed the <strong>first Brazilian government document production line in the cloud</strong> — Angular SPA consuming a microservices backend.</li>
             <li>Designed &amp; developed <strong>eCNH</strong>, Brazil's first digital driver's license Android app — now used by <strong>40M+ Brazilians</strong> (≈44% of all licensed drivers).</li>
-            <li>Designed the <strong>QR Code security element</strong> now embedded in every Brazilian digital driver's license.</li>
+            <li>Designed the <strong>QR Code security element</strong> now embedded in every Brazilian driver's license — and built the companion <strong>authority scanning app</strong> for police to verify document authenticity in real-time, eliminating widespread forgery.</li>
           </ul>
         </div>
         <div class="job-stack">
@@ -783,25 +800,27 @@
   <p class="section-sub">The work I'm most proud of — systems that outlived the projects and reached national scale.</p>
 
   <div class="highlights-grid">
+
+    <!-- eCNH featured card -->
     <div class="highlight-card highlight-card--featured reveal">
       <div class="hf-text">
         <div class="highlight-icon">🪪</div>
         <div class="highlight-number">40M+</div>
         <div class="highlight-title">eCNH — Brazil's Digital Driver's License</div>
         <div class="highlight-desc" style="margin-bottom:16px;">Designed and developed the first Android app for civilian identification in Brazil, now used by over 40 million Brazilians — roughly 44% of all licensed drivers in the country.</div>
-        <div class="highlight-desc">Also designed the <strong style="color:var(--text)">QR Code security element</strong> now embedded in every Brazilian digital driver's license as the primary tamper-resistant authentication feature.</div>
+        <div class="highlight-desc" style="margin-bottom:16px;">Designed the <strong style="color:var(--text)">QR Code security element</strong> now printed on the back of every Brazilian driver's license. Before it existed, forged and tampered documents were widespread — the QR code made real-time verification possible for the first time.</div>
+        <div class="highlight-desc">Also built a <strong style="color:var(--text)">companion authority app</strong> for police and traffic agents to scan any physical CNH and instantly verify its authenticity against the government database — completing the full end-to-end security system.</div>
       </div>
-      <div class="hf-phone">
+      <div class="hf-visuals">
+        <!-- Phone mockup -->
         <div class="phone-wrap">
           <div class="phone">
             <div class="phone-island"></div>
             <div class="phone-screen">
-              <!-- Status bar -->
               <div class="app-statusbar">
                 <span class="time">9:41</span>
                 <span class="icons">▲ ◼ ▮</span>
               </div>
-              <!-- Header -->
               <div class="app-header">
                 <div class="app-header-logo">C</div>
                 <div class="app-header-text">
@@ -809,7 +828,6 @@
                   <div class="app-sub">Carteira Digital de Trânsito</div>
                 </div>
               </div>
-              <!-- License card -->
               <div class="license-card">
                 <div class="license-flag-bar">
                   <div class="flag-green"></div>
@@ -822,91 +840,69 @@
                     <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                   </div>
                   <div class="license-info">
-                    <div class="license-row">
-                      <span class="lbl">Nome</span>
-                      <span class="val">GEORGE V. VALENTIM</span>
-                    </div>
-                    <div class="license-row">
-                      <span class="lbl">Nº Registro</span>
-                      <span class="val">00000000000</span>
-                    </div>
-                    <div class="license-row">
-                      <span class="lbl">Validade</span>
-                      <span class="val">31/12/2030</span>
-                    </div>
+                    <div class="license-row"><span class="lbl">Nome</span><span class="val">GEORGE V. VALENTIM</span></div>
+                    <div class="license-row"><span class="lbl">Nº Registro</span><span class="val">00000000000</span></div>
+                    <div class="license-row"><span class="lbl">Validade</span><span class="val">31/12/2030</span></div>
                   </div>
                 </div>
                 <div class="license-footer">
                   <div>
                     <div style="font-size:4.5px;color:rgba(255,223,0,0.8);text-transform:uppercase;margin-bottom:3px;">Categoria</div>
-                    <div class="license-cats">
-                      <div class="cat-badge">B</div>
-                      <div class="cat-badge">E</div>
-                    </div>
+                    <div class="license-cats"><div class="cat-badge">B</div><div class="cat-badge">E</div></div>
                   </div>
-                  <!-- QR Code (George designed this!) -->
                   <div>
                     <div style="font-size:4px;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:2px;">QR Code</div>
                     <div class="qr-block" id="qr"></div>
                   </div>
                 </div>
               </div>
-              <!-- Tabs -->
               <div class="app-tabs">
                 <div class="app-tab active">CNH Digital</div>
                 <div class="app-tab">CRLV</div>
                 <div class="app-tab">Infrações</div>
               </div>
-              <!-- Bottom nav -->
               <div class="app-bottomnav">
-                <div class="app-nav-item active">
-                  <span class="nav-icon">🪪</span>
-                  <span class="nav-label" style="color:#006B3C;">Docs</span>
-                </div>
-                <div class="app-nav-item">
-                  <span class="nav-icon">🔔</span>
-                  <span class="nav-label">Avisos</span>
-                </div>
-                <div class="app-nav-item">
-                  <span class="nav-icon">⚙️</span>
-                  <span class="nav-label">Config</span>
-                </div>
+                <div class="app-nav-item active"><span class="nav-icon">🪪</span><span class="nav-label" style="color:#006B3C;">Docs</span></div>
+                <div class="app-nav-item"><span class="nav-icon">🔔</span><span class="nav-label">Avisos</span></div>
+                <div class="app-nav-item"><span class="nav-icon">⚙️</span><span class="nav-label">Config</span></div>
               </div>
             </div>
           </div>
         </div>
+        <!-- Physical CNH document with QR code -->
+        <div class="cnh-doc-frame">
+          <img src="cnh-verso.jpg" alt="Back of a Brazilian driver's license showing the QR Code security element">
+          <div class="cnh-doc-caption">The actual <strong>QR Code</strong> I designed — on the back of every Brazilian driver's license</div>
+        </div>
       </div>
     </div>
-    <div class="highlight-card reveal reveal-delay-1">
-      <div class="highlight-icon">🔲</div>
-      <div class="highlight-number">Nationwide</div>
-      <div class="highlight-title">The QR Code on Every Brazilian Driver's License</div>
-      <div class="highlight-desc">Designed the QR Code security element now printed on every Brazilian digital driver's license as the document's primary tamper-resistant authentication feature.</div>
-    </div>
-    <div class="highlight-card reveal reveal-delay-2">
+
+    <!-- Other highlight cards -->
+    <div class="highlight-card reveal">
       <div class="highlight-icon">⚡</div>
       <div class="highlight-number">1,200/s</div>
       <div class="highlight-title">Ad Platform at Black Friday Scale</div>
       <div class="highlight-desc">Built a microservice ad-delivery system sustaining 1,200 ads per second at peak — with auto-scaling infrastructure across Latin America's largest e-commerce group.</div>
     </div>
-    <div class="highlight-card reveal reveal-delay-3">
-      <div class="highlight-icon">🧱</div>
+    <div class="highlight-card reveal reveal-delay-1">
+      <div class="highlight-icon">🧩</div>
       <div class="highlight-number">100+</div>
       <div class="highlight-title">Storybook Component Library</div>
       <div class="highlight-desc">Introduced and built Storybook from scratch at Jungle Scout with 100+ components, which became the front-end foundation adopted across the wider organisation.</div>
     </div>
-    <div class="highlight-card reveal">
+    <div class="highlight-card reveal reveal-delay-2">
       <div class="highlight-icon">☁️</div>
       <div class="highlight-number">First</div>
       <div class="highlight-title">Brazil's First Cloud Document Production Line</div>
       <div class="highlight-desc">Architected and delivered the first Brazilian government document production line in the cloud — an Angular SPA consuming a microservices backend for the federal government.</div>
     </div>
-    <div class="highlight-card reveal reveal-delay-1">
+    <div class="highlight-card reveal reveal-delay-3">
       <div class="highlight-icon">🚀</div>
       <div class="highlight-number">Panorante</div>
       <div class="highlight-title">Startup Founder</div>
       <div class="highlight-desc">Founded and built a LinkedIn-style platform for construction professionals from zero to paying customers — handling product, engineering, marketing, and UX solo.</div>
     </div>
+
   </div>
 </section>
 </div>
