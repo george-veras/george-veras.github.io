@@ -153,6 +153,24 @@
     .scroll-arrow { width: 20px; height: 20px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); animation: bounce 1.5s infinite; }
     @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
 
+    /* Hero avatar */
+    .hero-avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      margin-bottom: 24px; position: relative;
+      display: inline-block;
+    }
+    .hero-avatar::before {
+      content: ''; position: absolute; inset: -3px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary2), var(--accent));
+      z-index: 0;
+    }
+    .hero-avatar img {
+      width: 100%; height: 100%; border-radius: 50%;
+      object-fit: cover; object-position: center top;
+      position: relative; z-index: 1;
+      border: 3px solid var(--bg);
+    }
+
     /* ─────────────────────────────────────────
        SECTION SHARED
     ───────────────────────────────────────── */
@@ -741,6 +759,9 @@
 
 <!-- ── HERO ── -->
 <div class="hero">
+  <div class="hero-avatar">
+    <img src="me.jpg" alt="George Véras Valentim">
+  </div>
   <div class="hero-badge"><span></span> Available for new opportunities</div>
   <h1>George <span class="gradient-text">Véras Valentim</span></h1>
   <div class="typewriter-wrap">
