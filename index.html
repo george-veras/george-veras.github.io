@@ -414,26 +414,70 @@
     /* Featured highlight card */
     .highlight-card--featured {
       grid-column: 1 / -1;
-      display: flex; align-items: center; gap: 40px;
+      display: flex; align-items: flex-start; gap: 40px;
       flex-wrap: wrap;
     }
     .highlight-card--featured .hf-text { flex: 1; min-width: 260px; }
     .highlight-card--featured .hf-visuals {
-      flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 20px;
+      flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 16px;
+      width: 320px;
     }
+
+    /* ── Carousel ── */
+    .carousel {
+      width: 100%; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      border: 1px solid var(--border);
+      position: relative; background: #000;
+    }
+    .carousel-track {
+      display: flex; transition: transform 0.45s cubic-bezier(.4,0,.2,1);
+    }
+    .carousel-slide {
+      min-width: 100%; aspect-ratio: 16/10; overflow: hidden;
+    }
+    .carousel-slide img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .carousel-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.82), transparent);
+      padding: 28px 14px 10px;
+      font-size: 0.72rem; color: rgba(255,255,255,0.9); text-align: center;
+    }
+    .carousel-dots {
+      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px;
+    }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.35); cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active { background: #fff; transform: scale(1.3); }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.45); border: none; color: #fff;
+      width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
+      font-size: 0.8rem; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; backdrop-filter: blur(4px);
+    }
+    .carousel-btn:hover { background: rgba(0,0,0,0.7); }
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
+
+    /* CNH document image */
     .cnh-doc-frame {
-      position: relative; border-radius: 10px; overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,223,0,0.25);
-      max-width: 260px;
+      width: 100%; position: relative; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,223,0,0.3);
     }
-    .cnh-doc-frame img { width: 100%; display: block; border-radius: 10px; }
+    .cnh-doc-frame img { width: 100%; display: block; }
     .cnh-doc-caption {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-      padding: 20px 10px 8px;
-      font-size: 8.5pt; color: rgba(255,255,255,0.85);
-      text-align: center; font-weight: 500;
+      background: linear-gradient(to top, rgba(0,0,0,0.88), transparent);
+      padding: 28px 12px 10px;
+      font-size: 0.72rem; color: rgba(255,255,255,0.9); text-align: center;
     }
     .cnh-doc-caption strong { color: #FFDF00; }
 
@@ -812,68 +856,32 @@
         <div class="highlight-desc">Also built a <strong style="color:var(--text)">companion authority app</strong> for police and traffic agents to scan any physical CNH and instantly verify its authenticity against the government database — completing the full end-to-end security system.</div>
       </div>
       <div class="hf-visuals">
-        <!-- Phone mockup -->
-        <div class="phone-wrap">
-          <div class="phone">
-            <div class="phone-island"></div>
-            <div class="phone-screen">
-              <div class="app-statusbar">
-                <span class="time">9:41</span>
-                <span class="icons">▲ ◼ ▮</span>
-              </div>
-              <div class="app-header">
-                <div class="app-header-logo">C</div>
-                <div class="app-header-text">
-                  <div class="app-title">CNH do Brasil</div>
-                  <div class="app-sub">Carteira Digital de Trânsito</div>
-                </div>
-              </div>
-              <div class="license-card">
-                <div class="license-flag-bar">
-                  <div class="flag-green"></div>
-                  <div class="flag-yellow"></div>
-                  <div class="flag-blue"></div>
-                  <span>República Federativa do Brasil</span>
-                </div>
-                <div class="license-body">
-                  <div class="license-photo">
-                    <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                  </div>
-                  <div class="license-info">
-                    <div class="license-row"><span class="lbl">Nome</span><span class="val">GEORGE V. VALENTIM</span></div>
-                    <div class="license-row"><span class="lbl">Nº Registro</span><span class="val">00000000000</span></div>
-                    <div class="license-row"><span class="lbl">Validade</span><span class="val">31/12/2030</span></div>
-                  </div>
-                </div>
-                <div class="license-footer">
-                  <div>
-                    <div style="font-size:4.5px;color:rgba(255,223,0,0.8);text-transform:uppercase;margin-bottom:3px;">Categoria</div>
-                    <div class="license-cats"><div class="cat-badge">B</div><div class="cat-badge">E</div></div>
-                  </div>
-                  <div>
-                    <div style="font-size:4px;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:2px;">QR Code</div>
-                    <div class="qr-block" id="qr"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="app-tabs">
-                <div class="app-tab active">CNH Digital</div>
-                <div class="app-tab">CRLV</div>
-                <div class="app-tab">Infrações</div>
-              </div>
-              <div class="app-bottomnav">
-                <div class="app-nav-item active"><span class="nav-icon">🪪</span><span class="nav-label" style="color:#006B3C;">Docs</span></div>
-                <div class="app-nav-item"><span class="nav-icon">🔔</span><span class="nav-label">Avisos</span></div>
-                <div class="app-nav-item"><span class="nav-icon">⚙️</span><span class="nav-label">Config</span></div>
-              </div>
+
+        <!-- Real app photo carousel -->
+        <div class="carousel" id="ecnh-carousel">
+          <div class="carousel-track" id="ecnh-track">
+            <div class="carousel-slide">
+              <img src="img-serpro-app.png" alt="CNH do Brasil app — official launch by SERPRO">
+            </div>
+            <div class="carousel-slide">
+              <img src="img-cnn-app.jpg" alt="CNH do Brasil — new app interface">
+            </div>
+            <div class="carousel-slide">
+              <img src="img-cnh-security.jpg" alt="Digital driver's license displayed in the eCNH app">
             </div>
           </div>
+          <div class="carousel-caption" id="ecnh-caption">CNH do Brasil — official app by SERPRO</div>
+          <button class="carousel-btn prev" onclick="carouselMove('ecnh',-1)">‹</button>
+          <button class="carousel-btn next" onclick="carouselMove('ecnh', 1)">›</button>
+          <div class="carousel-dots" id="ecnh-dots"></div>
         </div>
-        <!-- Physical CNH document with QR code -->
+
+        <!-- Physical CNH back showing the QR code -->
         <div class="cnh-doc-frame">
-          <img src="cnh-verso.jpg" alt="Back of a Brazilian driver's license showing the QR Code security element">
-          <div class="cnh-doc-caption">The actual <strong>QR Code</strong> I designed — on the back of every Brazilian driver's license</div>
+          <img src="img-cnh-qr2.jpg" alt="Back of the Brazilian driver's license showing the QR Code security element">
+          <div class="cnh-doc-caption">The <strong>QR Code</strong> I designed — on the back of every Brazilian driver's license since 2017</div>
         </div>
+
       </div>
     </div>
 
@@ -1056,21 +1064,41 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ── QR code pattern (decorative)
-  const qr = document.getElementById('qr');
-  if (qr) {
-    const pattern = [
-      1,1,1,0,1,1,1, 1,0,1,0,0,1,0, 1,1,1,0,1,0,1,
-      0,0,0,0,1,0,1, 1,0,1,1,0,1,1, 0,1,0,0,1,0,1,
-      1,1,1,0,0,1,0
-    ];
-    pattern.forEach(v => {
-      const c = document.createElement('div');
-      c.className = 'qr-cell';
-      c.style.background = v ? '#1a1a1a' : '#fff';
-      qr.appendChild(c);
-    });
+  // ── Carousel engine
+  const carousels = {};
+  const captions = {
+    'ecnh': [
+      'CNH do Brasil — official app by SERPRO',
+      'The new modern interface of the CNH do Brasil app',
+      'Digital driver\'s license displayed inside the app'
+    ]
+  };
+  function initCarousel(id) {
+    const track = document.getElementById(id + '-track');
+    const dotsEl = document.getElementById(id + '-dots');
+    const slides = track.children.length;
+    carousels[id] = { index: 0, total: slides, timer: null };
+    for (let i = 0; i < slides; i++) {
+      const d = document.createElement('div');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => carouselGo(id, i);
+      dotsEl.appendChild(d);
+    }
+    carouselAutoplay(id);
   }
+  function carouselGo(id, idx) {
+    const c = carousels[id];
+    c.index = (idx + c.total) % c.total;
+    document.getElementById(id + '-track').style.transform = `translateX(-${c.index * 100}%)`;
+    document.getElementById(id + '-caption').textContent = captions[id][c.index];
+    document.querySelectorAll(`#${id}-dots .carousel-dot`).forEach((d,i) => d.classList.toggle('active', i === c.index));
+    clearInterval(c.timer); carouselAutoplay(id);
+  }
+  function carouselMove(id, dir) { carouselGo(id, carousels[id].index + dir); }
+  function carouselAutoplay(id) {
+    carousels[id].timer = setInterval(() => carouselMove(id, 1), 3500);
+  }
+  initCarousel('ecnh');
 
   // ── Counter animation
   function animateCounter(el) {
