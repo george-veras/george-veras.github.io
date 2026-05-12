@@ -280,6 +280,147 @@
     .early-row .dt { color: var(--muted); font-size: 0.775rem; white-space: nowrap; }
 
     /* ─────────────────────────────────────────
+       PHONE MOCKUP
+    ───────────────────────────────────────── */
+    .phone-wrap {
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px 0;
+      flex-shrink: 0;
+    }
+    .phone {
+      width: 200px; height: 400px;
+      background: #0d0d0d;
+      border-radius: 44px;
+      border: 6px solid #2a2a2a;
+      position: relative;
+      box-shadow:
+        0 0 0 1px #111,
+        0 32px 80px rgba(0,0,0,0.6),
+        inset 0 0 0 1px rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    /* Dynamic island */
+    .phone-island {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      width: 72px; height: 22px;
+      background: #0d0d0d; border-radius: 12px;
+      z-index: 10;
+    }
+    /* Side buttons */
+    .phone::before {
+      content: '';
+      position: absolute; right: -8px; top: 70px;
+      width: 4px; height: 50px;
+      background: #2a2a2a; border-radius: 2px;
+    }
+    .phone-screen {
+      width: 100%; height: 100%;
+      background: #f0f4f0;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    /* App status bar */
+    .app-statusbar {
+      background: #006B3C;
+      padding: 28px 16px 6px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .app-statusbar .time { color: #fff; font-size: 8px; font-weight: 700; }
+    .app-statusbar .icons { color: #fff; font-size: 7px; letter-spacing: 2px; }
+    /* App header */
+    .app-header {
+      background: #006B3C;
+      padding: 10px 14px 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .app-header-logo {
+      width: 22px; height: 22px; border-radius: 5px;
+      background: #FFDF00;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 900; color: #006B3C;
+    }
+    .app-header-text { color: #fff; }
+    .app-header-text .app-title { font-size: 8px; font-weight: 800; letter-spacing: 0.3px; }
+    .app-header-text .app-sub { font-size: 6px; color: rgba(255,255,255,0.7); }
+    /* License card */
+    .license-card {
+      margin: 10px 10px 0;
+      background: linear-gradient(145deg, #1a5c3a, #0d3d26);
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid rgba(255,223,0,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .license-flag-bar {
+      display: flex; align-items: center; gap: 5px; margin-bottom: 8px;
+    }
+    .flag-green { width: 8px; height: 8px; background: #009B3A; border-radius: 1px; }
+    .flag-yellow { width: 8px; height: 8px; background: #FFDF00; border-radius: 1px; }
+    .flag-blue { width: 8px; height: 8px; background: #002776; border-radius: 1px; }
+    .license-flag-bar span { font-size: 5.5px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.5px; }
+    .license-body { display: flex; gap: 8px; }
+    .license-photo {
+      width: 38px; height: 46px; background: rgba(255,255,255,0.15);
+      border-radius: 5px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .license-photo svg { width: 22px; height: 22px; opacity: 0.5; }
+    .license-info { flex: 1; }
+    .license-row { margin-bottom: 4px; }
+    .license-row .lbl { font-size: 4.5px; color: rgba(255,223,0,0.8); text-transform: uppercase; letter-spacing: 0.5px; display: block; }
+    .license-row .val { font-size: 6.5px; color: #fff; font-weight: 600; }
+    .license-footer {
+      display: flex; justify-content: space-between; align-items: flex-end; margin-top: 8px;
+    }
+    .license-cats { display: flex; gap: 3px; }
+    .cat-badge {
+      width: 14px; height: 14px; border-radius: 3px;
+      background: #FFDF00; color: #006B3C;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6px; font-weight: 900;
+    }
+    /* QR Code */
+    .qr-block {
+      width: 34px; height: 34px;
+      background: #fff; border-radius: 3px; padding: 2px;
+      display: grid; grid-template-columns: repeat(7,1fr); gap: 0.5px;
+    }
+    .qr-cell { border-radius: 0.5px; }
+    /* App tabs */
+    .app-tabs {
+      display: flex; margin: 10px 10px 0; gap: 6px;
+    }
+    .app-tab {
+      flex: 1; padding: 6px 4px; border-radius: 6px;
+      background: rgba(0,107,60,0.08); border: 1px solid rgba(0,107,60,0.15);
+      text-align: center; font-size: 5.5px; color: #444; font-weight: 600;
+    }
+    .app-tab.active { background: rgba(0,107,60,0.15); border-color: #006B3C; color: #006B3C; }
+    /* Bottom nav */
+    .app-bottomnav {
+      margin-top: auto;
+      background: #fff; border-top: 1px solid #e0e0e0;
+      display: flex; padding: 6px 0 10px;
+    }
+    .app-nav-item {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+    }
+    .app-nav-item .nav-icon { font-size: 10px; }
+    .app-nav-item .nav-label { font-size: 4.5px; color: #888; }
+    .app-nav-item.active .nav-label { color: #006B3C; font-weight: 700; }
+
+    /* Featured highlight card */
+    .highlight-card--featured {
+      grid-column: 1 / -1;
+      display: flex; align-items: center; gap: 40px;
+      flex-wrap: wrap;
+    }
+    .highlight-card--featured .hf-text { flex: 1; min-width: 260px; }
+    .highlight-card--featured .hf-phone { flex-shrink: 0; }
+
+    /* ─────────────────────────────────────────
        HIGHLIGHTS (big achievements)
     ───────────────────────────────────────── */
     .highlights-grid {
@@ -642,11 +783,99 @@
   <p class="section-sub">The work I'm most proud of — systems that outlived the projects and reached national scale.</p>
 
   <div class="highlights-grid">
-    <div class="highlight-card reveal">
-      <div class="highlight-icon">🪪</div>
-      <div class="highlight-number">40M+</div>
-      <div class="highlight-title">eCNH — Brazil's Digital Driver's License</div>
-      <div class="highlight-desc">Designed and developed the first Android app for civilian identification in Brazil, now used by over 40 million Brazilians — roughly 44% of all licensed drivers in the country.</div>
+    <div class="highlight-card highlight-card--featured reveal">
+      <div class="hf-text">
+        <div class="highlight-icon">🪪</div>
+        <div class="highlight-number">40M+</div>
+        <div class="highlight-title">eCNH — Brazil's Digital Driver's License</div>
+        <div class="highlight-desc" style="margin-bottom:16px;">Designed and developed the first Android app for civilian identification in Brazil, now used by over 40 million Brazilians — roughly 44% of all licensed drivers in the country.</div>
+        <div class="highlight-desc">Also designed the <strong style="color:var(--text)">QR Code security element</strong> now embedded in every Brazilian digital driver's license as the primary tamper-resistant authentication feature.</div>
+      </div>
+      <div class="hf-phone">
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-island"></div>
+            <div class="phone-screen">
+              <!-- Status bar -->
+              <div class="app-statusbar">
+                <span class="time">9:41</span>
+                <span class="icons">▲ ◼ ▮</span>
+              </div>
+              <!-- Header -->
+              <div class="app-header">
+                <div class="app-header-logo">C</div>
+                <div class="app-header-text">
+                  <div class="app-title">CNH do Brasil</div>
+                  <div class="app-sub">Carteira Digital de Trânsito</div>
+                </div>
+              </div>
+              <!-- License card -->
+              <div class="license-card">
+                <div class="license-flag-bar">
+                  <div class="flag-green"></div>
+                  <div class="flag-yellow"></div>
+                  <div class="flag-blue"></div>
+                  <span>República Federativa do Brasil</span>
+                </div>
+                <div class="license-body">
+                  <div class="license-photo">
+                    <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div class="license-info">
+                    <div class="license-row">
+                      <span class="lbl">Nome</span>
+                      <span class="val">GEORGE V. VALENTIM</span>
+                    </div>
+                    <div class="license-row">
+                      <span class="lbl">Nº Registro</span>
+                      <span class="val">00000000000</span>
+                    </div>
+                    <div class="license-row">
+                      <span class="lbl">Validade</span>
+                      <span class="val">31/12/2030</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="license-footer">
+                  <div>
+                    <div style="font-size:4.5px;color:rgba(255,223,0,0.8);text-transform:uppercase;margin-bottom:3px;">Categoria</div>
+                    <div class="license-cats">
+                      <div class="cat-badge">B</div>
+                      <div class="cat-badge">E</div>
+                    </div>
+                  </div>
+                  <!-- QR Code (George designed this!) -->
+                  <div>
+                    <div style="font-size:4px;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:2px;">QR Code</div>
+                    <div class="qr-block" id="qr"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tabs -->
+              <div class="app-tabs">
+                <div class="app-tab active">CNH Digital</div>
+                <div class="app-tab">CRLV</div>
+                <div class="app-tab">Infrações</div>
+              </div>
+              <!-- Bottom nav -->
+              <div class="app-bottomnav">
+                <div class="app-nav-item active">
+                  <span class="nav-icon">🪪</span>
+                  <span class="nav-label" style="color:#006B3C;">Docs</span>
+                </div>
+                <div class="app-nav-item">
+                  <span class="nav-icon">🔔</span>
+                  <span class="nav-label">Avisos</span>
+                </div>
+                <div class="app-nav-item">
+                  <span class="nav-icon">⚙️</span>
+                  <span class="nav-label">Config</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="highlight-card reveal reveal-delay-1">
       <div class="highlight-icon">🔲</div>
@@ -830,6 +1059,22 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── QR code pattern (decorative)
+  const qr = document.getElementById('qr');
+  if (qr) {
+    const pattern = [
+      1,1,1,0,1,1,1, 1,0,1,0,0,1,0, 1,1,1,0,1,0,1,
+      0,0,0,0,1,0,1, 1,0,1,1,0,1,1, 0,1,0,0,1,0,1,
+      1,1,1,0,0,1,0
+    ];
+    pattern.forEach(v => {
+      const c = document.createElement('div');
+      c.className = 'qr-cell';
+      c.style.background = v ? '#1a1a1a' : '#fff';
+      qr.appendChild(c);
+    });
+  }
 
   // ── Counter animation
   function animateCounter(el) {
