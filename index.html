@@ -418,11 +418,14 @@
     }
     .hf-text { flex: 1; min-width: 260px; }
     .hf-right {
-      flex-shrink: 0; width: 480px;
-      display: flex; flex-direction: row; align-items: flex-start; gap: 16px;
+      flex-shrink: 0; width: 520px;
+      height: 580px;
+      display: flex; flex-direction: row; align-items: stretch; gap: 16px;
     }
-    .hf-right .carousel { flex: 1; min-width: 0; }
-    .hf-right .cnhcard  { flex: 1; min-width: 0; }
+    .hf-right .carousel            { flex: 1; min-width: 0; height: 100%; }
+    .hf-right .carousel-slide      { aspect-ratio: unset; height: 100%; background: #050a14; }
+    .hf-right .carousel-slide img  { object-fit: contain; object-position: center center; }
+    .hf-right .cnhcard             { flex: 1; min-width: 0; aspect-ratio: unset; height: 100%; }
 
     /* ── CNH Document Card (CSS replica) ── */
     .cnhcard {
@@ -465,7 +468,7 @@
       display: flex; flex-direction: column; align-items: center;
       padding: 10px 10px 5px; position: relative;
     }
-    .cnhcard-qrcanvas { display: block; image-rendering: pixelated; border: 1px solid rgba(0,0,0,0.08); }
+    .cnhcard-qrcanvas { display: block; image-rendering: pixelated; border: 1px solid rgba(0,0,0,0.08); width: 82%; aspect-ratio: 1; }
     .cnhcard-qrnote {
       font-size: 4.5px; color: rgba(0,0,0,0.38); margin-top: 4px; text-align: center; line-height: 1.5;
     }
