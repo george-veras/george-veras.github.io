@@ -422,11 +422,13 @@
       display: flex; flex-direction: column; gap: 16px;
     }
 
-    /* QR doc — portrait, natural proportions */
+    /* QR doc — 3D card */
     .cnh-doc-frame {
       width: 100%; position: relative; border-radius: 12px; overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.55);
-      border: 2px solid rgba(255,223,0,0.4);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,223,0,0.4);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      will-change: transform;
+      cursor: pointer;
     }
     .cnh-doc-frame img { width: 100%; height: auto; display: block; }
     .cnh-doc-caption {
@@ -434,8 +436,17 @@
       background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
       padding: 32px 10px 9px;
       font-size: 0.68rem; color: rgba(255,255,255,0.92); text-align: center; line-height: 1.4;
+      pointer-events: none;
     }
     .cnh-doc-caption strong { color: #FFDF00; }
+    /* Gloss shine layer */
+    .cnh-doc-shine {
+      position: absolute; inset: 0; border-radius: 11px; z-index: 3;
+      background: radial-gradient(circle at var(--sx,50%) var(--sy,50%),
+        rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 45%, transparent 70%);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+    }
 
     /* ── Portrait carousel ── */
     .carousel {
@@ -896,8 +907,9 @@
           <div class="carousel-dots" id="ecnh-dots"></div>
         </div>
 
-        <div class="cnh-doc-frame">
+        <div class="cnh-doc-frame" id="cnh-card">
           <img src="img-cnh-qr2.jpg" alt="Back of the Brazilian driver's license showing the QR Code">
+          <div class="cnh-doc-shine" id="cnh-shine"></div>
           <div class="cnh-doc-caption">The <strong>QR Code</strong> I designed — on the back of every Brazilian driver's license since 2017</div>
         </div>
       </div>
@@ -1082,6 +1094,32 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── CNH card 3D tilt
+  const cnhCard  = document.getElementById('cnh-card');
+  const cnhShine = document.getElementById('cnh-shine');
+  cnhCard.addEventListener('mousemove', e => {
+    const r  = cnhCard.getBoundingClientRect();
+    const x  = e.clientX - r.left;
+    const y  = e.clientY - r.top;
+    const cx = r.width  / 2;
+    const cy = r.height / 2;
+    const rx = ((y - cy) / cy) * -16;
+    const ry = ((x - cx) / cx) *  16;
+    cnhCard.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.04,1.04,1.04)`;
+    cnhCard.style.boxShadow = `
+      ${-ry * 2}px ${rx * 2}px 48px rgba(0,0,0,0.7),
+      0 0 24px rgba(255,223,0,0.2),
+      0 0 0 2px rgba(255,223,0,0.5)`;
+    cnhShine.style.setProperty('--sx', `${(x / r.width)  * 100}%`);
+    cnhShine.style.setProperty('--sy', `${(y / r.height) * 100}%`);
+    cnhShine.style.opacity = '1';
+  });
+  cnhCard.addEventListener('mouseleave', () => {
+    cnhCard.style.transform  = 'perspective(700px) rotateX(0) rotateY(0) scale3d(1,1,1)';
+    cnhCard.style.boxShadow  = '';
+    cnhShine.style.opacity   = '0';
+  });
 
   // ── Carousel engine
   const carousels = {};
