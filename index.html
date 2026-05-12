@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>George Véras Valentim — Portfolio</title>
+  <meta name="description" content="Portfolio of George Véras Valentim — full-stack engineer with 15+ years of experience. Built Brazil's digital driver's license app (40M+ users). Based in Vancouver, BC.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="shortcut icon" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +12,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Skip navigation (WCAG 2.4.1) ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--primary); color: #fff;
+      padding: 10px 20px; border-radius: 0 0 8px 8px;
+      font-weight: 700; font-size: 0.9rem; z-index: 9999;
+      text-decoration: none; transition: top 0.2s;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Visible focus styles (WCAG 2.4.7) ── */
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    /* Remove default outline only when focus-visible is supported */
+    :focus:not(:focus-visible) { outline: none; }
+
+    /* ── Reduced motion (WCAG 2.3.3) ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .carousel-track { transition: none !important; }
+    }
 
     :root {
       --bg:          #0b1120;
@@ -783,8 +815,10 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <!-- ── NAVBAR ── -->
-<nav id="navbar">
+<nav id="navbar" aria-label="Main navigation">
   <div class="nav-logo">GVV</div>
   <ul class="nav-links">
     <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
@@ -802,17 +836,20 @@
     </li>
     <li>
       <div class="lang-toggle">
-        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')" aria-label="Switch to English" aria-pressed="true">EN</button>
+        <button class="lang-btn" id="btn-fr" onclick="setLang('fr')" aria-label="Changer en français" aria-pressed="false">FR</button>
       </div>
     </li>
   </ul>
 </nav>
 
+<!-- ── MAIN ── -->
+<main id="main-content">
+
 <!-- ── HERO ── -->
-<div class="hero">
-  <div class="hero-avatar">
-    <img src="me.jpg" alt="George Véras Valentim">
+<div class="hero" role="banner">
+  <div class="hero-avatar" role="img" aria-label="Photo of George Véras Valentim">
+    <img src="me.jpg" alt="George Véras Valentim smiling, wearing a React.js t-shirt">
   </div>
   <div class="hero-badge"><span></span> <span data-i18n="hero.badge">Available for new opportunities</span></div>
   <h1>George <span class="gradient-text">Véras Valentim</span></h1>
@@ -862,7 +899,7 @@
 </div>
 
 <!-- ── EXPERIENCE ── -->
-<section id="experience">
+<section id="experience" aria-label="Work Experience">
   <div class="section-label" data-i18n="exp.label">Career</div>
   <h2 class="section-title" data-i18n="exp.title">Work Experience</h2>
   <p class="section-sub" data-i18n="exp.sub">15+ years across startups, scale-ups, enterprise, and government-grade systems in Brazil and Canada.</p>
@@ -1042,25 +1079,25 @@
 
         <!-- Right column: portrait carousel + document image -->
       <div class="hf-right">
-        <div class="carousel" id="ecnh-carousel">
+        <div class="carousel" id="ecnh-carousel" role="region" aria-label="eCNH app screenshots" aria-roledescription="carousel">
           <div class="carousel-track" id="ecnh-track">
-            <div class="carousel-slide">
-              <img src="img-serpro-app.png" alt="CNH do Brasil app — official launch by SERPRO">
+            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3">
+              <img src="img-serpro-app.png" alt="Hand holding a smartphone displaying the official CNH do Brasil app logo, with a car blurred in the background">
             </div>
-            <div class="carousel-slide">
-              <img src="img-cnn-app.jpg" alt="CNH do Brasil — new app interface">
+            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3">
+              <img src="img-cnn-app.jpg" alt="Smartphone screen showing the CNH do Brasil app onboarding page, featuring a woman holding a digital driver's license card">
             </div>
-            <div class="carousel-slide">
-              <img src="img-cnh-security.jpg" alt="Digital driver's license displayed in the eCNH app">
+            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3">
+              <img src="img-cnh-security.jpg" alt="Smartphone displaying a digital CNH driver's license inside the eCNH app, showing document details and photo">
             </div>
           </div>
-          <div class="carousel-caption" id="ecnh-caption">CNH do Brasil — official app by SERPRO</div>
-          <button class="carousel-btn prev" onclick="carouselMove('ecnh',-1)">‹</button>
-          <button class="carousel-btn next" onclick="carouselMove('ecnh', 1)">›</button>
-          <div class="carousel-dots" id="ecnh-dots"></div>
+          <div class="carousel-caption" id="ecnh-caption" aria-live="polite" aria-atomic="true">CNH do Brasil — official app by SERPRO</div>
+          <button class="carousel-btn prev" onclick="carouselMove('ecnh',-1)" aria-label="Previous slide">&#8249;</button>
+          <button class="carousel-btn next" onclick="carouselMove('ecnh', 1)" aria-label="Next slide">&#8250;</button>
+          <div class="carousel-dots" id="ecnh-dots" role="tablist" aria-label="Carousel slides"></div>
         </div>
 
-        <div class="cnhcard" id="cnh-card">
+        <div class="cnhcard" id="cnh-card" role="img" aria-label="CSS replica of the back of a Brazilian driver's license showing the QR Code security element designed by George" tabindex="0">
           <div class="cnhcard-shine" id="cnh-shine"></div>
           <div class="cnhcard-strip"></div>
           <div class="cnhcard-hdr">
@@ -1169,7 +1206,7 @@
 </div>
 
 <!-- ── SKILLS ── -->
-<section id="skills">
+<section id="skills" aria-label="Skills and Technologies">
   <div class="section-label" data-i18n="sk.label">Technical</div>
   <h2 class="section-title" data-i18n="sk.title">Skills &amp; Technologies</h2>
   <p class="section-sub" data-i18n="sk.sub">15+ years of practical experience across the full stack.</p>
@@ -1231,7 +1268,7 @@
 
 <!-- ── CERTIFICATIONS ── -->
 <div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-<section>
+<section id="credentials" aria-label="Certifications and Education">
   <div class="section-label" data-i18n="cred.label">Credentials</div>
   <h2 class="section-title" data-i18n="cred.title">Certifications &amp; Education</h2>
 
@@ -1264,11 +1301,11 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Email me
       </a>
-      <a href="https://www.linkedin.com/in/george-veras" target="_blank" class="contact-link">
+      <a href="https://www.linkedin.com/in/george-veras" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="LinkedIn profile (opens in new tab)">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
-      <a href="https://github.com/george-veras" target="_blank" class="contact-link">
+      <a href="https://github.com/george-veras" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub profile (opens in new tab)">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         GitHub
       </a>
@@ -1280,11 +1317,13 @@
   </div>
 </div>
 
-<footer>
+</main><!-- end main-content -->
+
+<footer role="contentinfo">
   <span data-i18n="footer.text">Built by George Véras Valentim · george-veras.github.io</span>
 </footer>
 
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <script>
   // ── i18n
@@ -1364,12 +1403,20 @@
       const key = el.getAttribute('data-i18n');
       if (i18n[lang] && i18n[lang][key]) el.textContent = i18n[lang][key];
     });
-    // toggle active button
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    // toggle active button + aria-pressed
+    ['en','fr'].forEach(l => {
+      const btn = document.getElementById('btn-' + l);
+      btn.classList.toggle('active', l === lang);
+      btn.setAttribute('aria-pressed', l === lang ? 'true' : 'false');
+    });
     // update typewriter language
     rolesLang = lang;
+    // update html lang attribute (WCAG 3.1.1)
     document.documentElement.lang = lang;
+    // update page title
+    document.title = lang === 'fr'
+      ? 'George Véras Valentim — Portfolio'
+      : 'George Véras Valentim — Portfolio';
     localStorage.setItem('lang', lang);
   }
 
@@ -1478,20 +1525,23 @@
     const slides = track.children.length;
     carousels[id] = { index: 0, total: slides, timer: null, paused: false };
     for (let i = 0; i < slides; i++) {
-      const d = document.createElement('div');
+      const d = document.createElement('button');
       d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('role', 'tab');
+      d.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      d.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       d.onclick = () => carouselGo(id, i);
       dotsEl.appendChild(d);
     }
-    el.addEventListener('mouseenter', () => {
-      carousels[id].paused = true;
-      clearInterval(carousels[id].timer);
-      el.classList.add('paused');
-    });
-    el.addEventListener('mouseleave', () => {
-      carousels[id].paused = false;
-      el.classList.remove('paused');
-      carouselAutoplay(id);
+    // Pause on hover/focus
+    el.addEventListener('mouseenter', () => { carousels[id].paused = true; clearInterval(carousels[id].timer); el.classList.add('paused'); });
+    el.addEventListener('mouseleave', () => { carousels[id].paused = false; el.classList.remove('paused'); carouselAutoplay(id); });
+    el.addEventListener('focusin',    () => { carousels[id].paused = true; clearInterval(carousels[id].timer); el.classList.add('paused'); });
+    el.addEventListener('focusout',   (e) => { if (!el.contains(e.relatedTarget)) { carousels[id].paused = false; el.classList.remove('paused'); carouselAutoplay(id); } });
+    // Keyboard arrow navigation
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); carouselMove(id, -1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); carouselMove(id,  1); }
     });
     carouselAutoplay(id);
   }
@@ -1500,7 +1550,15 @@
     c.index = (idx + c.total) % c.total;
     document.getElementById(id + '-track').style.transform = `translateX(-${c.index * 100}%)`;
     document.getElementById(id + '-caption').textContent = captions[id][c.index];
-    document.querySelectorAll(`#${id}-dots .carousel-dot`).forEach((d,i) => d.classList.toggle('active', i === c.index));
+    document.querySelectorAll(`#${id}-dots .carousel-dot`).forEach((d, i) => {
+      d.classList.toggle('active', i === c.index);
+      d.setAttribute('aria-selected', i === c.index ? 'true' : 'false');
+      d.setAttribute('aria-label', `Go to slide ${i + 1}${i === c.index ? ' (current)' : ''}`);
+    });
+    // Update slide visibility for screen readers
+    document.querySelectorAll(`#${id}-track .carousel-slide`).forEach((s, i) => {
+      s.setAttribute('aria-hidden', i !== c.index ? 'true' : 'false');
+    });
     if (!c.paused) { clearInterval(c.timer); carouselAutoplay(id); }
   }
   function carouselMove(id, dir) { carouselGo(id, carousels[id].index + dir); }
