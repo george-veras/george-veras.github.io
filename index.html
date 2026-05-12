@@ -418,9 +418,11 @@
     }
     .hf-text { flex: 1; min-width: 260px; }
     .hf-right {
-      flex-shrink: 0; width: 320px;
-      display: flex; flex-direction: column; gap: 16px;
+      flex-shrink: 0; width: 480px;
+      display: flex; flex-direction: row; align-items: flex-start; gap: 16px;
     }
+    .hf-right .carousel { flex: 1; min-width: 0; }
+    .hf-right .cnhcard  { flex: 1; min-width: 0; }
 
     /* ── CNH Document Card (CSS replica) ── */
     .cnhcard {
