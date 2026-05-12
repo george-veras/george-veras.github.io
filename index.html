@@ -485,6 +485,17 @@
     .carousel-btn.prev { left: 14px; }
     .carousel-btn.next { right: 14px; }
 
+    /* Pause indicator */
+    .carousel::after {
+      content: '⏸';
+      position: absolute; top: 12px; right: 14px;
+      font-size: 0.75rem; color: rgba(255,255,255,0.7);
+      background: rgba(0,0,0,0.45); backdrop-filter: blur(4px);
+      padding: 3px 8px; border-radius: 20px;
+      opacity: 0; transition: opacity 0.2s; pointer-events: none;
+    }
+    .carousel.paused::after { opacity: 1; }
+
     /* ─────────────────────────────────────────
        HIGHLIGHTS (big achievements)
     ───────────────────────────────────────── */
@@ -1081,14 +1092,25 @@
   function initCarousel(id) {
     const track = document.getElementById(id + '-track');
     const dotsEl = document.getElementById(id + '-dots');
+    const el = document.getElementById(id + '-carousel');
     const slides = track.children.length;
-    carousels[id] = { index: 0, total: slides, timer: null };
+    carousels[id] = { index: 0, total: slides, timer: null, paused: false };
     for (let i = 0; i < slides; i++) {
       const d = document.createElement('div');
       d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
       d.onclick = () => carouselGo(id, i);
       dotsEl.appendChild(d);
     }
+    el.addEventListener('mouseenter', () => {
+      carousels[id].paused = true;
+      clearInterval(carousels[id].timer);
+      el.classList.add('paused');
+    });
+    el.addEventListener('mouseleave', () => {
+      carousels[id].paused = false;
+      el.classList.remove('paused');
+      carouselAutoplay(id);
+    });
     carouselAutoplay(id);
   }
   function carouselGo(id, idx) {
@@ -1097,7 +1119,7 @@
     document.getElementById(id + '-track').style.transform = `translateX(-${c.index * 100}%)`;
     document.getElementById(id + '-caption').textContent = captions[id][c.index];
     document.querySelectorAll(`#${id}-dots .carousel-dot`).forEach((d,i) => d.classList.toggle('active', i === c.index));
-    clearInterval(c.timer); carouselAutoplay(id);
+    if (!c.paused) { clearInterval(c.timer); carouselAutoplay(id); }
   }
   function carouselMove(id, dir) { carouselGo(id, carousels[id].index + dir); }
   function carouselAutoplay(id) {
