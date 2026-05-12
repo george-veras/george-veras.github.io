@@ -422,31 +422,79 @@
       display: flex; flex-direction: column; gap: 16px;
     }
 
-    /* QR doc — 3D card */
-    .cnh-doc-frame {
-      width: 100%; position: relative; border-radius: 12px; overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,223,0,0.4);
-      transition: transform 0.1s ease, box-shadow 0.1s ease;
-      will-change: transform;
-      cursor: pointer;
+    /* ── CNH Document Card (CSS replica) ── */
+    .cnhcard {
+      width: 100%; aspect-ratio: 7/8;
+      position: relative; border-radius: 5px; overflow: hidden;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      background:
+        repeating-linear-gradient(58deg,  transparent, transparent 6px, rgba(160,90,30,0.032) 6px, rgba(160,90,30,0.032) 7px),
+        repeating-linear-gradient(-58deg, transparent, transparent 6px, rgba(160,90,30,0.032) 6px, rgba(160,90,30,0.032) 7px),
+        repeating-linear-gradient(0deg,   transparent, transparent 6px, rgba(160,90,30,0.022) 6px, rgba(160,90,30,0.022) 7px),
+        linear-gradient(155deg, #f7e8d2 0%, #ecd4aa 50%, #f4e0c4 100%);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.65), 0 0 0 1px rgba(155,90,30,0.35);
+      transition: transform 0.1s ease, box-shadow 0.1s ease; will-change: transform;
     }
-    .cnh-doc-frame img { width: 100%; height: auto; display: block; }
-    .cnh-doc-caption {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-      padding: 32px 10px 9px;
-      font-size: 0.68rem; color: rgba(255,255,255,0.92); text-align: center; line-height: 1.4;
-      pointer-events: none;
-    }
-    .cnh-doc-caption strong { color: #FFDF00; }
-    /* Gloss shine layer */
-    .cnh-doc-shine {
-      position: absolute; inset: 0; border-radius: 11px; z-index: 3;
+    /* Shine overlay */
+    .cnhcard-shine {
+      position: absolute; inset: 0; z-index: 10; pointer-events: none;
+      border-radius: inherit;
       background: radial-gradient(circle at var(--sx,50%) var(--sy,50%),
-        rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 45%, transparent 70%);
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.25s;
+        rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.05) 40%, transparent 68%);
+      opacity: 0; transition: opacity 0.22s;
     }
+    /* Flag strip */
+    .cnhcard-strip {
+      height: 7px;
+      background: linear-gradient(90deg, #009B3A 33.3%, #FFDF00 33.3% 66.6%, #002776 66.6%);
+    }
+    /* Header */
+    .cnhcard-hdr {
+      background: linear-gradient(92deg, #0d3d22, #165c35);
+      padding: 6px 10px; display: flex; align-items: center; gap: 7px;
+    }
+    .cnhcard-flagpins { display: flex; flex-direction: column; gap: 1.5px; flex-shrink: 0; }
+    .cnhcard-flagpins span { display: block; width: 14px; height: 3px; border-radius: 1px; }
+    .cnhcard-country { font-size: 5.5px; font-weight: 800; color: rgba(255,255,255,0.92); letter-spacing: 0.7px; line-height: 1.4; }
+    .cnhcard-docname { font-size: 4.2px; font-weight: 500; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; line-height: 1.4; }
+    .cnhcard-logo { margin-left: auto; font-size: 9px; font-weight: 900; font-style: italic; color: rgba(255,255,255,0.3); }
+    /* QR zone */
+    .cnhcard-qrzone {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 10px 10px 5px; position: relative;
+    }
+    .cnhcard-qrcanvas { display: block; image-rendering: pixelated; border: 1px solid rgba(0,0,0,0.08); }
+    .cnhcard-qrnote {
+      font-size: 4.5px; color: rgba(0,0,0,0.38); margin-top: 4px; text-align: center; line-height: 1.5;
+    }
+    /* Divider */
+    .cnhcard-div { height: 1px; background: rgba(155,90,30,0.18); margin: 2px 10px; }
+    /* Fields */
+    .cnhcard-fields { padding: 5px 10px 4px; display: flex; flex-direction: column; gap: 4px; }
+    .cnhcard-frow { display: flex; gap: 8px; }
+    .cnhcard-f { flex: 1; min-width: 0; }
+    .cnhf-lbl { display: block; font-size: 4px; font-weight: 600; color: rgba(0,0,0,0.45); text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2; margin-bottom: 1.5px; }
+    .cnhf-val { display: block; font-size: 5.5px; font-weight: 700; color: rgba(0,0,0,0.65); border-bottom: 0.5px solid rgba(0,0,0,0.14); padding-bottom: 1.5px; line-height: 1.3; white-space: nowrap; overflow: hidden; }
+    .cnhcard-cats { display: flex; gap: 3px; margin-top: 2px; }
+    .cnhcard-cats span { width: 13px; height: 13px; background: rgba(0,0,0,0.72); color: #fff; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 900; }
+    /* Footer bar */
+    .cnhcard-foot {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 5px 10px; display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to top, rgba(0,0,0,0.09), transparent);
+    }
+    .cnhcard-foot-l { display: flex; align-items: center; gap: 4px; }
+    .cnhcard-kbadge { width: 13px; height: 13px; background: #1a3a6c; color: #fff; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 900; font-style: italic; }
+    .cnhcard-serpro { font-size: 4.5px; font-weight: 700; color: rgba(0,0,0,0.38); letter-spacing: 0.4px; }
+    .cnhcard-govbr { font-size: 7px; font-weight: 900; }
+    /* Caption overlay */
+    .cnhcard-caption {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 5; pointer-events: none;
+      background: linear-gradient(to top, rgba(0,0,0,0.86), rgba(0,0,0,0.3) 55%, transparent);
+      padding: 32px 10px 9px;
+      font-size: 0.65rem; color: rgba(255,255,255,0.92); text-align: center; line-height: 1.5;
+    }
+    .cnhcard-caption strong { color: #FFDF00; }
 
     /* ── Portrait carousel ── */
     .carousel {
@@ -907,10 +955,62 @@
           <div class="carousel-dots" id="ecnh-dots"></div>
         </div>
 
-        <div class="cnh-doc-frame" id="cnh-card">
-          <img src="img-cnh-qr2.jpg" alt="Back of the Brazilian driver's license showing the QR Code">
-          <div class="cnh-doc-shine" id="cnh-shine"></div>
-          <div class="cnh-doc-caption">The <strong>QR Code</strong> I designed — on the back of every Brazilian driver's license since 2017</div>
+        <div class="cnhcard" id="cnh-card">
+          <div class="cnhcard-shine" id="cnh-shine"></div>
+          <div class="cnhcard-strip"></div>
+          <div class="cnhcard-hdr">
+            <div class="cnhcard-flagpins">
+              <span style="background:#009B3A"></span>
+              <span style="background:#FFDF00"></span>
+              <span style="background:#002776"></span>
+            </div>
+            <div>
+              <div class="cnhcard-country">República Federativa do Brasil</div>
+              <div class="cnhcard-docname">Carteira Nacional de Habilitação</div>
+            </div>
+            <div class="cnhcard-logo">CNH</div>
+          </div>
+          <div class="cnhcard-qrzone">
+            <canvas class="cnhcard-qrcanvas" id="cnhcard-qr" width="180" height="180"></canvas>
+            <div class="cnhcard-qrnote">Verifique a autenticidade · Verify authenticity</div>
+          </div>
+          <div class="cnhcard-div"></div>
+          <div class="cnhcard-fields">
+            <div class="cnhcard-f">
+              <span class="cnhf-lbl">Nome / Name</span>
+              <span class="cnhf-val">•••••••••••••••••••••••</span>
+            </div>
+            <div class="cnhcard-frow">
+              <div class="cnhcard-f">
+                <span class="cnhf-lbl">Nº Registro / Reg. Number</span>
+                <span class="cnhf-val">•••••••••••</span>
+              </div>
+              <div class="cnhcard-f">
+                <span class="cnhf-lbl">Validade / Validity</span>
+                <span class="cnhf-val">••/••/••••</span>
+              </div>
+            </div>
+            <div class="cnhcard-frow">
+              <div class="cnhcard-f">
+                <span class="cnhf-lbl">Nacionalidade / Nationality</span>
+                <span class="cnhf-val">BRASILEIRA</span>
+              </div>
+              <div class="cnhcard-f">
+                <span class="cnhf-lbl">Categoria / Category</span>
+                <div class="cnhcard-cats"><span>B</span><span>E</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cnhcard-foot">
+            <div class="cnhcard-foot-l">
+              <div class="cnhcard-kbadge">K</div>
+              <span class="cnhcard-serpro">SERPRO</span>
+            </div>
+            <div class="cnhcard-govbr">
+              <span style="color:#009B3A">gov</span><span style="color:#aaa">.</span><span style="color:#002776">br</span>
+            </div>
+          </div>
+          <div class="cnhcard-caption">The <strong>QR Code</strong> I designed — on the back of every Brazilian driver's license since 2017</div>
         </div>
       </div>
 
@@ -1095,6 +1195,35 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  // ── CNH card: draw realistic QR code on canvas
+  (function() {
+    const cv = document.getElementById('cnhcard-qr');
+    if (!cv) return;
+    const ctx = cv.getContext('2d');
+    const S = cv.width, N = 33, cs = S / N;
+    ctx.fillStyle = '#f0dcc0';
+    ctx.fillRect(0, 0, S, S);
+    const d = new Uint8Array(N * N);
+    let seed = 0x4B7C3E2A;
+    const rng = () => { seed = Math.imul(seed, 1664525) + 1013904223 | 0; return (seed >>> 0) / 0x100000000; };
+    for (let i = 0; i < N * N; i++) d[i] = rng() > 0.44 ? 1 : 0;
+    const finder = (ox, oy) => {
+      for (let r = 0; r < 7; r++) for (let c = 0; c < 7; c++) {
+        d[(oy+r)*N+(ox+c)] = (r===0||r===6||c===0||c===6||r>=2&&r<=4&&c>=2&&c<=4) ? 1 : 0;
+      }
+    };
+    finder(0,0); finder(N-7,0); finder(0,N-7);
+    const clr = (ox,oy,w,h) => { for(let r=oy;r<oy+h;r++) for(let c=ox;c<ox+w;c++) if(r>=0&&r<N&&c>=0&&c<N) d[r*N+c]=0; };
+    clr(7,0,1,8); clr(0,7,8,1); clr(N-8,0,1,8); clr(N-8,7,8,1); clr(7,N-8,1,8); clr(0,N-8,8,1);
+    for (let i=8;i<N-8;i++) { d[6*N+i]=i%2===0?1:0; d[i*N+6]=i%2===0?1:0; }
+    const align = (ox,oy) => { for(let r=-2;r<=2;r++) for(let c=-2;c<=2;c++) d[(oy+r)*N+(ox+c)]=(Math.abs(r)===2||Math.abs(c)===2||!r&&!c)?1:0; };
+    align(N-7,N-7);
+    ctx.fillStyle = '#161210';
+    for (let r=0;r<N;r++) for (let c=0;c<N;c++) {
+      if (d[r*N+c]) ctx.fillRect(c*cs+0.3, r*cs+0.3, cs-0.3, cs-0.3);
+    }
+  })();
+
   // ── CNH card 3D tilt
   const cnhCard  = document.getElementById('cnh-card');
   const cnhShine = document.getElementById('cnh-shine');
@@ -1102,23 +1231,19 @@
     const r  = cnhCard.getBoundingClientRect();
     const x  = e.clientX - r.left;
     const y  = e.clientY - r.top;
-    const cx = r.width  / 2;
-    const cy = r.height / 2;
+    const cx = r.width / 2, cy = r.height / 2;
     const rx = ((y - cy) / cy) * -16;
     const ry = ((x - cx) / cx) *  16;
     cnhCard.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.04,1.04,1.04)`;
-    cnhCard.style.boxShadow = `
-      ${-ry * 2}px ${rx * 2}px 48px rgba(0,0,0,0.7),
-      0 0 24px rgba(255,223,0,0.2),
-      0 0 0 2px rgba(255,223,0,0.5)`;
-    cnhShine.style.setProperty('--sx', `${(x / r.width)  * 100}%`);
-    cnhShine.style.setProperty('--sy', `${(y / r.height) * 100}%`);
+    cnhCard.style.boxShadow = `${-ry*2}px ${rx*2}px 50px rgba(0,0,0,0.7), 0 0 28px rgba(255,200,80,0.18), 0 0 0 1px rgba(155,90,30,0.5)`;
+    cnhShine.style.setProperty('--sx', `${(x/r.width)*100}%`);
+    cnhShine.style.setProperty('--sy', `${(y/r.height)*100}%`);
     cnhShine.style.opacity = '1';
   });
   cnhCard.addEventListener('mouseleave', () => {
-    cnhCard.style.transform  = 'perspective(700px) rotateX(0) rotateY(0) scale3d(1,1,1)';
-    cnhCard.style.boxShadow  = '';
-    cnhShine.style.opacity   = '0';
+    cnhCard.style.transform = 'perspective(700px) rotateX(0) rotateY(0) scale3d(1,1,1)';
+    cnhCard.style.boxShadow = '';
+    cnhShine.style.opacity  = '0';
   });
 
   // ── Carousel engine
