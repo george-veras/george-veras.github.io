@@ -1647,9 +1647,8 @@
     localStorage.setItem('lang', lang);
   }
 
-  // Restore saved language
-  let rolesLang = localStorage.getItem('lang') || 'en';
-  if (rolesLang === 'fr') setLang('fr');
+  // Always start in English
+  let rolesLang = 'en';
 
   // ── Navbar scroll
   const nav = document.getElementById('navbar');
