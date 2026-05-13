@@ -986,6 +986,7 @@
       <div class="lang-toggle">
         <button class="lang-btn active" id="btn-en" onclick="setLang('en')" aria-label="Switch to English" aria-pressed="true">EN</button>
         <button class="lang-btn" id="btn-fr" onclick="setLang('fr')" aria-label="Changer en français" aria-pressed="false">FR</button>
+        <button class="lang-btn" id="btn-pt" onclick="setLang('pt')" aria-label="Mudar para Português" aria-pressed="false">PT</button>
       </div>
     </li>
   </ul>
@@ -1552,6 +1553,41 @@
       'contact.sub':   'Open to new opportunities, interesting projects, or just a good conversation about tech.',
       'footer.text':   'Built by George Véras Valentim · george-veras.github.io',
     },
+    pt: {
+      'nav.experience':   'Experiência',
+      'nav.testimonials': 'Reconhecimento',
+      'nav.highlights':   'Destaques',
+      'nav.skills':       'Competências',
+      'nav.contact':      'Contato',
+      'nav.download':     'Baixar Currículo ↓',
+      'hero.badge':       'Disponível para novas oportunidades',
+      'hero.summary':     'Engenheiro full stack com mais de 15 anos de experiência — sistemas de identidade usados por 40M+ de brasileiros, plataformas de anúncios com 1.200 req/s e SaaS corporativo global. Baseado em Vancouver, BC.',
+      'hero.btn1':        'Ver meu trabalho',
+      'hero.btn2':        'Destaques',
+      'hero.btn3':        'Entrar em contato',
+      'stats.years':      'Anos de Experiência',
+      'stats.users':      'Usuários Impactados',
+      'stats.users.sub':  'via app eCNH de habilitação digital',
+      'stats.ads':        'Anúncios/seg no Pico',
+      'stats.ads.sub':    'Tráfego Black Friday na B2W',
+      'stats.storybook':  'Componentes Storybook',
+      'stats.storybook.sub': 'adotados em toda a Jungle Scout',
+      'exp.label':  'Carreira',
+      'exp.title':  'Experiência Profissional',
+      'exp.sub':    'Mais de 15 anos entre startups, scale-ups, enterprise e sistemas governamentais no Brasil e no Canadá.',
+      'hl.label':   'Impacto',
+      'hl.title':   'Destaques de Carreira',
+      'hl.sub':     'Os projetos de que mais me orgulho — sistemas que sobreviveram aos projetos e chegaram à escala nacional.',
+      'sk.label':   'Técnico',
+      'sk.title':   'Competências & Tecnologias',
+      'sk.sub':     'Mais de 15 anos de experiência prática em toda a pilha.',
+      'cred.label': 'Credenciais',
+      'cred.title': 'Certificações & Formação',
+      'contact.label': 'Vamos nos conectar',
+      'contact.title': 'Entre em Contato',
+      'contact.sub':   'Aberto a novas oportunidades, projetos interessantes ou uma boa conversa sobre tecnologia.',
+      'footer.text':   'Desenvolvido por George Véras Valentim · george-veras.github.io',
+    },
     fr: {
       'nav.experience':   'Expérience',
       'nav.testimonials': 'Reconnaissance',
@@ -1595,7 +1631,7 @@
       if (i18n[lang] && i18n[lang][key]) el.textContent = i18n[lang][key];
     });
     // toggle active button + aria-pressed
-    ['en','fr'].forEach(l => {
+    ['en','fr','pt'].forEach(l => {
       const btn = document.getElementById('btn-' + l);
       btn.classList.toggle('active', l === lang);
       btn.setAttribute('aria-pressed', l === lang ? 'true' : 'false');
@@ -1603,7 +1639,7 @@
     // update typewriter language
     rolesLang = lang;
     // update html lang attribute (WCAG 3.1.1)
-    document.documentElement.lang = lang;
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
     // update page title
     document.title = lang === 'fr'
       ? 'George Véras Valentim — Portfolio'
@@ -1625,7 +1661,8 @@
   // ── Typewriter
   const rolesMap = {
     en: ['Full Stack Engineer', 'Engineering Architect', 'Startup Founder', 'Builder of Things'],
-    fr: ['Ingénieur Full Stack', 'Architecte Logiciel', 'Fondateur de Startup', 'Créateur de Solutions']
+    fr: ['Ingénieur Full Stack', 'Architecte Logiciel', 'Fondateur de Startup', 'Créateur de Solutions'],
+    pt: ['Engenheiro Full Stack', 'Arquiteto de Software', 'Fundador de Startup', 'Criador de Soluções']
   };
   let ri = 0, ci = 0, deleting = false;
   const el = document.getElementById('typewriter');
