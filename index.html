@@ -956,14 +956,75 @@
     #back-top.show { opacity: 1; transform: translateY(0); }
     #back-top:hover { transform: translateY(-2px); }
 
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
+    /* ── Tablet (≤ 1024px): tighten the featured card ── */
+    @media (max-width: 1024px) {
+      .hf-right { width: 420px; }
+    }
+
+    /* ── Mobile (≤ 767px) ── */
+    @media (max-width: 767px) {
+
+      /* NAV */
+      nav { padding: 12px 16px; }
       .nav-links { display: none; }
-      section { padding: 72px 20px; }
+      .lang-btn { padding: 4px 8px; font-size: 0.7rem; }
+
+      /* HERO */
+      .hero { padding: 90px 16px 56px; }
+      .hero-avatar { width: 90px; height: 90px; }
+      .hero-btns { flex-direction: column; align-items: center; width: 100%; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 300px; text-align: center; justify-content: center; }
+
+      /* STATS */
+      .stats-section { padding: 48px 16px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+      /* SECTIONS */
+      section { padding: 56px 16px; }
+
+      /* EXPERIENCE TIMELINE */
       .timeline::before { display: none; }
       .job-card { padding-left: 0; }
       .job-card::before { display: none; }
+      .job-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .job-dates { white-space: normal; background: none; padding: 0; }
+
+      /* FEATURED eCNH CARD */
+      .hf-top-row { flex-direction: column; }
+      .hf-right {
+        width: 100%; height: auto;
+        flex-direction: column;
+      }
+      .hf-right .carousel { height: 260px; }
+      .hf-right .cnhcard { height: auto; aspect-ratio: 7/8; }
+
+      /* HIGHLIGHTS */
+      .highlights-grid { grid-template-columns: 1fr; }
+
+      /* TESTIMONIALS */
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      /* SKILLS */
+      .skills-grid { grid-template-columns: 1fr; }
+
+      /* CERTS */
+      .certs-grid { grid-template-columns: 1fr; }
+
+      /* EARLY CAREER */
+      .early-row { flex-wrap: wrap; gap: 2px; }
+      .early-row .dt { width: 100%; opacity: 0.7; }
+
+      /* CONTACT */
+      .contact-section { padding: 64px 16px; }
+      .contact-links { flex-direction: column; align-items: center; }
+      .contact-link { width: 100%; max-width: 300px; justify-content: center; }
+      .dl-wrap { width: 100%; max-width: 300px; }
+      .dl-menu { left: 0; right: 0; min-width: unset; }
+
+      /* BACK TO TOP */
+      #back-top { bottom: 16px; right: 16px; width: 38px; height: 38px; }
     }
+
   </style>
 </head>
 <body>
@@ -989,14 +1050,13 @@
         </div>
       </div>
     </li>
-    <li>
-      <div class="lang-toggle">
-        <button class="lang-btn active" id="btn-en" onclick="setLang('en')" aria-label="Switch to English" aria-pressed="true">EN</button>
-        <button class="lang-btn" id="btn-fr" onclick="setLang('fr')" aria-label="Changer en français" aria-pressed="false">FR</button>
-        <button class="lang-btn" id="btn-pt" onclick="setLang('pt')" aria-label="Mudar para Português" aria-pressed="false">PT</button>
-      </div>
-    </li>
   </ul>
+  <!-- lang-toggle outside nav-links so it shows on mobile too -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')" aria-label="Switch to English" aria-pressed="true">EN</button>
+    <button class="lang-btn" id="btn-fr" onclick="setLang('fr')" aria-label="Changer en français" aria-pressed="false">FR</button>
+    <button class="lang-btn" id="btn-pt" onclick="setLang('pt')" aria-label="Mudar para Português" aria-pressed="false">PT</button>
+  </div>
 </nav>
 
 <!-- ── MAIN ── -->
