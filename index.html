@@ -677,6 +677,33 @@
     }
     .cnhcard-caption strong { color: #FFDF00; }
 
+    /* ── Testimonials ── */
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .tcard {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 26px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .tcard::before {
+      content: '\201C';
+      position: absolute; top: 12px; left: 20px;
+      font-size: 3.5rem; line-height: 1; color: var(--primary);
+      opacity: 0.25; font-family: Georgia, serif;
+    }
+    .tcard:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-2px); }
+    .tcard-quote {
+      color: var(--muted); font-size: 0.875rem; line-height: 1.7;
+      padding-top: 20px; font-style: italic;
+    }
+    .tcard-author { display: flex; flex-direction: column; gap: 2px; margin-top: auto; }
+    .tcard-name { font-size: 0.875rem; font-weight: 700; color: var(--text); }
+    .tcard-role { font-size: 0.75rem; color: var(--primary); }
+
     /* ── Press / media coverage ── */
     .press-section { }
     .press-label {
@@ -941,6 +968,7 @@
   <div class="nav-logo">GVV</div>
   <ul class="nav-links">
     <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+    <li><a href="#testimonials" data-i18n="nav.testimonials">Recognition</a></li>
     <li><a href="#highlights" data-i18n="nav.highlights">Highlights</a></li>
     <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
@@ -1026,19 +1054,24 @@
   <div class="timeline">
 
     <!-- Flight Centre -->
-    <div class="job-card reveal">
+    <div class="job-card featured reveal">
       <div class="job-card-inner">
         <div class="job-meta">
-          <div class="job-company">Flight Centre</div>
-          <div class="job-dates">Dec 2022 — Present · Vancouver, BC</div>
+          <div class="job-company">Flight Centre <span style="font-weight:400;color:var(--muted);font-size:0.85rem;">(WhereTo)</span></div>
+          <div class="job-dates">Dec 2022 — Apr 2026 · Vancouver, BC</div>
         </div>
         <div class="job-role">Senior Full Stack Engineer</div>
         <ul class="job-bullets">
-          <li>Working on the company's <strong>real-time booking SaaS</strong> platform for flights, trains, hotels, and car rentals.</li>
-          <li>Acting across the full stack: <strong>React/TypeScript</strong> on the frontend and <strong>Node.js (Koa)</strong> on the backend.</li>
+          <li>Delivered <strong>755+ merged PRs</strong> over 3.5 years as a primary full-stack contributor on WhereTo — a white-label corporate travel SaaS serving global enterprise clients across flights, rail, hotels, and car rentals.</li>
+          <li>Built the <strong>Invoices feature backend from scratch</strong> as primary contributor over ~12 months — 12+ endpoints, permission-based columns, CSV export, and performance decoupling from My Trips. Resulted in <strong>87% client engagement</strong> (1,198 of 1,709 active sites) and an <strong>87% drop in invoice support tickets</strong>.</li>
+          <li>Pioneered a <strong>company-wide Grafana/Prometheus observability culture from zero</strong> — built the first metrics endpoints, dashboards, and alerts across every major system owned. Teams across the organisation adopted it as a delivery standard.</li>
+          <li>Sole owner of <strong>i18n delivery across 4 languages</strong> (EN, FR, ES, EN-GB) for the entire 3.5-year tenure — built a fully autonomous translations pipeline (Lokalise webhook → PR → reviewer assignment → deploy) that now ships without any manual steps.</li>
+          <li>Sole architect of the <strong>Instance Manager microservice extraction</strong> — the service that provisions every client instance on the platform. Produced a complete NestJS architecture from scratch: 22 findings, 10 implementation tickets, full dependency audit, multi-tenant strategy, and ALB zero-downtime cut-over plan.</li>
+          <li>One of 3 engineers who built the <strong>Security Alerts system end-to-end</strong>: Trip Sync ingestion, email + push dispatch, MixPanel telemetry, filtering, and the platform's first Grafana production dashboard for real-time traveler safety monitoring.</li>
+          <li>Initiated the platform's <strong>WCAG 2.1 AA accessibility programme</strong> — the first a11y infrastructure in the product's history. Proposed, scoped, and led Phase 1: semantic landmarks, jest-axe, ESLint ARIA rules, and axe-core dev overlay.</li>
         </ul>
         <div class="job-stack">
-          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Koa.js</span>
+          <span class="tag">TypeScript</span><span class="tag">React 18</span><span class="tag">Node.js</span><span class="tag">Koa.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">Elasticsearch</span><span class="tag">RabbitMQ</span><span class="tag">Azure Kubernetes</span><span class="tag">Grafana</span><span class="tag">Prometheus</span><span class="tag">Lokalise</span>
         </div>
       </div>
     </div>
@@ -1172,6 +1205,41 @@
 
   </div>
 </section>
+
+<!-- ── TESTIMONIALS ── -->
+<div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<section id="testimonials" aria-label="Peer Recognition">
+  <div class="section-label">In Their Own Words</div>
+  <h2 class="section-title">Peer Recognition</h2>
+  <p class="section-sub">Unsolicited feedback from colleagues across 3.5 years at Flight Centre (WhereTo).</p>
+  <div class="testimonials-grid">
+    <div class="tcard reveal">
+      <p class="tcard-quote">"Much deserved shoutout to you George, you did an amazing work on the Invoices Grafana Dashboard. Not only it helps the product team to get a holistic view of how the feature is used, it helps the QA team to get valuable insights."</p>
+      <div class="tcard-author"><span class="tcard-name">Sankhopriya Saha</span><span class="tcard-role">QA Manager · #kudos, August 2025</span></div>
+    </div>
+    <div class="tcard reveal reveal-delay-1">
+      <p class="tcard-quote">"Engineering shout-out to George for working together while on vacation to solve the missing translations in prod! Going over and above to solve the world's problems!"</p>
+      <div class="tcard-author"><span class="tcard-name">Eric Schoonmaker</span><span class="tcard-role">QA Lead · #kudos, September 2025</span></div>
+    </div>
+    <div class="tcard reveal reveal-delay-2">
+      <p class="tcard-quote">"Shout out to George jumping on unexpected tickets even frontend. Helping team to pass regression!"</p>
+      <div class="tcard-author"><span class="tcard-name">Dmitriy Malets</span><span class="tcard-role">Technical Leader · Sprint 124 Retrospective</span></div>
+    </div>
+    <div class="tcard reveal">
+      <p class="tcard-quote">"Dima & George — cheers on taking on the urgent Booking Report changes and adopting your code to their needs later in the sprint. This was a higher up ticket so it was nice to take it on and promptly solve it."</p>
+      <div class="tcard-author"><span class="tcard-name">Jessica</span><span class="tcard-role">Product Manager · Sprint 121 Retrospective</span></div>
+    </div>
+    <div class="tcard reveal reveal-delay-1">
+      <p class="tcard-quote">"We have started big initiative to migrate K2 to microservices. Kudo to George to gather everyone to review."</p>
+      <div class="tcard-author"><span class="tcard-name">Dmitriy Malets</span><span class="tcard-role">Technical Leader · Sprint 137 Retrospective</span></div>
+    </div>
+    <div class="tcard reveal reveal-delay-2">
+      <p class="tcard-quote">"KUDOS to @george for being super on top of the report and owning the process. That is extremely important!"</p>
+      <div class="tcard-author"><span class="tcard-name">Jessica</span><span class="tcard-role">Product Manager · Sprint 131 Retrospective</span></div>
+    </div>
+  </div>
+</section>
+</div>
 
 <!-- ── HIGHLIGHTS ── -->
 <div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
@@ -1449,6 +1517,7 @@
   const i18n = {
     en: {
       'nav.experience':   'Experience',
+      'nav.testimonials': 'Recognition',
       'nav.highlights':   'Highlights',
       'nav.skills':       'Skills',
       'nav.contact':      'Contact',
@@ -1483,6 +1552,7 @@
     },
     fr: {
       'nav.experience':   'Expérience',
+      'nav.testimonials': 'Reconnaissance',
       'nav.highlights':   'Points forts',
       'nav.skills':       'Compétences',
       'nav.contact':      'Contact',
