@@ -39,6 +39,11 @@
   <meta name="twitter:image" content="https://george-veras.github.io/og-image.jpg">
   <meta name="twitter:image:alt" content="George Véras Valentim — Full Stack Engineer">
 
+  <!-- ── rel="me" — ties portfolio identity to social profiles (WCAG + SEO) ── -->
+  <link rel="me" href="https://www.linkedin.com/in/george-veras">
+  <link rel="me" href="https://github.com/george-veras">
+  <link rel="me" href="mailto:george.veras.valentim@gmail.com">
+
   <!-- ── JSON-LD Structured Data ── -->
   <script type="application/ld+json">
   {
@@ -50,7 +55,7 @@
         "name": "George Véras Valentim",
         "url": "https://george-veras.github.io/",
         "image": "https://george-veras.github.io/me.jpg",
-        "jobTitle": "Senior Full Stack Engineer",
+        "jobTitle": "Senior Full Stack Engineer & Technical Lead",
         "description": "Full-stack engineer with 15+ years of experience building products at scale — from government-grade identity systems used by 40M+ Brazilians to ad platforms handling 1,200 requests per second.",
         "email": "george.veras.valentim@gmail.com",
         "telephone": "+16048370524",
@@ -101,9 +106,10 @@
         "@type": "ProfilePage",
         "@id": "https://george-veras.github.io/#webpage",
         "url": "https://george-veras.github.io/",
-        "name": "George Véras Valentim — Full Stack Engineer Portfolio",
-        "description": "Portfolio of George Véras Valentim, a full-stack engineer based in Vancouver, BC.",
-        "inLanguage": ["en", "fr"],
+        "name": "George Véras Valentim — Senior Full Stack Engineer & Technical Lead | Vancouver",
+        "description": "Portfolio of George Véras Valentim, a senior full-stack engineer and technical leader based in Vancouver, BC. Open to Lead and Staff Engineer opportunities.",
+        "inLanguage": ["en", "fr", "pt-BR"],
+        "dateModified": "2026-05-13",
         "about": { "@id": "https://george-veras.github.io/#person" },
         "mainEntity": { "@id": "https://george-veras.github.io/#person" }
       },
@@ -252,6 +258,10 @@
       padding: 6px 16px; border-radius: 100px;
       margin-bottom: 28px; letter-spacing: 0.5px;
       white-space: nowrap;
+    }
+    .hero-location {
+      font-size: 0.9rem; font-weight: 500; color: var(--muted);
+      letter-spacing: 0.3px; margin-bottom: 16px;
     }
     .hero-badge .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; flex-shrink: 0; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
@@ -1069,6 +1079,7 @@
   </div>
   <div class="hero-badge"><span class="hero-dot"></span><span data-i18n="hero.badge">Available for new opportunities</span></div>
   <h1>George <span class="gradient-text">Véras Valentim</span></h1>
+  <p class="hero-location" aria-label="Role and location">Senior Full Stack Engineer &amp; Technical Lead · Vancouver, BC</p>
   <div class="typewriter-wrap">
     <span data-i18n="hero.prefix">I'm a</span> &nbsp;<span class="typewriter" id="typewriter"></span><span class="cursor"></span>
   </div>
