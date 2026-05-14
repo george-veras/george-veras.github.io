@@ -24,16 +24,17 @@
 
   <!-- GV monogram -->
   <text
-    x="54"
-    y="69"
+    x="50"
+    y="50"
     font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
-    font-size="52"
+    font-size="50"
     font-weight="900"
     fill="url(#grad)"
     text-anchor="middle"
-    letter-spacing="-3"
+    dominant-baseline="central"
+    letter-spacing="-2"
     filter="url(#glow)">GV</text>
 
   <!-- Bottom accent line -->
-  <rect x="28" y="80" width="44" height="3" rx="1.5" fill="url(#grad)" opacity="0.5"/>
+  <rect x="28" y="83" width="44" height="3" rx="1.5" fill="url(#grad)" opacity="0.5"/>
 </svg>
