@@ -1051,6 +1051,7 @@
 <body>
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="lang-announce" aria-live="polite" aria-atomic="true" class="sr-only"></div>
 
 <!-- ── NAVBAR ── -->
 <nav id="navbar" aria-label="Main navigation">
@@ -1153,7 +1154,7 @@
           <div class="job-company">Flight Centre <span style="font-weight:400;color:var(--muted);font-size:0.85rem;">(WhereTo)</span></div>
           <div class="job-dates">Dec 2022 — Present · Vancouver, BC</div>
         </div>
-        <div class="job-role">Senior Full Stack Engineer</div>
+        <div class="job-role" role="heading" aria-level="3">Senior Full Stack Engineer</div>
         <ul class="job-bullets">
           <li>Took ownership of the Invoices feature with <strong>nothing already built on the server side</strong> — built the entire backend from scratch over ~12 months, driving <strong>87% enterprise client adoption</strong> (1,198 of 1,709 active sites) and cutting support tickets by <strong>87%</strong> (avg. 10/month → 3/month after launch).</li>
           <li>Inherited full ownership of the platform's <strong>translation and localisation across 4 languages</strong> (English, French, Spanish, and UK English) with no handoff and no documentation when the previous owner left — delivered consistently every sprint for 3.5 years. Eventually <strong>automated the entire process</strong> so that new translations deploy to the product without any manual steps.</li>
@@ -1185,7 +1186,7 @@
           <div class="job-company">Jungle Scout <span style="font-weight:400;color:var(--muted);font-size:0.85rem;">(Downstream / Ad Tech)</span></div>
           <div class="job-dates">Jul 2021 — Oct 2022 · Vancouver, BC</div>
         </div>
-        <div class="job-role">Frontend (React) Engineer</div>
+        <div class="job-role" role="heading" aria-level="3">Frontend (React) Engineer</div>
         <ul class="job-bullets">
           <li><strong>Sole front-end engineer</strong> on Downstream, Jungle Scout's acquired Ad Tech subsidiary — independently owned the entire React codebase for over a year.</li>
           <li>Introduced and built <strong>Storybook</strong> from the ground up with <strong>100+ reusable components</strong>, progressively adopted across the wider Jungle Scout organisation.</li>
@@ -1204,7 +1205,7 @@
           <div class="job-company">Wonder</div>
           <div class="job-dates">Dec 2020 — May 2021 · New York (remote)</div>
         </div>
-        <div class="job-role">Full Stack TypeScript Engineer</div>
+        <div class="job-role" role="heading" aria-level="3">Full Stack TypeScript Engineer</div>
         <ul class="job-bullets">
           <li>Joined at the founding stage of a <strong>Chrome extension</strong> that intelligently deep-crawled Google results to surface page-level summaries — dramatically cutting research time for <strong>journalists and academics</strong>.</li>
           <li>One of <strong>4 engineers</strong> on a near-greenfield codebase; built features across the full stack from React frontend to the Node.js microservice mesh powering the crawler.</li>
@@ -1223,7 +1224,7 @@
           <div class="job-company">B2W Digital</div>
           <div class="job-dates">Mar 2018 — Dec 2020 · Rio de Janeiro</div>
         </div>
-        <div class="job-role">Senior Backend Engineer</div>
+        <div class="job-role" role="heading" aria-level="3">Senior Backend Engineer</div>
         <ul class="job-bullets">
           <li>Built a fleet of <strong>7 domain-specific microservices</strong> (ad search, finances, user management, and more) powering ad delivery across Americanas, Submarino, and Shoptime — Latin America's largest e-commerce group.</li>
           <li>Engineered a system sustaining <strong>peaks of 1,200 ads/second</strong> during Black Friday, with auto-scaling infrastructure that adjusted dynamically based on season.</li>
@@ -1243,7 +1244,7 @@
           <div class="job-company">Panorante</div>
           <div class="job-dates">Nov 2016 — Mar 2018 · Rio de Janeiro</div>
         </div>
-        <div class="job-role">Founder &amp; Engineer</div>
+        <div class="job-role" role="heading" aria-level="3">Founder &amp; Engineer</div>
         <ul class="job-bullets">
           <li>Founded and built a <strong>LinkedIn-style platform</strong> for construction and renovation professionals — architects, designers, painters, and electricians could create portfolio profiles and be discovered by clients.</li>
           <li>Took product from zero to <strong>4 paying clients</strong>, handling product design, engineering, marketing, and UX independently.</li>
@@ -1262,7 +1263,7 @@
           <div class="job-company">VALID</div>
           <div class="job-dates">Oct 2011 — Oct 2016 · Rio de Janeiro</div>
         </div>
-        <div class="job-role">Technical Leader &amp; Senior Engineering Architect</div>
+        <div class="job-role" role="heading" aria-level="3">Technical Leader &amp; Senior Engineering Architect</div>
         <ul class="job-bullets">
           <li>Five years at Brazil's largest identity and information security company, serving federal government clients on a <strong>team of 10</strong>.</li>
           <li>Acted as <strong>senior engineering architect</strong> — designed the architecture of most systems and coordinated the developers who implemented them.</li>
@@ -1287,21 +1288,23 @@
     <div class="job-card reveal">
       <div class="early-career">
         <h3 data-i18n="exp.early">Earlier Career</h3>
+        <dl>
         <div class="early-row">
-          <span class="co">Oi Telecom</span>
-          <span class="ro">Systems Analyst / Consultant</span>
-          <span class="dt">Mar 2010 – Oct 2011</span>
+          <dt class="co">Oi Telecom</dt>
+          <dd class="ro">Systems Analyst / Consultant</dd>
+          <dd class="dt">Mar 2010 – Oct 2011</dd>
         </div>
         <div class="early-row">
-          <span class="co">Spiderware</span>
-          <span class="ro">Software Developer</span>
-          <span class="dt">Apr 2008 – Mar 2010</span>
+          <dt class="co">Spiderware</dt>
+          <dd class="ro">Software Developer</dd>
+          <dd class="dt">Apr 2008 – Mar 2010</dd>
         </div>
         <div class="early-row">
-          <span class="co">Oswaldo Cruz Foundation</span>
-          <span class="ro">Web &amp; Database Scholarship</span>
-          <span class="dt">Mar 2006 – Oct 2007</span>
+          <dt class="co">Oswaldo Cruz Foundation</dt>
+          <dd class="ro">Web &amp; Database Scholarship</dd>
+          <dd class="dt">Mar 2006 – Oct 2007</dd>
         </div>
+        </dl>
       </div>
     </div>
 
@@ -1817,6 +1820,9 @@
       ? 'George Véras Valentim — Engenheiro Full Stack | Vancouver, BC'
       : 'George Véras Valentim — Full Stack Engineer | Vancouver, BC';
     localStorage.setItem('lang', lang);
+    // announce language change to screen readers
+    const names = { en: 'English', fr: 'Français', pt: 'Português Brasileiro' };
+    document.getElementById('lang-announce').textContent = `Language changed to ${names[lang]}`;
   }
 
   // Always start in English
