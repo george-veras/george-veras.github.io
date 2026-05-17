@@ -3,34 +3,35 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://george-veras.github.io/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://george-veras.github.io/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://george-veras.github.io/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://george-veras.github.io/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://george-veras.github.io/"/>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://george-veras.github.io/resume.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://george-veras.github.io/george-veras-valentim-resume.pdf</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://george-veras.github.io/george-veras-valentim-resume-fr.pdf</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://george-veras.github.io/george-veras-valentim-curriculo-pt.pdf</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
