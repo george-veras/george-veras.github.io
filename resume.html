@@ -3,11 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>George Véras Valentim — Resume 2026</title>
-<meta name="description" content="Full resume of George Véras Valentim — Senior Full Stack Engineer with 15+ years of experience. React, TypeScript, Node.js. Based in Vancouver, BC.">
+<title>George Véras Valentim, Resume 2026</title>
+<meta name="description" content="Full resume of George Véras Valentim, Senior Full Stack Engineer with 18 years of experience. React, TypeScript, Node.js. Based in Vancouver, BC.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://george-veras.github.io/">
 <style>
+  /* Sem ligaduras tipograficas: o Chrome grava "fi"/"fl" como U+FB01/U+FB02
+     no PDF, e "Snowflake" vira "Snowﬂake", que nenhuma busca de recrutador
+     encontra. Descoberto em 23/08/2026 testando o PDF publico do portfolio. */
+  body, body * {
+    font-variant-ligatures: none;
+    -webkit-font-feature-settings: "liga" 0, "clig" 0, "dlig" 0;
+    font-feature-settings: "liga" 0, "clig" 0, "dlig" 0;
+  }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -196,10 +204,13 @@
 <section class="summary">
   <h2>Professional Summary</h2>
   <p>
-    Full-stack engineer with 15+ years of experience and a track record spanning ad-tech at Brazil's largest
+    Full-stack engineer with 18 years of experience and a track record spanning ad-tech at Brazil's largest
     e-commerce group, real-time booking SaaS for a global travel company, and government-scale identity systems.
     Career highlights include designing the QR code now printed on every Brazilian driver's license and
-    single-handedly designing and building eCNH — the country's first digital ID mobile app — from scratch through to national launch, now used by over 40 million Brazilians. Equally at home owning a React/TypeScript
+    single-handedly designing and building eCNH, the country's first digital ID mobile app, from scratch through to national launch, now used by over 40 million Brazilians. The recent work has moved into AI: an early
+    <strong>Claude Code</strong> adopter who drove team-wide adoption of <strong>AI-assisted development</strong>
+    across a large legacy codebase, and the designer of a production <strong>multi-agent LLM system</strong> with
+    tool design, human-in-the-loop escalation and guardrails for agents acting on real client data. Equally at home owning a React/TypeScript
     frontend, architecting Node.js microservices, or leading and growing an engineering team from scratch.
   </p>
 </section>
@@ -221,6 +232,10 @@
     <tr>
       <td>Web Back-end</td>
       <td>Node.js (8+ years), .Net/C# (9 years), Django/Python, Koa.js, Golang</td>
+    </tr>
+    <tr>
+      <td>AI &amp; LLM Engineering</td>
+      <td>Production <strong>multi-agent</strong> system design (tool design, agent-to-agent handoff, human-in-the-loop escalation, evaluation and guardrails for agents acting on real client data), <strong>LLM</strong> application development on a NestJS and PostgreSQL backend, <strong>agentic</strong> workflows with multi-tenant routing, <strong>AI-assisted development</strong> at team scale (early <strong>Claude Code</strong> adopter)</td>
     </tr>
     <tr>
       <td>Architecture &amp; Patterns</td>
@@ -260,16 +275,19 @@
     <div class="job-header">
       <div>
         <span class="company">Flight Centre</span>
-        &nbsp;—&nbsp;
-        <span class="job-title">Senior Full Stack Engineer</span>
+        &nbsp;&middot;&nbsp;
+        <span class="job-title">Senior Full Stack Engineer &amp; Technical Lead</span>
       </div>
-      <div class="dates">Vancouver, BC &nbsp;|&nbsp; Dec 2022 – Present</div>
+      <div class="dates">Vancouver, BC &nbsp;|&nbsp; Dec 2022 - Present</div>
     </div>
-    <ul>
-      <li>Working on the company's real-time booking SaaS platform for flights, trains, hotels, and car rentals.</li>
-      <li>Acting as a full-stack engineer across the React/TypeScript frontend and the Node.js (Koa) backend.</li>
+        <ul>
+      <li><strong>Built the Invoices platform from no backend to 12+ REST endpoints</strong>, owning the data model, generation, and delivery pipeline end to end for the billing documents enterprise clients reconcile against. Now used by <strong>87% of enterprise sites</strong> (1,198 of 1,709), with an <strong>87% drop in related support volume</strong>, from roughly ten tickets a month to three.</li>
+      <li><strong>Sole architect of the Instance Manager</strong>, the multi-tenant provisioning service every enterprise client passes through to go live. Produced the full architecture package for extracting it from the monolith into a NestJS service: 22 findings, <strong>dual authorisation guards</strong>, a multi-tenant data and permission strategy, a zero-downtime cut-over plan, and the sequenced delivery milestones the team executed against.</li>
+      <li>One of three engineers on <strong>Security Alerts</strong>, spanning trip-data ingestion, email and push dispatch, and telemetry across <strong>200+ client instances</strong>. Diagnosed and fixed the <strong>race conditions and lock contention</strong> that made it unreliable under concurrent ingestion, and was the only engineer to put it under Grafana monitoring.</li>
+      <li><strong>Set the engineering standards other teams build against</strong>, working across team boundaries with no direct authority: took Prometheus and Grafana from a forgotten installation to the org-wide delivery default, and initiated the company's <strong>WCAG 2.1 AA accessibility programme</strong> after spotting the gap in enterprise RFP responses.</li>
+      <li>Built a <strong>fully autonomous localisation pipeline</strong> as the sole engineer on it, running webhook to PR to reviewer assignment to deploy across four languages for <strong>3.5 years with no human handoff</strong>, and was an early <strong>Claude Code</strong> adopter who drove team-wide adoption of AI-assisted development across a large legacy surface.</li>
     </ul>
-    <div class="stack"><strong>Stack:</strong> React, TypeScript, Node.js, Koa.js</div>
+    <div class="stack"><strong>Stack:</strong> TypeScript, Node.js, NestJS, Koa.js, React 18, PostgreSQL, Redis, Elasticsearch, RabbitMQ, Azure Kubernetes (AKS), Grafana, Prometheus</div>
   </div>
 
   <!-- Jungle Scout -->
@@ -277,13 +295,13 @@
     <div class="job-header">
       <div>
         <span class="company">Jungle Scout</span>
-        &nbsp;—&nbsp;
+        &nbsp;&middot;&nbsp;
         <span class="job-title">Frontend (React) Engineer</span>
       </div>
-      <div class="dates">Vancouver, BC &nbsp;|&nbsp; Jul 2021 – Oct 2022</div>
+      <div class="dates">Vancouver, BC &nbsp;|&nbsp; Jul 2021 - Oct 2022</div>
     </div>
     <ul>
-      <li>Served as the <strong>sole front-end engineer</strong> on Downstream — Jungle Scout's acquired Ad Tech subsidiary — independently owning the entire React codebase for over a year.</li>
+      <li>Served as the <strong>sole front-end engineer</strong> on Downstream, Jungle Scout's acquired Ad Tech subsidiary, independently owning the entire React codebase for over a year.</li>
       <li>Introduced and built out <strong>Storybook</strong> from the ground up, delivering <strong>100+ reusable components</strong> that were progressively adopted beyond the Ad Tech team and became a front-end foundation across Jungle Scout.</li>
       <li>Mentored and onboarded the team's second front-end engineer, establishing component standards and documentation that enabled a smooth knowledge transfer before departing.</li>
     </ul>
@@ -295,14 +313,14 @@
     <div class="job-header">
       <div>
         <span class="company">Wonder</span>
-        &nbsp;—&nbsp;
+        &nbsp;&middot;&nbsp;
         <span class="job-title">Full Stack TypeScript Engineer</span>
       </div>
-      <div class="dates">New York (remote) &nbsp;|&nbsp; Dec 2020 – May 2021</div>
+      <div class="dates">New York (remote) &nbsp;|&nbsp; Dec 2020 - May 2021</div>
     </div>
     <ul>
-      <li>Joined at the founding stage of a Chrome extension that used intelligent deep-crawling to surface page-level summaries across Google search results — dramatically cutting research time for its primary users: <strong>journalists and academics</strong>.</li>
-      <li>As one of <strong>4 engineers</strong> on a near-greenfield codebase, built a broad range of features across the full TypeScript stack — from the React frontend to the Node.js microservice mesh (one service in Python) that powered the crawler.</li>
+      <li>Joined at the founding stage of a Chrome extension that used intelligent deep-crawling to surface page-level summaries across Google search results, dramatically cutting research time for its primary users: <strong>journalists and academics</strong>.</li>
+      <li>As one of <strong>4 engineers</strong> on a near-greenfield codebase, built a broad range of features across the full TypeScript stack, from the React frontend to the Node.js microservice mesh (one service in Python) that powered the crawler.</li>
       <li>Introduced <strong>Storybook</strong> for component documentation and delivered the product's <strong>dark theme</strong>, improving both developer experience and UI polish.</li>
     </ul>
     <div class="stack"><strong>Stack:</strong> React, TypeScript, Node.js, Koa.js, Storybook, MongoDB, PostgreSQL, Serverless Framework, Docker, Redis, AWS</div>
@@ -313,17 +331,17 @@
     <div class="job-header">
       <div>
         <span class="company">B2W Digital</span>
-        &nbsp;—&nbsp;
+        &nbsp;&middot;&nbsp;
         <span class="job-title">Senior Backend Engineer</span>
       </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Mar 2018 – Dec 2020</div>
+      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Mar 2018 - Dec 2020</div>
     </div>
     <ul>
-      <li>Built and maintained a fleet of <strong>7 domain-specific microservices</strong> (ad search, finances, user management, and more) powering ad delivery across Americanas, Submarino, and Shoptime — three of the largest e-commerce brands in Latin America.</li>
+      <li>Built and maintained a fleet of <strong>7 domain-specific microservices</strong> (ad search, finances, user management, and more) powering ad delivery across Americanas, Submarino, and Shoptime, three of the largest e-commerce brands in Latin America.</li>
       <li>Engineered a system capable of sustaining <strong>peaks of 1,200 ads delivered per second</strong> during Black Friday, with auto-scaling infrastructure that dynamically adjusted capacity based on traffic and season.</li>
       <li>Led the infrastructure migration from <strong>Marathon/Mesos to Kubernetes</strong>, improving reliability and scalability of the ad platform.</li>
       <li>The team's architectural patterns and operational practices were <strong>adopted broadly across B2W</strong>, one of the largest e-commerce groups in Latin America, as a reference model.</li>
-      <li>Shared full DevOps ownership — every engineer was responsible for the infrastructure, operating as a self-managed Scrum team.</li>
+      <li>Shared full DevOps ownership: every engineer was responsible for the infrastructure, operating as a self-managed Scrum team.</li>
     </ul>
     <div class="stack"><strong>Stack:</strong> Node.js, MongoDB, MySQL, Docker, Jenkins, RabbitMQ, Redis, Kubernetes, Marathon/Mesos, AWS, Google Cloud, Spot.io</div>
   </div>
@@ -333,17 +351,17 @@
     <div class="job-header">
       <div>
         <span class="company">Panorante</span>
-        &nbsp;—&nbsp;
+        &nbsp;&middot;&nbsp;
         <span class="job-title">Founder &amp; Engineer</span>
       </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Nov 2016 – Mar 2018</div>
+      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Nov 2016 - Mar 2018</div>
     </div>
     <ul>
-      <li>Founded and built a <strong>LinkedIn-style platform for construction and renovation professionals</strong> — architects, interior designers, painters, and electricians could create portfolio profiles and be discovered by clients looking to hire them; store owners could list their businesses and addresses.</li>
+      <li>Founded and built a <strong>LinkedIn-style platform for construction and renovation professionals</strong>, architects, interior designers, painters, and electricians could create portfolio profiles and be discovered by clients looking to hire them; store owners could list their businesses and addresses.</li>
       <li>Took the product from zero to <strong>4 paying clients</strong>, handling every aspect of the business: product design, engineering, customer development, inbound marketing, and UX.</li>
       <li>Implemented advanced SEO with JSON-LD structured data (Google-recommended format) to maximise organic search placement for professional profiles.</li>
       <li>Built with accessibility as a first-class concern, ensuring screen-reader compatibility for users with visual impairments.</li>
-      <li>Evolved the tech stack independently — started on .Net/C#, migrated the backend to Node.js and Golang, and built the admin panel as a React PWA.</li>
+      <li>Evolved the tech stack independently: started on .Net/C#, migrated the backend to Node.js and Golang, and built the admin panel as a React PWA.</li>
     </ul>
     <div class="stack"><strong>Stack:</strong> .Net/C#, Node.js, Golang, React (PWA), AWS (EC2, S3, RDS, ElastiCache, CloudFront)</div>
   </div>
@@ -353,23 +371,23 @@
     <div class="job-header">
       <div>
         <span class="company">VALID</span>
-        &nbsp;—&nbsp;
+        &nbsp;&middot;&nbsp;
         <span class="job-title">Technical Leader</span>
       </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Oct 2011 – Oct 2016</div>
+      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Oct 2011 - Oct 2016</div>
     </div>
     <ul>
       <li>Five years at Brazil's largest identity solutions and information security company, serving government clients on a <strong>team of 10</strong> including testers.</li>
-      <li>Acted as <strong>senior engineering architect</strong> — designed the architecture of most systems and coordinated the developers responsible for implementing them, while also serving as the technical liaison between engineering and directors/managers.</li>
+      <li>Acted as <strong>senior engineering architect</strong>, designed the architecture of most systems and coordinated the developers responsible for implementing them, while also serving as the technical liaison between engineering and directors/managers.</li>
       <li>Took ownership of R&amp;D projects to design and implement new identity solutions for the federal government.</li>
-      <li>Identified the gap in front-end expertise, assembled and trained the company's <em>first dedicated front-end team</em> from scratch — coaching developers in JavaScript, Angular, Sass, jQuery, and CSS animations. The team adopted Scrum, and measurable UX and support satisfaction improvements followed.</li>
-      <li>Concurrently taught a C#.Net course at Digidata (Mar–Aug 2012) as a part-time engagement.</li>
+      <li>Identified the gap in front-end expertise, assembled and trained the company's <em>first dedicated front-end team</em> from scratch, coaching developers in JavaScript, Angular, Sass, jQuery, and CSS animations. The team adopted Scrum, and measurable UX and support satisfaction improvements followed.</li>
+      <li>Concurrently taught a C#.Net course at Digidata (Mar, Aug 2012) as a part-time engagement.</li>
     </ul>
     <div class="accomplishments">
       <div class="acc-label">Major Accomplishments</div>
       <ul>
-        <li>Developed the <strong>first Brazilian government document production line in the cloud</strong> — an Angular SPA consuming a microservices backend.</li>
-        <li>Solely designed and developed <strong>eCNH</strong> — Brazil's first Android app for digital civilian identification and driver's license — entirely alone, from scratch through to national launch. Now used by <strong>over 40 million Brazilians</strong> (≈44% of all licensed drivers in the country).</li>
+        <li>Developed the <strong>first Brazilian government document production line in the cloud</strong>, an Angular SPA consuming a microservices backend.</li>
+        <li>Solely designed and developed <strong>eCNH</strong>, Brazil's first Android app for digital civilian identification and driver's license, entirely alone, from scratch through to national launch. Now used by <strong>over 40 million Brazilians</strong> (≈44% of all licensed drivers in the country).</li>
         <li>Designed the <strong>QR Code security element</strong> now embedded in every Brazilian digital driver's license, used nationwide as the document's primary tamper-resistant authentication feature.</li>
       </ul>
     </div>
@@ -381,10 +399,10 @@
     <div class="job-header">
       <div>
         <span class="company">Oi Telecom</span>
-        &nbsp;—&nbsp;
+        &nbsp;&middot;&nbsp;
         <span class="job-title">Systems Analyst / Consultant</span>
       </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Mar 2010 – Oct 2011</div>
+      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Mar 2010 - Oct 2011</div>
     </div>
     <ul>
       <li>Modernized the software legacy of an internal department at one of Brazil's largest telecommunications companies, replacing manual processes with automated solutions.</li>
@@ -396,10 +414,10 @@
     <div class="job-header">
       <div>
         <span class="company">Spiderware</span>
-        &nbsp;—&nbsp;
+        &nbsp;&middot;&nbsp;
         <span class="job-title">Software Developer</span>
       </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Apr 2008 – Mar 2010</div>
+      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Apr 2008 - Mar 2010</div>
     </div>
     <ul>
       <li>Developed web applications using .Net and JavaScript/jQuery.</li>
@@ -411,10 +429,10 @@
     <div class="job-header">
       <div>
         <span class="company">Oswaldo Cruz Foundation (Fiocruz)</span>
-        &nbsp;—&nbsp;
+        &nbsp;&middot;&nbsp;
         <span class="job-title">Web &amp; Database Scholarship</span>
       </div>
-      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Mar 2006 – Oct 2007</div>
+      <div class="dates">Rio de Janeiro, Brazil &nbsp;|&nbsp; Mar 2006 - Oct 2007</div>
     </div>
     <ul>
       <li>Built and maintained the website for the Third Brazilian Health and Environment Olympiad; managed the event's MySQL database.</li>
@@ -431,18 +449,18 @@
   <div class="edu-entry">
     <div>
       <span class="degree">Diploma in Software Projects Management</span>
-      &nbsp;—&nbsp;
+      &nbsp;&middot;&nbsp;
       <span class="school">PUC-Rio (Pontifícia Universidade Católica do Rio de Janeiro)</span>
     </div>
-    <div class="dates">2011 – 2013</div>
+    <div class="dates">2011 - 2013</div>
   </div>
   <div class="edu-entry">
     <div>
       <span class="degree">Bachelor of Computer Science</span>
-      &nbsp;—&nbsp;
+      &nbsp;&middot;&nbsp;
       <span class="school">Castelo Branco University</span>
     </div>
-    <div class="dates">2005 – 2010</div>
+    <div class="dates">2005 - 2010</div>
   </div>
 </section>
 
@@ -452,12 +470,12 @@
 <section>
   <h2>Certifications</h2>
   <ul class="cert-list">
-    <li>Arc Certified Remote Developer — Arc.dev</li>
-    <li>Certified ScrumMaster (CSM) — Scrum Alliance</li>
+    <li>Arc Certified Remote Developer, Arc.dev</li>
+    <li>Certified ScrumMaster (CSM), Scrum Alliance</li>
     <li>Project Management Professional (PMP)</li>
     <li>IEEE Certified Biometrics Professional</li>
-    <li>Microsoft Certified Technology Specialist (MCTS) — Web Application</li>
-    <li>DELF: Diplôme d'Études en Langue Française — Niveau A2</li>
+    <li>Microsoft Certified Technology Specialist (MCTS), Web Application</li>
+    <li>DELF: Diplôme d'Études en Langue Française, Niveau A2</li>
   </ul>
 </section>
 
@@ -467,9 +485,9 @@
 <section>
   <h2>Languages</h2>
   <div class="lang-list">
-    <div class="lang"><strong>Portuguese</strong> — Native</div>
-    <div class="lang"><strong>English</strong> — Fluent</div>
-    <div class="lang"><strong>French</strong> — Intermediate</div>
+    <div class="lang"><strong>Portuguese</strong>, Native</div>
+    <div class="lang"><strong>English</strong>, Fluent</div>
+    <div class="lang"><strong>French</strong>, Intermediate</div>
   </div>
 </section>
 
@@ -479,9 +497,9 @@
 <section>
   <h2>Courses &amp; Training</h2>
   <ul class="course-list">
-    <li>Introduction to Data Science Bootcamp — Veiga de Almeida Foundation, 2018</li>
-    <li>Empretec (entrepreneurship programme) — SENAC, 2017</li>
-    <li>French Language — Alliance Française, 2015</li>
+    <li>Introduction to Data Science Bootcamp, Veiga de Almeida Foundation, 2018</li>
+    <li>Empretec (entrepreneurship programme), SENAC, 2017</li>
+    <li>French Language, Alliance Française, 2015</li>
   </ul>
 </section>
 
