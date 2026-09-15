@@ -3,10 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>George Véras Valentim, Resume 2026</title>
-<meta name="description" content="Full resume of George Véras Valentim, Senior Full Stack Engineer with 18 years of experience. React, TypeScript, Node.js. Based in Vancouver, BC.">
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://george-veras.github.io/">
+<title>George Véras Valentim, Staff Engineer</title>
 <style>
   /* Sem ligaduras tipograficas: o Chrome grava "fi"/"fl" como U+FB01/U+FB02
      no PDF, e "Snowflake" vira "Snowﬂake", que nenhuma busca de recrutador
@@ -170,9 +167,21 @@
 
   /* ── Print ── */
   @media print {
-    body { padding: 28px 36px; font-size: 10pt; }
-    header h1 { font-size: 22pt; }
+    /* Aperto deliberado. Com o espacamento de tela este curriculo saia em
+       CINCO paginas, e cinco paginas diluem justamente o sinal que o
+       "Scope Beyond the Role" existe para dar. Cortar conteudo resolvia pouco:
+       o que gerava pagina era entrelinha e margem, nao palavra. */
+    body { padding: 26px 34px; font-size: 9.5pt; line-height: 1.40; }
+    header { margin-bottom: 14px; padding-bottom: 10px; }
+    header h1 { font-size: 20pt; margin-bottom: 3px; }
+    section { margin-bottom: 13px; }
+    h2 { margin-bottom: 7px; padding-bottom: 2px; }
+    .job { margin-bottom: 11px; }
+    .job ul li, .accomplishments ul li { margin-bottom: 1px; font-size: 9.5pt; }
+    table.skills td { padding: 3px 8px; }
     a { color: #1b4f72 !important; }
+    /* Nao quebrar uma experiencia no meio entre duas paginas. */
+    .job { break-inside: avoid; }
   }
 </style>
 </head>
@@ -204,15 +213,83 @@
 <section class="summary">
   <h2>Professional Summary</h2>
   <p>
-    Full-stack engineer with 18 years of experience and a track record spanning ad-tech at Brazil's largest
-    e-commerce group, real-time booking SaaS for a global travel company, and government-scale identity systems.
-    Career highlights include designing the QR code now printed on every Brazilian driver's license and
-    single-handedly designing and building eCNH, the country's first digital ID mobile app, from scratch through to national launch, now used by over 40 million Brazilians. The recent work has moved into AI: an early
-    <strong>Claude Code</strong> adopter who drove team-wide adoption of <strong>AI-assisted development</strong>
-    across a large legacy codebase, and the designer of a production <strong>multi-agent LLM system</strong> with
-    tool design, human-in-the-loop escalation and guardrails for agents acting on real client data. Equally at home owning a React/TypeScript
-    frontend, architecting Node.js microservices, or leading and growing an engineering team from scratch.
+    Staff-level full-stack engineer with <strong>18 years</strong> of experience, whose defining pattern is
+    building the capability an organisation was missing and then setting the standard other teams adopt.
+    At <strong>VALID</strong> that meant creating a front-end discipline from nothing: no engineers, no way to
+    interview for one, so the first was trained on the job, then used to train the second, until there was a team
+    of ten. Observability became the delivery default at <strong>two companies, years apart</strong>, with no
+    mandate either time.
   </p>
+  <p>
+    Sole engineer behind <strong>eCNH</strong>, Brazil's first digital driver's licence, carried today by
+    <strong>over 40 million people</strong>, and designer of the security QR code on every Brazilian licence.
+    The recent work has moved to AI: an early <strong>Claude Code</strong> adopter whose
+    work with one QA engineer spread a new way of testing to seven across the organisation, and the designer of a
+    production <strong>multi-agent LLM system</strong> with tool design, agent-to-agent handoff, human-in-the-loop
+    escalation and guardrails for agents acting on real client data. Based in Greater Vancouver, BC, and legally
+    authorised to work in Canada.
+  </p>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SCOPE BEYOND THE ROLE
+     Existe porque a materia-prima de Staff estava espalhada como bullet de
+     feature em quatro empresas e ninguem tinha nomeado o padrao. Seis casos em
+     14 anos nao e sorte, e a repeticao e o que separa Staff de Senior. Esta
+     antes do Technical Summary de proposito: numa leitura de sete segundos, o
+     recrutador precisa bater nisto antes de bater na lista de ferramentas.
+════════════════════════════════════════════ -->
+<section>
+  <h2>Scope Beyond the Role</h2>
+  <div class="job">
+    <ul>
+      <li>
+        <strong>Created a discipline the company did not have.</strong> VALID had no front-end engineers
+        and no way to hire one: the capability did not exist inside the company, so nobody could even
+        interview for it. Trained the first engineer personally, then used that engineer to train the second,
+        and repeated it until there was a team of ten. The standards that team set were adopted beyond it.
+      </li>
+      <li>
+        <strong>Made observability the delivery default at two companies, years apart.</strong> At B2W Digital,
+        facing a sprawl of microservices nobody could see into, brought Grafana in and built every panel of the
+        first dashboard; the team adopted it with no friction. Years later at Flight Centre, found a Grafana
+        installation nobody opened, built the first Prometheus endpoints and dashboards across every system owned,
+        and teams elsewhere adopted the practice independently. No mandate either time.
+      </li>
+      <li>
+        <strong>Turned an unasked question into a company standard.</strong> Reading enterprise RFP responses,
+        found Flight Centre answering accessibility questions it could not back up. Argued it as a
+        commitment already made to clients rather than as a moral case, which is where these efforts usually
+        stall, and <strong>WCAG 2.1 AA</strong> became something the platform is built against.
+      </li>
+      <li>
+        <strong>Set the standard, not just the services.</strong> At B2W Digital, one of the senior
+        engineers who, with the team head and the head of devops, worked out how a service gets created so that it
+        fits the way the team documents and ships: 7 domain microservices serving Americanas, Submarino and
+        Shoptime as shared capabilities rather than per-brand copies, fast enough that one request could cross
+        seven of them and still return quickly. The team's patterns became the company-wide reference model.
+      </li>
+      <li>
+        <strong>Wrote the architecture the team then executed against.</strong> Sole architect of the Instance
+        Manager, the multi-tenant service every enterprise client passes through to go live: 22 findings, a
+        dual authorisation model, a multi-tenant data and permission strategy, a zero-downtime cut-over plan,
+        and the sequenced milestones the team delivered from.
+      </li>
+      <li>
+        <strong>Left a foundation behind, twice.</strong> At Jungle Scout, introduced Storybook and delivered
+        100+ reusable components that were adopted beyond the Ad Tech team and became a front-end foundation
+        across the company, then trained a successor before leaving.
+      </li>
+      <li>
+        <strong>Removed a bottleneck that sat outside the role.</strong> Noticing in standup that ticket output
+        was piling up in QA rather than shipping, showed the QA engineer how to drive Playwright with Claude to
+        pre-test her own tickets. The whole team shipped faster. She took it to the head of QA, who asked for it in
+        writing. Documented the practice and put a Postman collection template into the developer's definition of
+        done, which grew into a repository of its own.
+        <strong>Seven QA engineers across the organisation</strong> ended up working that way, none of it from above.
+      </li>
+    </ul>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════════
@@ -221,46 +298,11 @@
 <section>
   <h2>Technical Summary</h2>
   <table class="skills">
-    <tr>
-      <td>Languages</td>
-      <td>JavaScript/TypeScript (18 years), C# (9 years), Python, Golang, Java for Android (2 years)</td>
-    </tr>
-    <tr>
-      <td>Web Front-end</td>
-      <td>React (7+ years), Redux, Recoil.js, Storybook.js, HTML5/CSS, Babel, Sass, Flexbox, CSS Grid</td>
-    </tr>
-    <tr>
-      <td>Web Back-end</td>
-      <td>Node.js (8+ years), .Net/C# (9 years), Django/Python, Koa.js, Golang</td>
-    </tr>
-    <tr>
-      <td>AI &amp; LLM Engineering</td>
-      <td>Production <strong>multi-agent</strong> system design (tool design, agent-to-agent handoff, human-in-the-loop escalation, evaluation and guardrails for agents acting on real client data), <strong>LLM</strong> application development on a NestJS and PostgreSQL backend, <strong>agentic</strong> workflows with multi-tenant routing, <strong>AI-assisted development</strong> at team scale (early <strong>Claude Code</strong> adopter)</td>
-    </tr>
-    <tr>
-      <td>Architecture &amp; Patterns</td>
-      <td>RESTful API, Microservices, WebSockets, Design Patterns (GoF), SaaS, Chrome Extensions</td>
-    </tr>
-    <tr>
-      <td>Testing</td>
-      <td>Jest, Cypress, Mocha, Chai.js, Sinon.js, Enzyme, Selenium</td>
-    </tr>
-    <tr>
-      <td>Databases &amp; Caching</td>
-      <td>MongoDB, PostgreSQL, MySQL, Redis, Elasticsearch, Kibana, Snowflake, SQL Server, Oracle, AWS RDS/Elasticache, Google Cloud Bigtable</td>
-    </tr>
-    <tr>
-      <td>Messaging &amp; Storage</td>
-      <td>RabbitMQ, AWS SQS, S3, Athena, Kinesis, Google BigQuery</td>
-    </tr>
-    <tr>
-      <td>DevOps &amp; CI/CD</td>
-      <td>Docker, Kubernetes, GitHub Actions, CircleCI, Jenkins, AWS (ECS, Lambda, Beanstalk, CloudWatch), Google Cloud Platform, Serverless Framework, Marathon/Mesos, CodeCov</td>
-    </tr>
-    <tr>
-      <td>Version Control &amp; Tools</td>
-      <td>Git, GitHub, GitLab, Bitbucket, npm, Yarn, Visual Studio TFS</td>
-    </tr>
+    <tr><td>Languages &amp; Runtime</td><td>JavaScript/TypeScript (18 years), Node.js, C# / .NET (9 years), Python, Golang, Java (Android), SQL</td></tr>
+    <tr><td>Product Engineering</td><td>React (7+ years), Redux, Storybook, component platforms and design systems, accessibility to <strong>WCAG 2.1 AA</strong>, testing (Jest, Cypress, Selenium)</td></tr>
+    <tr><td>Backend &amp; Architecture</td><td>NestJS, Express, Koa.js, Django, REST API design and versioning, microservice extraction from monolith, multi-tenant data and permission models, event-driven systems (RabbitMQ, SQS, Kinesis), Redis, Elasticsearch</td></tr>
+    <tr><td>Data, Cloud &amp; Operations</td><td>PostgreSQL, MySQL, MongoDB, Oracle, AWS (Lambda, SQS, S3, RDS, ECS), Azure Kubernetes (AKS), Docker, GitHub Actions, <strong>Grafana / Prometheus</strong></td></tr>
+    <tr><td>AI &amp; LLM Engineering</td><td>Production <strong>multi-agent</strong> system design (tool design, agent-to-agent handoff, human-in-the-loop escalation, evaluation and guardrails for agents acting on real client data), LLM applications on NestJS and PostgreSQL, and <strong>AI-assisted development at team scale</strong></td></tr>
   </table>
 </section>
 
@@ -270,173 +312,93 @@
 <section>
   <h2>Work Experience</h2>
 
-  <!-- Flight Centre -->
+  <!-- Principio desta versao: "Scope Beyond the Role" conta INFLUENCIA,
+       "Work Experience" conta ENTREGA. Na versao de 4 paginas os dois
+       contavam Grafana, WCAG e Instance Manager. Tirar a duplicacao foi o
+       que pagou a maior parte da pagina cortada, sem perder nenhum fato. -->
+
   <div class="job">
     <div class="job-header">
-      <div>
-        <span class="company">Flight Centre</span>
-         - 
-        <span class="job-title">Senior Full Stack Engineer &amp; Technical Lead</span>
-      </div>
+      <div><span class="company">Flight Centre (WhereTo)</span> - <span class="job-title">Senior Full Stack Engineer &amp; Technical Lead</span></div>
       <div class="dates">Vancouver, BC  |  Dec 2022 - Present</div>
     </div>
-        <ul>
-      <li><strong>Built the Invoices platform from no backend to 12+ REST endpoints</strong>, owning the data model, generation, and delivery pipeline end to end for the billing documents enterprise clients reconcile against. Now used by <strong>87% of enterprise sites</strong> (1,198 of 1,709), with an <strong>87% drop in related support volume</strong>, from roughly ten tickets a month to three.</li>
-      <li><strong>Sole architect of the Instance Manager</strong>, the multi-tenant provisioning service every enterprise client passes through to go live. Produced the full architecture package for extracting it from the monolith into a NestJS service: 22 findings, <strong>dual authorisation guards</strong>, a multi-tenant data and permission strategy, a zero-downtime cut-over plan, and the sequenced delivery milestones the team executed against.</li>
-      <li>One of three engineers on <strong>Security Alerts</strong>, spanning trip-data ingestion, email and push dispatch, and telemetry across <strong>200+ client instances</strong>. Diagnosed and fixed the <strong>race conditions and lock contention</strong> that made it unreliable under concurrent ingestion, and was the only engineer to put it under Grafana monitoring.</li>
-      <li><strong>Set the engineering standards other teams build against</strong>, working across team boundaries with no direct authority: took Prometheus and Grafana from a forgotten installation to the org-wide delivery default, and initiated the company's <strong>WCAG 2.1 AA accessibility programme</strong> after spotting the gap in enterprise RFP responses.</li>
-      <li>Built a <strong>fully autonomous localisation pipeline</strong> as the sole engineer on it, running webhook to PR to reviewer assignment to deploy across four languages for <strong>3.5 years with no human handoff</strong>, and was an early <strong>Claude Code</strong> adopter who drove team-wide adoption of AI-assisted development across a large legacy surface.</li>
+    <ul>
+      <li>Took <strong>Invoices</strong> from no backend at all to <strong>12+ REST endpoints</strong> over ~12 months, owning the data model, the generation and delivery pipeline and the UI: <strong>87% enterprise client adoption</strong> (1,198 of 1,709 active sites) and support tickets down <strong>87%</strong> (avg. 10/month to 3/month).</li>
+      <li>Took over an abandoned <strong>4-language i18n</strong> (EN, FR, ES, EN-GB) with no handoff and no documentation, delivered every sprint for 3.5 years, then removed himself from the loop with a <strong>fully autonomous pipeline</strong> (Lokalise webhook to PR to reviewer assignment to deploy).</li>
+      <li>One of 3 engineers who built <strong>Security Alerts end-to-end</strong> over 6 months, and the only one to add Grafana production monitoring, giving the company its first real-time view of global traveller safety events, actioned by <strong>260+ users across 200+ client instances</strong>.</li>
+      <li>Delivered <strong>MelonPay On Account Statements</strong> (Microsoft D365) in one of the largest single-PR deliveries in the codebase: <strong>1,920 lines across 39 files</strong>, typed API client, and 680 lines of unit tests.</li>
     </ul>
-    <div class="stack"><strong>Stack:</strong> TypeScript, Node.js, NestJS, Koa.js, React 18, PostgreSQL, Redis, Elasticsearch, RabbitMQ, Azure Kubernetes (AKS), Grafana, Prometheus</div>
+    <div class="stack"><strong>Stack:</strong> TypeScript, React 18, Node.js, Koa.js, NestJS, PostgreSQL, Redis, Elasticsearch, RabbitMQ, Azure Kubernetes (AKS), Grafana, Prometheus, Docker, Lokalise</div>
   </div>
 
-  <!-- Jungle Scout -->
   <div class="job">
     <div class="job-header">
-      <div>
-        <span class="company">Jungle Scout</span>
-         - 
-        <span class="job-title">Frontend (React) Engineer</span>
-      </div>
+      <div><span class="company">Jungle Scout</span> - <span class="job-title">Frontend (React) Engineer</span></div>
       <div class="dates">Vancouver, BC  |  Jul 2021 - Oct 2022</div>
     </div>
     <ul>
-      <li>Served as the <strong>sole front-end engineer</strong> on Downstream, Jungle Scout's acquired Ad Tech subsidiary, independently owning the entire React codebase for over a year.</li>
-      <li>Introduced and built out <strong>Storybook</strong> from the ground up, delivering <strong>100+ reusable components</strong> that were progressively adopted beyond the Ad Tech team and became a front-end foundation across Jungle Scout.</li>
-      <li>Mentored and onboarded the team's second front-end engineer, establishing component standards and documentation that enabled a smooth knowledge transfer before departing.</li>
+      <li><strong>Only front-end engineer</strong> on Downstream, Jungle Scout's acquired ad tech subsidiary, owning the entire React codebase alone for over a year, and mentored the second engineer onto it before departing.</li>
     </ul>
     <div class="stack"><strong>Stack:</strong> React, TypeScript, JavaScript, Storybook, Django (Python), Docker, AWS</div>
   </div>
 
-  <!-- Wonder -->
   <div class="job">
     <div class="job-header">
-      <div>
-        <span class="company">Wonder</span>
-         - 
-        <span class="job-title">Full Stack TypeScript Engineer</span>
-      </div>
+      <div><span class="company">Wonder</span> - <span class="job-title">Full Stack TypeScript Engineer</span></div>
       <div class="dates">New York (remote)  |  Dec 2020 - May 2021</div>
     </div>
     <ul>
-      <li>Joined at the founding stage of a Chrome extension that used intelligent deep-crawling to surface page-level summaries across Google search results, dramatically cutting research time for its primary users: <strong>journalists and academics</strong>.</li>
-      <li>As one of <strong>4 engineers</strong> on a near-greenfield codebase, built a broad range of features across the full TypeScript stack, from the React frontend to the Node.js microservice mesh (one service in Python) that powered the crawler.</li>
-      <li>Introduced <strong>Storybook</strong> for component documentation and delivered the product's <strong>dark theme</strong>, improving both developer experience and UI polish.</li>
+      <li>One of <strong>4 engineers</strong> on a near-greenfield Chrome extension that deep-crawled Google results into page-level summaries for journalists and academics, building across the full TypeScript stack from the React frontend to the Node.js crawler mesh.</li>
     </ul>
     <div class="stack"><strong>Stack:</strong> React, TypeScript, Node.js, Koa.js, Storybook, MongoDB, PostgreSQL, Serverless Framework, Docker, Redis, AWS</div>
   </div>
 
-  <!-- B2W -->
   <div class="job">
     <div class="job-header">
-      <div>
-        <span class="company">B2W Digital</span>
-         - 
-        <span class="job-title">Senior Backend Engineer</span>
-      </div>
+      <div><span class="company">B2W Digital</span> - <span class="job-title">Senior Backend Engineer</span></div>
       <div class="dates">Rio de Janeiro, Brazil  |  Mar 2018 - Dec 2020</div>
     </div>
     <ul>
-      <li>Built and maintained a fleet of <strong>7 domain-specific microservices</strong> (ad search, finances, user management, and more) powering ad delivery across Americanas, Submarino, and Shoptime, three of the largest e-commerce brands in Latin America.</li>
-      <li>Engineered a system capable of sustaining <strong>peaks of 1,200 ads delivered per second</strong> during Black Friday, with auto-scaling infrastructure that dynamically adjusted capacity based on traffic and season.</li>
-      <li>Led the infrastructure migration from <strong>Marathon/Mesos to Kubernetes</strong>, improving reliability and scalability of the ad platform.</li>
-      <li>The team's architectural patterns and operational practices were <strong>adopted broadly across B2W</strong>, one of the largest e-commerce groups in Latin America, as a reference model.</li>
-      <li>Shared full DevOps ownership: every engineer was responsible for the infrastructure, operating as a self-managed Scrum team.</li>
+      <li>Built and operated <strong>7 domain microservices</strong> powering ad delivery for Americanas, Submarino and Shoptime, sustaining peaks of <strong>1,200 ads per second</strong> on Black Friday with auto-scaling infrastructure.</li>
+      <li>Worked the platform migration from <strong>Marathon/Mesos to Kubernetes</strong>, on a self-managed Scrum team where every engineer shared devops ownership.</li>
     </ul>
-    <div class="stack"><strong>Stack:</strong> Node.js, MongoDB, MySQL, Docker, Jenkins, RabbitMQ, Redis, Kubernetes, Marathon/Mesos, AWS, Google Cloud, Spot.io</div>
+    <div class="stack"><strong>Stack:</strong> Node.js, Express, MongoDB, MySQL, Docker, Jenkins, RabbitMQ, Redis, Kubernetes, AWS, Google Cloud</div>
   </div>
 
-  <!-- Panorante -->
   <div class="job">
     <div class="job-header">
-      <div>
-        <span class="company">Panorante</span>
-         - 
-        <span class="job-title">Co-founder &amp; Engineer</span>
-      </div>
+      <div><span class="company">Panorante</span> - <span class="job-title">Co-founder &amp; Engineer</span></div>
       <div class="dates">Rio de Janeiro, Brazil  |  Nov 2016 - Mar 2018</div>
     </div>
     <ul>
-      <li>Founded and built a <strong>LinkedIn-style platform for construction and renovation professionals</strong>, architects, interior designers, painters, and electricians could create portfolio profiles and be discovered by clients looking to hire them; store owners could list their businesses and addresses.</li>
-      <li>Took the product from zero to <strong>4 paying clients</strong>, handling every aspect of the business: product design, engineering, customer development, inbound marketing, and UX.</li>
-      <li>Implemented advanced SEO with JSON-LD structured data (Google-recommended format) to maximise organic search placement for professional profiles.</li>
-      <li>Built with accessibility as a first-class concern, ensuring screen-reader compatibility for users with visual impairments.</li>
-      <li>Evolved the tech stack independently: started on .Net/C#, migrated the backend to Node.js and Golang, and built the admin panel as a React PWA.</li>
+      <li>Co-founded and built a <strong>portfolio and discovery platform for construction and renovation professionals</strong>: public, indexable profiles they posted finished jobs to, so clients searching online landed on the work itself and messaged them directly. Implemented JSON-LD structured data to maximise organic placement for those profiles.</li>
+      <li>Took it from zero to <strong>4 paying clients</strong>. Charging during the pilot was deliberate: per-profile maintenance was never the intended business, it was the fastest honest way to learn whether that market would pay at all.</li>
     </ul>
     <div class="stack"><strong>Stack:</strong> .Net/C#, Node.js, Golang, React (PWA), AWS (EC2, S3, RDS, ElastiCache, CloudFront)</div>
   </div>
 
-  <!-- VALID -->
   <div class="job">
     <div class="job-header">
-      <div>
-        <span class="company">VALID</span>
-         - 
-        <span class="job-title">Technical Leader</span>
-      </div>
+      <div><span class="company">VALID</span> - <span class="job-title">Technical Leader</span></div>
       <div class="dates">Rio de Janeiro, Brazil  |  Oct 2011 - Oct 2016</div>
     </div>
     <ul>
-      <li>Five years at Brazil's largest identity solutions and information security company, serving government clients on a <strong>team of 10</strong> including testers.</li>
-      <li>Acted as <strong>senior engineering architect</strong>, designed the architecture of most systems and coordinated the developers responsible for implementing them, while also serving as the technical liaison between engineering and directors/managers.</li>
-      <li>Took ownership of R&amp;D projects to design and implement new identity solutions for the federal government.</li>
-      <li>Identified the gap in front-end expertise, assembled and trained the company's <em>first dedicated front-end team</em> from scratch, coaching developers in JavaScript, Angular, Sass, jQuery, and CSS animations. The team adopted Scrum, and measurable UX and support satisfaction improvements followed.</li>
-      <li>Concurrently taught a C#.Net course at Digidata (Mar, Aug 2012) as a part-time engagement.</li>
+      <li>Five years at Brazil's largest identity and information security company, serving federal government clients on a <strong>team of 10</strong> including testers, as <strong>senior engineering architect</strong>: designed most of the systems and coordinated the developers implementing them.</li>
+      <li>Solely designed and developed <strong>eCNH</strong>, Brazil's first digital driver's licence, alone from an empty repository through to national launch, now carried by <strong>over 40 million Brazilians</strong> (about 44% of all licensed drivers). Wrote the entire authentication flow, which verifies a licence <strong>offline</strong> by checking its digital signature, with no network call and no assumption that the device holding it is honest.</li>
+      <li>Designed the <strong>QR Code security element</strong> printed on every Brazilian driver's licence since 2017 as its primary anti-fraud feature, built the companion app authorities use to verify one at the roadside, and delivered the <strong>first Brazilian government document production line in the cloud</strong>.</li>
     </ul>
-    <div class="accomplishments">
-      <div class="acc-label">Major Accomplishments</div>
-      <ul>
-        <li>Developed the <strong>first Brazilian government document production line in the cloud</strong>, an Angular SPA consuming a microservices backend.</li>
-        <li>Solely designed and developed <strong>eCNH</strong>, Brazil's first Android app for digital civilian identification and driver's license, entirely alone, from scratch through to national launch. Now used by <strong>over 40 million Brazilians</strong> (≈44% of all licensed drivers in the country).</li>
-        <li>Designed the <strong>QR Code security element</strong> now embedded in every Brazilian digital driver's license, used nationwide as the document's primary tamper-resistant authentication feature.</li>
-      </ul>
-    </div>
-    <div class="stack"><strong>Stack:</strong> Angular, Asp.Net MVC, Java (Android), Jasmine, Karma, Bootstrap, Sass, WebSockets, Bouncy Castle (encryption), jQuery, Oracle Database</div>
+    <div class="stack"><strong>Stack:</strong> Angular, ASP.NET MVC, Java (Android), WebSockets, Bouncy Castle (cryptography), Jasmine, Karma, Oracle Database</div>
   </div>
 
-  <!-- Oi -->
   <div class="job">
     <div class="job-header">
-      <div>
-        <span class="company">Oi Telecom</span>
-         - 
-        <span class="job-title">Systems Analyst / Consultant</span>
-      </div>
-      <div class="dates">Rio de Janeiro, Brazil  |  Mar 2010 - Oct 2011</div>
+      <div><span class="company">Earlier roles</span></div>
+      <div class="dates">Rio de Janeiro, Brazil  |  2006 - 2011</div>
     </div>
     <ul>
-      <li>Modernized the software legacy of an internal department at one of Brazil's largest telecommunications companies, replacing manual processes with automated solutions.</li>
+      <li><strong>Oi Telecom</strong> (Systems Analyst, 2010 to 2011): modernised legacy software at one of Brazil's largest telecoms. <strong>Spiderware</strong> (Software Developer, 2008 to 2010): web applications in .NET and JavaScript. <strong>Fiocruz</strong> (scholarship, 2006 to 2007): website and MySQL database for the Third Brazilian Health and Environment Olympiad.</li>
     </ul>
   </div>
-
-  <!-- Spiderware -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">Spiderware</span>
-         - 
-        <span class="job-title">Software Developer</span>
-      </div>
-      <div class="dates">Rio de Janeiro, Brazil  |  Apr 2008 - Mar 2010</div>
-    </div>
-    <ul>
-      <li>Developed web applications using .Net and JavaScript/jQuery.</li>
-    </ul>
-  </div>
-
-  <!-- Oswaldo Cruz -->
-  <div class="job">
-    <div class="job-header">
-      <div>
-        <span class="company">Oswaldo Cruz Foundation (Fiocruz)</span>
-         - 
-        <span class="job-title">Web &amp; Database Scholarship</span>
-      </div>
-      <div class="dates">Rio de Janeiro, Brazil  |  Mar 2006 - Oct 2007</div>
-    </div>
-    <ul>
-      <li>Built and maintained the website for the Third Brazilian Health and Environment Olympiad; managed the event's MySQL database.</li>
-    </ul>
   </div>
 
 </section>
@@ -495,14 +457,7 @@
 <!-- ══════════════════════════════════════════
      COURSES
 ════════════════════════════════════════════ -->
-<section>
-  <h2>Courses &amp; Training</h2>
-  <ul class="course-list">
-    <li>Introduction to Data Science Bootcamp, Veiga de Almeida Foundation, 2018</li>
-    <li>Empretec (entrepreneurship programme), SENAC, 2017</li>
-    <li>French Language, Alliance Française, 2015</li>
-  </ul>
-</section>
+
 
 </body>
 </html>
