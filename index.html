@@ -1047,6 +1047,17 @@
       #back-top { bottom: 16px; right: 16px; width: 38px; height: 38px; }
     }
 
+
+      /* OPEN SOURCE */
+      .oss-grid { display: grid; gap: 20px; }
+      .oss-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+      .oss-name { font-size: 1.5rem; font-weight: 700; color: var(--text); margin: 0;
+                  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .oss-meta { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.3px; }
+      .oss-desc { color: var(--muted); line-height: 1.7; margin: 12px 0 0; }
+      .oss-desc strong { color: var(--text); }
+      .oss-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+      .oss-links a { min-height: 44px; display: inline-flex; align-items: center; }
   </style>
 </head>
 <body>
@@ -1061,6 +1072,7 @@
     <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
     <li><a href="#testimonials" data-i18n="nav.testimonials">Recognition</a></li>
     <li><a href="#highlights" data-i18n="nav.highlights">Highlights</a></li>
+    <li><a href="#opensource" data-i18n="nav.opensource">Open Source</a></li>
     <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     <li>
@@ -1504,6 +1516,43 @@
 </div>
 
 <!-- ── SKILLS ── -->
+<!-- ── OPEN SOURCE ── -->
+<section id="opensource" aria-label="Open Source Projects">
+  <div class="section-label" data-i18n="oss.label">Open Source</div>
+  <h2 class="section-title" data-i18n="oss.title">Built in the open</h2>
+  <p class="section-sub" data-i18n="oss.sub">Work I maintain in public, where the code is the whole argument.</p>
+
+  <div class="oss-grid">
+    <article class="highlight-card reveal">
+      <div class="oss-head">
+        <h3 class="oss-name">qredential</h3>
+        <span class="oss-meta" data-i18n="oss.q.meta">MIT · published on npm · zero runtime dependencies</span>
+      </div>
+
+      <p class="oss-desc" data-i18n="oss.q.what">Verifies a digital credential carried in a QR code with no network connection. Selective disclosure and key binding per RFC 9901, revocation checked from a cached list, in TypeScript on WebCrypto alone.</p>
+
+      <p class="oss-desc" data-i18n="oss.q.why">It comes straight from the eCNH above. The hardest part of that project was never the app, it was the roadside: an officer scanning a licence with one bar of signal, needing a yes or no in under a second. The libraries for this are enterprise SDKs, heavy and tied to one country's profile. This is the version a product engineer adds on a Tuesday.</p>
+
+      <p class="oss-desc" data-i18n="oss.q.craft">Documented in nine languages, conforming to WCAG 2.2 AA, with a playground that runs the library in your browser and fires ten real attacks at the verifier so you can check its claims instead of trusting them.</p>
+
+      <div class="skill-tags" style="margin-top:18px;">
+        <span class="tag">SD-JWT</span>
+        <span class="tag">RFC 9901</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">WebCrypto</span>
+        <span class="tag" data-i18n="oss.q.tagdeps">Zero dependencies</span>
+        <span class="tag">MIT</span>
+      </div>
+
+      <div class="oss-links">
+        <a class="btn-primary" href="https://qredential.js.org/" data-i18n="oss.q.site">Official site</a>
+        <a class="btn-outline" href="https://www.npmjs.com/package/qredential" rel="noopener">npm</a>
+        <a class="btn-outline" href="https://github.com/george-veras/qredential" rel="noopener">GitHub</a>
+      </div>
+    </article>
+  </div>
+</section>
+
 <section id="skills" aria-label="Skills and Technologies">
   <div class="section-label" data-i18n="sk.label">Technical</div>
   <h2 class="section-title" data-i18n="sk.title">Skills &amp; Technologies</h2>
@@ -1650,6 +1699,16 @@
   // ── i18n
   const i18n = {
     en: {
+      "oss.q.tagdeps": "Zero dependencies",
+      "nav.opensource": "Open Source",
+      "oss.label": "Open Source",
+      "oss.title": "Built in the open",
+      "oss.sub": "Work I maintain in public, where the code is the whole argument.",
+      "oss.q.meta": "MIT · published on npm · zero runtime dependencies",
+      "oss.q.what": "Verifies a digital credential carried in a QR code with no network connection. Selective disclosure and key binding per RFC 9901, revocation checked from a cached list, in TypeScript on WebCrypto alone.",
+      "oss.q.why": "It comes straight from the eCNH above. The hardest part of that project was never the app, it was the roadside: an officer scanning a licence with one bar of signal, needing a yes or no in under a second. The libraries for this are enterprise SDKs, heavy and tied to one country's profile. This is the version a product engineer adds on a Tuesday.",
+      "oss.q.craft": "Documented in nine languages, conforming to WCAG 2.2 AA, with a playground that runs the library in your browser and fires ten real attacks at the verifier so you can check its claims instead of trusting them.",
+      "oss.q.site": "Official site",
       'nav.experience':   'Experience',
       'nav.testimonials': 'Recognition',
       'nav.highlights':   'Highlights',
@@ -1700,6 +1759,16 @@
       'contact.download': 'Download Resume',
     },
     pt: {
+      "oss.q.tagdeps": "Zero dependências",
+      "nav.opensource": "Open source",
+      "oss.label": "Open source",
+      "oss.title": "Construído às claras",
+      "oss.sub": "O que eu mantenho em público, onde o código é o argumento inteiro.",
+      "oss.q.meta": "MIT · publicado no npm · zero dependências de runtime",
+      "oss.q.what": "Verifica uma credencial digital carregada num QR code sem nenhuma conexão de rede. Divulgação seletiva e key binding conforme o RFC 9901, revogação conferida a partir de uma lista em cache, em TypeScript só com WebCrypto.",
+      "oss.q.why": "Veio direto do eCNH acima. A parte mais difícil daquele projeto nunca foi o aplicativo, foi a beira da estrada: um agente lendo uma habilitação com uma barra de sinal, precisando de um sim ou não em menos de um segundo. As bibliotecas para isso são SDKs corporativos, pesados e amarrados ao perfil de um país. Esta é a versão que um engenheiro de produto adiciona numa terça-feira.",
+      "oss.q.craft": "Documentado em nove idiomas, em conformidade com o WCAG 2.2 AA, com um playground que roda a biblioteca no seu navegador e dispara dez ataques reais contra o verificador, para você conferir as afirmações em vez de acreditar nelas.",
+      "oss.q.site": "Site oficial",
       'nav.experience':   'Experiência',
       'nav.testimonials': 'Reconhecimento',
       'nav.highlights':   'Destaques',
@@ -1750,6 +1819,16 @@
       'contact.download': 'Baixar Currículo',
     },
     fr: {
+      "oss.q.tagdeps": "Zéro dépendance",
+      "nav.opensource": "Open source",
+      "oss.label": "Open source",
+      "oss.title": "Construit à découvert",
+      "oss.sub": "Ce que je maintiens en public, où le code est tout l'argument.",
+      "oss.q.meta": "MIT · publié sur npm · aucune dépendance à l'exécution",
+      "oss.q.what": "Vérifie un justificatif numérique porté par un QR code sans aucune connexion réseau. Divulgation sélective et liaison de clé selon le RFC 9901, révocation vérifiée depuis une liste en cache, en TypeScript sur WebCrypto seul.",
+      "oss.q.why": "Cela vient directement de l'eCNH ci-dessus. Le plus dur dans ce projet n'a jamais été l'application, c'était le bord de route : un agent qui scanne un permis avec une barre de réseau, et qui a besoin d'un oui ou d'un non en moins d'une seconde. Les bibliothèques pour cela sont des SDK d'entreprise, lourds et liés au profil d'un seul pays. Voici la version qu'un ingénieur produit ajoute un mardi.",
+      "oss.q.craft": "Documenté en neuf langues, conforme au WCAG 2.2 AA, avec un bac à sable qui exécute la bibliothèque dans votre navigateur et lance dix attaques réelles contre le vérificateur, pour que vous puissiez contrôler ses affirmations au lieu de les croire.",
+      "oss.q.site": "Site officiel",
       'nav.experience':   'Expérience',
       'nav.testimonials': 'Reconnaissance',
       'nav.highlights':   'Points forts',
