@@ -154,12 +154,14 @@
     /* ── Skip navigation (WCAG 2.4.1) ── */
     .skip-link {
       position: absolute; top: -100%; left: 16px;
-      background: var(--primary); color: #fff;
+      background: var(--btn-a); color: #fff;
       padding: 10px 20px; border-radius: 0 0 8px 8px;
       font-weight: 700; font-size: 0.9rem; z-index: 9999;
       text-decoration: none; transition: top 0.2s;
     }
     .skip-link:focus { top: 0; }
+    /* The skip link moves focus to main, which is a landmark and not a control, so no ring there */
+    #main-content:focus { outline: none; }
 
     /* ── Visible focus styles (WCAG 2.4.7) ── */
     :focus-visible {
@@ -195,6 +197,10 @@
       --muted:       #8a9fbe;
       --tag-bg:      #1a2e50;
       --tag-text:    #7eb8ff;
+      /* Gradient behind white text. Darker than --primary and --primary2 so white keeps 4.5:1
+         along the whole gradient (WCAG 1.4.3); the lighter pair stays for text and accents. */
+      --btn-a:       #3b6fe0;
+      --btn-b:       #6a4fe8;
     }
 
     html { scroll-behavior: smooth; }
@@ -228,7 +234,8 @@
       box-shadow: 0 1px 0 var(--border);
     }
     .nav-logo {
-      font-weight: 800; font-size: 1.1rem;
+      /* 19.2px at 800 counts as large text, where the gradient's 3.8:1 is enough (WCAG 1.4.3) */
+      font-weight: 800; font-size: 1.2rem;
       background: linear-gradient(90deg, var(--primary), var(--primary2));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
@@ -239,7 +246,7 @@
     }
     .nav-links a:hover { color: var(--text); }
     .nav-cta {
-      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      background: linear-gradient(135deg, var(--btn-a), var(--btn-b));
       color: #fff !important;
       padding: 8px 20px; border-radius: 8px;
       font-weight: 600 !important;
@@ -279,15 +286,32 @@
       background: linear-gradient(135deg, var(--primary), var(--primary2), var(--accent));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
+    .typewriter-row {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin-bottom: 32px; height: 2em;
+    }
     .typewriter-wrap {
       font-size: clamp(1.1rem, 2.5vw, 1.5rem);
       color: var(--muted); font-weight: 500;
-      margin-bottom: 32px; height: 2em;
       display: flex; align-items: center; justify-content: center; gap: 8px;
     }
+    /* The word and its cursor share a box as wide as the longest role (set in JS), so the centred
+       row stops re-centring as the word grows, and the pause button next to it stays still */
+    .tw-box { display: inline-flex; align-items: center; gap: 8px; }
     .typewriter { color: var(--accent); font-weight: 600; }
     .cursor { display: inline-block; width: 2px; height: 1.2em; background: var(--accent); animation: blink 0.8s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── Pause for the typewriter, the cursor and the scroll arrow (WCAG 2.2.2) ── */
+    .motion-toggle {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      color: var(--muted); font-size: 0.6rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .motion-toggle:hover { background: rgba(79,142,247,0.15); color: var(--text); }
+    .motion-paused .cursor, .motion-paused .scroll-arrow { animation: none; }
 
     .hero-summary {
       max-width: 600px; color: var(--muted); font-size: 1rem;
@@ -295,7 +319,7 @@
     }
     .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      background: linear-gradient(135deg, var(--btn-a), var(--btn-b));
       color: #fff; padding: 14px 32px; border-radius: 10px;
       font-weight: 700; font-size: 0.95rem; text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
@@ -767,15 +791,21 @@
       font-weight: 500; line-height: 1.4;
     }
     .carousel-dots {
-      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 8px; z-index: 2;
+      position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+      display: flex; z-index: 2;
     }
+    /* Each dot is a 24px target around the 8px mark you see (WCAG 2.5.8 target size) */
     .carousel-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,0.3); cursor: pointer;
+      width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%;
+      background: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-dot::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.3);
       transition: background 0.2s, transform 0.2s;
     }
-    .carousel-dot.active { background: #fff; transform: scale(1.4); }
+    .carousel-dot.active::before { background: #fff; transform: scale(1.4); }
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15);
@@ -924,7 +954,7 @@
       background: transparent; color: var(--muted); letter-spacing: 0.5px;
     }
     .lang-btn.active {
-      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      background: linear-gradient(135deg, var(--btn-a), var(--btn-b));
       color: #fff;
     }
 
@@ -968,7 +998,7 @@
     #back-top {
       position: fixed; bottom: 32px; right: 32px;
       width: 44px; height: 44px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      background: linear-gradient(135deg, var(--btn-a), var(--btn-b));
       color: #fff; border: none; cursor: pointer; font-size: 1.1rem;
       box-shadow: 0 4px 16px rgba(79,142,247,0.35);
       opacity: 0; transform: translateY(16px);
@@ -1062,11 +1092,11 @@
 </head>
 <body>
 
-<a class="skip-link" href="#main-content">Skip to main content</a>
+<a class="skip-link" href="#main-content" data-i18n="skip">Skip to main content</a>
 <div id="lang-announce" aria-live="polite" aria-atomic="true" class="sr-only"></div>
 
 <!-- ── NAVBAR ── -->
-<nav id="navbar" aria-label="Main navigation">
+<nav id="navbar" aria-label="Main navigation" data-i18n-aria="aria.nav">
   <div class="nav-logo">GVV</div>
   <ul class="nav-links">
     <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
@@ -1088,14 +1118,16 @@
   </ul>
   <!-- lang-toggle outside nav-links so it shows on mobile too -->
   <div class="lang-toggle">
-    <button class="lang-btn active" id="btn-en" onclick="setLang('en')" aria-label="Switch to English" aria-pressed="true">EN</button>
-    <button class="lang-btn" id="btn-fr" onclick="setLang('fr')" aria-label="Changer en français" aria-pressed="false">FR</button>
-    <button class="lang-btn" id="btn-pt" onclick="setLang('pt')" aria-label="Mudar para Português" aria-pressed="false">PT-BR</button>
+    <!-- Each name starts with the visible text, so "click EN" works for voice control (WCAG 2.5.3),
+         and each is in its own language, so a screen reader pronounces it right (WCAG 3.1.2) -->
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')" lang="en" aria-label="EN, switch to English" aria-pressed="true">EN</button>
+    <button class="lang-btn" id="btn-fr" onclick="setLang('fr')" lang="fr" aria-label="FR, changer en français" aria-pressed="false">FR</button>
+    <button class="lang-btn" id="btn-pt" onclick="setLang('pt')" lang="pt-BR" aria-label="PT-BR, mudar para português" aria-pressed="false">PT-BR</button>
   </div>
 </nav>
 
 <!-- ── MAIN ── -->
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 
 <!-- ── HERO ── -->
 <div class="hero">
@@ -1103,11 +1135,14 @@
     <img src="george-veras-valentim.jpg" alt="George Véras Valentim smiling, wearing a React.js t-shirt" fetchpriority="high" width="120" height="120">
   </div>
   <h1>George <span class="gradient-text">Véras Valentim</span></h1>
-  <p class="hero-location" aria-label="Role and location">Senior Full Stack Engineer &amp; Technical Lead · Vancouver, BC</p>
-  <div class="typewriter-wrap" aria-hidden="true">
-    <span data-i18n="hero.prefix">I'm a</span> &nbsp;<span class="typewriter" id="typewriter"></span><span class="cursor"></span>
+  <p class="hero-location" data-i18n="hero.location">Senior Full Stack Engineer &amp; Technical Lead · Vancouver, BC</p>
+  <div class="typewriter-row">
+    <div class="typewriter-wrap" aria-hidden="true">
+      <span data-i18n="hero.prefix">I'm a</span> &nbsp;<span class="tw-box"><span class="typewriter" id="typewriter"></span><span class="cursor"></span></span>
+    </div>
+    <button type="button" class="motion-toggle" id="motion-toggle" aria-label="Pause animations" title="Pause animations">⏸</button>
   </div>
-  <p class="sr-only">Full Stack Engineer, Engineering Architect, Startup Founder, and Builder of Things.</p>
+  <p class="sr-only" data-i18n="hero.roles">Full Stack Engineer, Engineering Architect, Startup Founder, and Builder of Things.</p>
   <p class="hero-summary">
     <span data-i18n="hero.summary">Senior full-stack engineer and technical leader with 18 years building products at national and enterprise scale, from a government identity app used by 40M+ Brazilians to ad platforms sustaining 1,200 requests per second. Known for driving engineering culture shifts (observability, accessibility, AI adoption) as much as for shipping complex systems. Based in Vancouver, BC, and open to Lead and Staff Engineer opportunities.</span>
   </p>
@@ -1153,9 +1188,9 @@
 </div>
 
 <!-- ── EXPERIENCE ── -->
-<section id="experience" aria-label="Work Experience">
+<section id="experience" aria-labelledby="experience-title">
   <div class="section-label" data-i18n="exp.label">Career</div>
-  <h2 class="section-title" data-i18n="exp.title">Work Experience</h2>
+  <h2 class="section-title" id="experience-title" data-i18n="exp.title">Work Experience</h2>
   <p class="section-sub" data-i18n="exp.sub">18 years across startups, scale-ups, enterprise, and government-grade systems in Brazil and Canada.</p>
 
   <div class="timeline">
@@ -1327,9 +1362,9 @@
 
 <!-- ── TESTIMONIALS ── -->
 <div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-<section id="testimonials" aria-label="Peer Recognition">
+<section id="testimonials" aria-labelledby="testimonials-title">
   <div class="section-label" data-i18n="testimonials.label">In Their Own Words</div>
-  <h2 class="section-title" data-i18n="testimonials.title">Peer Recognition</h2>
+  <h2 class="section-title" id="testimonials-title" data-i18n="testimonials.title">Peer Recognition</h2>
   <p class="section-sub" data-i18n="testimonials.sub">Unsolicited feedback from colleagues across 3.5 years at Flight Centre (WhereTo).</p>
   <div class="testimonials-grid">
     <div class="tcard reveal">
@@ -1362,9 +1397,9 @@
 
 <!-- ── HIGHLIGHTS ── -->
 <div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-<section id="highlights" aria-label="Career Highlights">
+<section id="highlights" aria-labelledby="highlights-title">
   <div class="section-label" data-i18n="hl.label">Impact</div>
-  <h2 class="section-title" data-i18n="hl.title">Career Highlights</h2>
+  <h2 class="section-title" id="highlights-title" data-i18n="hl.title">Career Highlights</h2>
   <p class="section-sub" data-i18n="hl.sub">The work I'm most proud of, systems that outlived the projects and reached national scale.</p>
 
   <div class="highlights-grid">
@@ -1385,29 +1420,29 @@
 
         <!-- Right column: portrait carousel + document image -->
       <div class="hf-right">
-        <div class="carousel" id="ecnh-carousel" role="region" aria-label="eCNH app screenshots" aria-roledescription="carousel">
+        <div class="carousel" id="ecnh-carousel" role="region" aria-label="eCNH app screenshots" data-i18n-aria="aria.carousel" aria-roledescription="carousel">
           <div class="carousel-track" id="ecnh-track">
-            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3">
+            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3" data-i18n-aria="aria.slide1">
               <picture>
                 <source srcset="ecnh-brasil-app-serpro-official.webp" type="image/webp">
                 <img src="ecnh-brasil-app-serpro-official.png" alt="Hand holding a smartphone displaying the official CNH do Brasil app logo, with a car blurred in the background" loading="lazy" width="768" height="401">
               </picture>
             </div>
-            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3">
+            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3" data-i18n-aria="aria.slide2">
               <img src="ecnh-cnh-do-brasil-app-screenshot.jpg" alt="Smartphone screen showing the CNH do Brasil app onboarding page, featuring a woman holding a digital driver's license card" loading="lazy" width="800" height="450">
             </div>
-            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3">
+            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3" data-i18n-aria="aria.slide3">
               <img src="ecnh-digital-drivers-license-security.jpg" alt="Smartphone displaying a digital CNH driver's license inside the eCNH app, showing document details and photo" loading="lazy" width="984" height="537">
             </div>
           </div>
           <div class="carousel-caption" id="ecnh-caption" aria-live="polite" aria-atomic="true">CNH do Brasil, official app by SERPRO</div>
-          <button class="carousel-btn prev" onclick="carouselMove('ecnh',-1)" aria-label="Previous slide">&#8249;</button>
-          <button class="carousel-btn next" onclick="carouselMove('ecnh', 1)" aria-label="Next slide">&#8250;</button>
-          <div class="carousel-dots" id="ecnh-dots" role="tablist" aria-label="Carousel slides"></div>
-          <button class="carousel-pause-btn" id="ecnh-pause" aria-label="Pause slideshow" aria-pressed="false">⏸</button>
+          <button class="carousel-btn prev" onclick="carouselMove('ecnh',-1)" aria-label="Previous slide" data-i18n-aria="aria.prev">&#8249;</button>
+          <button class="carousel-btn next" onclick="carouselMove('ecnh', 1)" aria-label="Next slide" data-i18n-aria="aria.next">&#8250;</button>
+          <div class="carousel-dots" id="ecnh-dots" role="tablist" aria-label="Carousel slides" data-i18n-aria="aria.dots"></div>
+          <button class="carousel-pause-btn" id="ecnh-pause" aria-label="Pause slideshow">⏸</button>
         </div>
 
-        <div class="cnhcard" id="cnh-card" role="img" lang="pt-BR" aria-label="CSS replica of the back of a Brazilian driver's license showing the QR Code security element designed by George" tabindex="0">
+        <div class="cnhcard" id="cnh-card" role="img" aria-label="CSS replica of the back of a Brazilian driver's license showing the QR Code security element designed by George" data-i18n-aria="aria.cnhcard" tabindex="0">
           <div class="cnhcard-shine" id="cnh-shine"></div>
           <div class="cnhcard-strip"></div>
           <div class="cnhcard-hdr">
@@ -1517,9 +1552,9 @@
 
 <!-- ── SKILLS ── -->
 <!-- ── OPEN SOURCE ── -->
-<section id="opensource" aria-label="Open Source Projects">
+<section id="opensource" aria-labelledby="opensource-title">
   <div class="section-label" data-i18n="oss.label">Open Source</div>
-  <h2 class="section-title" data-i18n="oss.title">Built in the open</h2>
+  <h2 class="section-title" id="opensource-title" data-i18n="oss.title">Built in the open</h2>
   <p class="section-sub" data-i18n="oss.sub">Work I maintain in public, where the code is the whole argument.</p>
 
   <div class="oss-grid">
@@ -1553,9 +1588,9 @@
   </div>
 </section>
 
-<section id="skills" aria-label="Skills and Technologies">
+<section id="skills" aria-labelledby="skills-title">
   <div class="section-label" data-i18n="sk.label">Technical</div>
-  <h2 class="section-title" data-i18n="sk.title">Skills &amp; Technologies</h2>
+  <h2 class="section-title" id="skills-title" data-i18n="sk.title">Skills &amp; Technologies</h2>
   <p class="section-sub" data-i18n="sk.sub">18 years of practical experience across the full stack.</p>
 
   <div class="skills-grid">
@@ -1623,9 +1658,9 @@
 
 <!-- ── CERTIFICATIONS ── -->
 <div style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-<section id="credentials" aria-label="Certifications and Education">
+<section id="credentials" aria-labelledby="credentials-title">
   <div class="section-label" data-i18n="cred.label">Credentials</div>
-  <h2 class="section-title" data-i18n="cred.title">Certifications &amp; Education</h2>
+  <h2 class="section-title" id="credentials-title" data-i18n="cred.title">Certifications &amp; Education</h2>
 
   <div class="certs-grid" style="margin-bottom: 48px;">
     <div class="cert-card reveal"><div class="cert-icon">🤖</div><div><div class="cert-name">Designing and Building AI Products and Services</div><div class="cert-issuer">MIT xPRO &nbsp;·&nbsp; 2026</div></div></div>
@@ -1658,7 +1693,7 @@
         <span data-i18n="contact.email">Email me</span>
       </a>
       <div class="dl-wrap">
-        <button class="contact-link" style="cursor:pointer;border:none;background:var(--card);border:1px solid var(--border);" aria-label="LinkedIn profile, choose language" aria-expanded="false" aria-haspopup="true">
+        <button class="contact-link" style="cursor:pointer;border:none;background:var(--card);border:1px solid var(--border);" aria-label="LinkedIn profile, choose language" data-i18n-aria="aria.linkedin" aria-expanded="false" aria-haspopup="true">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn <span class="dl-arrow" aria-hidden="true">▾</span>
         </button>
@@ -1668,12 +1703,12 @@
           <a href="https://www.linkedin.com/in/george-veras/?locale=pt_BR" target="_blank" rel="noopener noreferrer">🇧🇷 Português<span class="sr-only"> (opens in new tab)</span></a>
         </div>
       </div>
-      <a href="https://github.com/george-veras" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub profile (opens in new tab)">
+      <a href="https://github.com/george-veras" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub profile (opens in new tab)" data-i18n-aria="aria.github">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         <span data-i18n="contact.github">GitHub</span>
       </a>
       <div class="dl-wrap">
-        <button class="contact-link" style="cursor:pointer;border:1px solid var(--border);background:var(--card);" aria-label="Download resume, choose language" aria-expanded="false" aria-haspopup="true">
+        <button class="contact-link" style="cursor:pointer;border:1px solid var(--border);background:var(--card);" aria-label="Download resume, choose language" data-i18n-aria="aria.download" aria-expanded="false" aria-haspopup="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           <span data-i18n="contact.download">Download Resume</span> <span class="dl-arrow" aria-hidden="true">▾</span>
         </button>
@@ -1693,7 +1728,7 @@
   <span data-i18n="footer.text">Built by George Véras Valentim · george-veras.github.io</span>
 </footer>
 
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top" data-i18n-aria="aria.backtop">↑</button>
 
 <script>
   // ── i18n
@@ -1757,6 +1792,29 @@
       'contact.email': 'Email me',
       'contact.github':'GitHub',
       'contact.download': 'Download Resume',
+      'skip':             'Skip to main content',
+      'hero.location':    'Senior Full Stack Engineer & Technical Lead · Vancouver, BC',
+      'hero.roles':       'Full Stack Engineer, Engineering Architect, Startup Founder, and Builder of Things.',
+      'aria.nav':         'Main navigation',
+      'aria.carousel':    'eCNH app screenshots',
+      'aria.slide1':      'Slide 1 of 3',
+      'aria.slide2':      'Slide 2 of 3',
+      'aria.slide3':      'Slide 3 of 3',
+      'aria.prev':        'Previous slide',
+      'aria.next':        'Next slide',
+      'aria.dots':        'Carousel slides',
+      'aria.gotoslide':   'Go to slide {n}',
+      'aria.current':     ' (current)',
+      'aria.pauseslides': 'Pause slideshow',
+      'aria.playslides':  'Play slideshow',
+      'aria.pausemotion': 'Pause animations',
+      'aria.playmotion':  'Play animations',
+      'aria.cnhcard':     'CSS replica of the back of a Brazilian driver\'s license showing the QR Code security element designed by George',
+      'aria.linkedin':    'LinkedIn profile, choose language',
+      'aria.github':      'GitHub profile (opens in new tab)',
+      'aria.download':    'Download resume, choose language',
+      'aria.backtop':     'Back to top',
+      'aria.langchanged': 'Language changed to English',
     },
     pt: {
       "oss.q.tagdeps": "Zero dependências",
@@ -1817,6 +1875,29 @@
       'contact.email': 'Me escrever',
       'contact.github':'GitHub',
       'contact.download': 'Baixar Currículo',
+      'skip':             'Pular para o conteúdo principal',
+      'hero.location':    'Engenheiro Full Stack Sênior e Líder Técnico · Vancouver, BC',
+      'hero.roles':       'Engenheiro Full Stack, Arquiteto de Software, Fundador de Startup e Criador de Soluções.',
+      'aria.nav':         'Navegação principal',
+      'aria.carousel':    'Capturas de tela do app eCNH',
+      'aria.slide1':      'Slide 1 de 3',
+      'aria.slide2':      'Slide 2 de 3',
+      'aria.slide3':      'Slide 3 de 3',
+      'aria.prev':        'Slide anterior',
+      'aria.next':        'Próximo slide',
+      'aria.dots':        'Slides do carrossel',
+      'aria.gotoslide':   'Ir para o slide {n}',
+      'aria.current':     ' (atual)',
+      'aria.pauseslides': 'Pausar apresentação',
+      'aria.playslides':  'Retomar apresentação',
+      'aria.pausemotion': 'Pausar animações',
+      'aria.playmotion':  'Retomar animações',
+      'aria.cnhcard':     'Réplica em CSS do verso da CNH brasileira, mostrando o elemento de segurança em QR Code criado por George',
+      'aria.linkedin':    'Perfil no LinkedIn, escolha o idioma',
+      'aria.github':      'Perfil no GitHub (abre em nova aba)',
+      'aria.download':    'Baixar currículo, escolha o idioma',
+      'aria.backtop':     'Voltar ao topo',
+      'aria.langchanged': 'Idioma alterado para português',
     },
     fr: {
       "oss.q.tagdeps": "Zéro dépendance",
@@ -1877,6 +1958,29 @@
       'contact.email': 'M\'écrire',
       'contact.github':'GitHub',
       'contact.download': 'Télécharger le CV',
+      'skip':             'Aller au contenu principal',
+      'hero.location':    'Ingénieur Full Stack Senior et Leader Technique · Vancouver, BC',
+      'hero.roles':       'Ingénieur Full Stack, Architecte Logiciel, Fondateur de Startup et Créateur de Solutions.',
+      'aria.nav':         'Navigation principale',
+      'aria.carousel':    'Captures d\'écran de l\'application eCNH',
+      'aria.slide1':      'Diapositive 1 sur 3',
+      'aria.slide2':      'Diapositive 2 sur 3',
+      'aria.slide3':      'Diapositive 3 sur 3',
+      'aria.prev':        'Diapositive précédente',
+      'aria.next':        'Diapositive suivante',
+      'aria.dots':        'Diapositives du carrousel',
+      'aria.gotoslide':   'Aller à la diapositive {n}',
+      'aria.current':     ' (actuelle)',
+      'aria.pauseslides': 'Mettre le diaporama en pause',
+      'aria.playslides':  'Relancer le diaporama',
+      'aria.pausemotion': 'Mettre les animations en pause',
+      'aria.playmotion':  'Relancer les animations',
+      'aria.cnhcard':     'Réplique en CSS du verso d\'un permis de conduire brésilien, montrant l\'élément de sécurité en QR code conçu par George',
+      'aria.linkedin':    'Profil LinkedIn, choisir la langue',
+      'aria.github':      'Profil GitHub (s\'ouvre dans un nouvel onglet)',
+      'aria.download':    'Télécharger le CV, choisir la langue',
+      'aria.backtop':     'Retour en haut',
+      'aria.langchanged': 'Langue changée en français',
     }
   };
 
@@ -1884,6 +1988,12 @@
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (i18n[lang] && i18n[lang][key]) el.textContent = i18n[lang][key];
+    });
+    // accessible names follow the page language too, or a screen reader in Portuguese mode
+    // announces landmarks and buttons in English
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (i18n[lang] && i18n[lang][key]) el.setAttribute('aria-label', i18n[lang][key]);
     });
     // toggle active button + aria-pressed
     ['en','fr','pt'].forEach(l => {
@@ -1907,13 +2017,17 @@
     const menu = document.getElementById('linkedin-menu');
     const current = menu.querySelector(`[href*="${linkedinOrder[lang]}"]`);
     if (current) menu.prepend(current);
-    // announce language change to screen readers
-    const names = { en: 'English', fr: 'Français', pt: 'Português Brasileiro' };
-    document.getElementById('lang-announce').textContent = `Language changed to ${names[lang]}`;
+    // announce language change to screen readers, in the new language
+    document.getElementById('lang-announce').textContent = i18n[lang]['aria.langchanged'];
+    // labels that code sets at run time (the pause buttons, the carousel dots) listen for this
+    document.dispatchEvent(new CustomEvent('langchange'));
   }
 
   // Always start in English
   let rolesLang = 'en';
+  // A string from the dictionary in whatever language the page is showing, for labels that code
+  // sets at run time rather than markup
+  function t(key) { return (i18n[rolesLang] && i18n[rolesLang][key]) || i18n.en[key]; }
 
   // ── Dropdown click-toggle
   document.querySelectorAll('.dl-wrap button').forEach(btn => {
@@ -1967,21 +2081,78 @@
     fr: ['Ingénieur Full Stack', 'Architecte Logiciel', 'Fondateur de Startup', 'Créateur de Solutions'],
     pt: ['Engenheiro Full Stack', 'Arquiteto de Software', 'Fundador de Startup', 'Criador de Soluções']
   };
-  let ri = 0, ci = 0, deleting = false;
+  let ri = 0, ci = 0, deleting = false, typeTimer = null;
   const el = document.getElementById('typewriter');
+  const currentRole = () => (rolesMap[rolesLang] || rolesMap.en)[ri % rolesMap.en.length];
+  // A button next to a growing word would move while you aim at it. Measure the longest role in
+  // the current language and font size, and hold the word's box at that width.
+  function sizeTypewriter() {
+    const probe = el.cloneNode();
+    probe.removeAttribute('id');
+    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+    el.parentElement.appendChild(probe);
+    let widest = 0;
+    for (const role of rolesMap[rolesLang] || rolesMap.en) {
+      probe.textContent = role;
+      widest = Math.max(widest, probe.getBoundingClientRect().width);
+    }
+    probe.remove();
+    el.parentElement.style.minWidth = Math.ceil(widest + 10) + 'px'; // + gap and cursor
+  }
+  sizeTypewriter();
+  if (document.fonts) document.fonts.ready.then(sizeTypewriter);
+  window.addEventListener('resize', sizeTypewriter);
+  document.addEventListener('langchange', sizeTypewriter);
   function type() {
-    const roles = rolesMap[rolesLang] || rolesMap.en;
-    const word = roles[ri % roles.length];
+    const word = currentRole();
     if (!deleting) {
       el.textContent = word.slice(0, ++ci);
-      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+      if (ci === word.length) { deleting = true; typeTimer = setTimeout(type, 1800); return; }
     } else {
       el.textContent = word.slice(0, --ci);
-      if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+      if (ci === 0) { deleting = false; ri = (ri + 1) % rolesMap.en.length; }
     }
-    setTimeout(type, deleting ? 50 : 80);
+    typeTimer = setTimeout(type, deleting ? 50 : 80);
   }
-  type();
+
+  // ── Pause for everything that moves on its own (WCAG 2.2.2). The typewriter stops on a whole
+  // word, and the cursor and the scroll arrow stop with it. It starts paused for anyone whose
+  // system asks for reduced motion, and remembers a choice made with the button. The label says
+  // what the button will do, so it carries no aria-pressed: a toggle's name must not change.
+  const motionBtn = document.getElementById('motion-toggle');
+  let motionPaused = false;
+  function labelMotionBtn() {
+    const label = t(motionPaused ? 'aria.playmotion' : 'aria.pausemotion');
+    motionBtn.setAttribute('aria-label', label);
+    motionBtn.title = label;
+    motionBtn.textContent = motionPaused ? '▶' : '⏸';
+  }
+  function setMotion(paused) {
+    motionPaused = paused;
+    document.documentElement.classList.toggle('motion-paused', paused);
+    clearTimeout(typeTimer);
+    if (paused) {
+      el.textContent = currentRole();
+      ci = el.textContent.length;
+      deleting = true;
+    } else {
+      typeTimer = setTimeout(type, 1800);
+    }
+    labelMotionBtn();
+  }
+  motionBtn.addEventListener('click', () => {
+    setMotion(!motionPaused);
+    try { localStorage.setItem('motion', motionPaused ? 'paused' : 'playing'); } catch (e) {}
+  });
+  document.addEventListener('langchange', () => {
+    if (motionPaused) { el.textContent = currentRole(); ci = el.textContent.length; }
+    labelMotionBtn();
+  });
+  let savedMotion = null;
+  try { savedMotion = localStorage.getItem('motion'); } catch (e) {}
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (savedMotion === 'paused' || (savedMotion === null && prefersReducedMotion)) setMotion(true);
+  else type();
 
   // ── Scroll reveal
   const observer = new IntersectionObserver((entries) => {
@@ -2043,12 +2214,31 @@
   // ── Carousel engine
   const carousels = {};
   const captions = {
-    'ecnh': [
-      'CNH do Brasil, official app by SERPRO',
-      'The new modern interface of the CNH do Brasil app',
-      'Digital driver\'s license displayed inside the app'
-    ]
+    'ecnh': {
+      en: [
+        'CNH do Brasil, official app by SERPRO',
+        'The new modern interface of the CNH do Brasil app',
+        'Digital driver\'s license displayed inside the app'
+      ],
+      pt: [
+        'CNH do Brasil, app oficial do SERPRO',
+        'A nova interface moderna do app CNH do Brasil',
+        'CNH digital exibida dentro do app'
+      ],
+      fr: [
+        'CNH do Brasil, application officielle du SERPRO',
+        'La nouvelle interface moderne de l\'application CNH do Brasil',
+        'Permis de conduire numérique affiché dans l\'application'
+      ]
+    }
   };
+  const caption = (id, i) => (captions[id][rolesLang] || captions[id].en)[i];
+  function labelDots(id) {
+    const c = carousels[id];
+    document.querySelectorAll(`#${id}-dots .carousel-dot`).forEach((d, i) => {
+      d.setAttribute('aria-label', t('aria.gotoslide').replace('{n}', i + 1) + (i === c.index ? t('aria.current') : ''));
+    });
+  }
   function initCarousel(id) {
     const track = document.getElementById(id + '-track');
     const dotsEl = document.getElementById(id + '-dots');
@@ -2059,7 +2249,7 @@
       const d = document.createElement('button');
       d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
       d.setAttribute('role', 'tab');
-      d.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      d.setAttribute('aria-label', t('aria.gotoslide').replace('{n}', i + 1));
       d.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       d.onclick = () => carouselGo(id, i);
       dotsEl.appendChild(d);
@@ -2074,8 +2264,13 @@
       if (e.key === 'ArrowLeft')  { e.preventDefault(); carouselMove(id, -1); }
       if (e.key === 'ArrowRight') { e.preventDefault(); carouselMove(id,  1); }
     });
-    // Pause/play button (WCAG 2.2.2)
+    // Pause/play button (WCAG 2.2.2). The label says what the button will do, so it carries no
+    // aria-pressed: a toggle's name must not change with its state.
     const pauseBtn = document.getElementById(id + '-pause');
+    function labelPauseBtn() {
+      pauseBtn.setAttribute('aria-label', t(carousels[id].manualPause ? 'aria.playslides' : 'aria.pauseslides'));
+      pauseBtn.textContent = carousels[id].manualPause ? '▶' : '⏸';
+    }
     if (pauseBtn) {
       pauseBtn.addEventListener('click', () => {
         const c = carousels[id];
@@ -2083,38 +2278,47 @@
         if (c.manualPause) {
           clearInterval(c.timer);
           el.classList.add('paused');
-          pauseBtn.setAttribute('aria-label', 'Play slideshow');
-          pauseBtn.setAttribute('aria-pressed', 'true');
-          pauseBtn.textContent = '▶';
         } else {
+          // Play was asked for explicitly, so it rotates even with focus or the pointer inside
+          c.paused = false;
           el.classList.remove('paused');
           carouselAutoplay(id);
-          pauseBtn.setAttribute('aria-label', 'Pause slideshow');
-          pauseBtn.setAttribute('aria-pressed', 'false');
-          pauseBtn.textContent = '⏸';
         }
+        labelPauseBtn();
       });
     }
+    document.addEventListener('langchange', () => {
+      if (pauseBtn) labelPauseBtn();
+      labelDots(id);
+      document.getElementById(id + '-caption').textContent = caption(id, carousels[id].index);
+    });
     carouselAutoplay(id);
   }
   function carouselGo(id, idx) {
     const c = carousels[id];
     c.index = (idx + c.total) % c.total;
     document.getElementById(id + '-track').style.transform = `translateX(-${c.index * 100}%)`;
-    document.getElementById(id + '-caption').textContent = captions[id][c.index];
+    // Announce the caption only when the visitor is driving. While it rotates by itself a live
+    // region would interrupt a screen reader every few seconds, wherever the reader is.
+    const cap = document.getElementById(id + '-caption');
+    cap.setAttribute('aria-live', c.paused || c.manualPause ? 'polite' : 'off');
+    cap.textContent = caption(id, c.index);
     document.querySelectorAll(`#${id}-dots .carousel-dot`).forEach((d, i) => {
       d.classList.toggle('active', i === c.index);
       d.setAttribute('aria-selected', i === c.index ? 'true' : 'false');
-      d.setAttribute('aria-label', `Go to slide ${i + 1}${i === c.index ? ' (current)' : ''}`);
     });
+    labelDots(id);
     // Update slide visibility for screen readers
     document.querySelectorAll(`#${id}-track .carousel-slide`).forEach((s, i) => {
       s.setAttribute('aria-hidden', i !== c.index ? 'true' : 'false');
     });
-    if (!c.paused) { clearInterval(c.timer); carouselAutoplay(id); }
+    // Moving by hand restarts the timer, but never undoes a pause the visitor asked for
+    if (!c.paused && !c.manualPause) { clearInterval(c.timer); carouselAutoplay(id); }
   }
   function carouselMove(id, dir) { carouselGo(id, carousels[id].index + dir); }
   function carouselAutoplay(id) {
+    // One timer at a time: hover, focus and the button can each ask for this
+    clearInterval(carousels[id].timer);
     carousels[id].timer = setInterval(() => carouselMove(id, 1), 3500);
   }
   initCarousel('ecnh');
