@@ -6,7 +6,7 @@
 
   <!-- ── Primary Meta ── -->
   <title>George Véras Valentim, Full Stack Engineer | Vancouver, BC</title>
-  <meta name="description" content="Full-stack engineer with 18 years. Built eCNH, Brazil's digital driver's license used by 40M+ Brazilians. React, TypeScript, Node.js. Vancouver, BC.">
+  <meta name="description" content="Full-stack engineer with 18 years. Built the first version of eCNH, Brazil's digital driver's license, now used by 40M+ Brazilians. React, TypeScript, Node.js. Vancouver, BC.">
   <meta name="keywords" content="full stack engineer, software engineer Vancouver, React developer, Node.js, TypeScript, eCNH, Brazil driver license app, senior engineer Canada, JavaScript engineer">
   <meta name="author" content="George Véras Valentim">
   <meta name="robots" content="index, follow">
@@ -23,7 +23,7 @@
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="George Véras Valentim">
   <meta property="og:title" content="George Véras Valentim, Full Stack Engineer">
-  <meta property="og:description" content="Full-stack engineer with 18 years of experience. Built eCNH, Brazil's digital driver's license app used by 40M+ Brazilians. React, TypeScript, Node.js. Based in Vancouver, BC.">
+  <meta property="og:description" content="Full-stack engineer with 18 years of experience. Built the first version of eCNH, Brazil's digital driver's license, now used by 40M+ Brazilians. React, TypeScript, Node.js. Based in Vancouver, BC.">
   <meta property="og:url" content="https://george-veras.github.io/">
   <meta property="og:image" content="https://george-veras.github.io/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -38,7 +38,7 @@
   <!-- ── Twitter Card ── -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="George Véras Valentim, Full Stack Engineer">
-  <meta name="twitter:description" content="Built eCNH, Brazil's digital driver's license used by 40M+ Brazilians. Full-stack engineer with 18 years. React, TypeScript, Node.js. Based in Vancouver, BC.">
+  <meta name="twitter:description" content="Built the first version of eCNH, Brazil's digital driver's license, now used by 40M+ Brazilians. Full-stack engineer with 18 years. React, TypeScript, Node.js. Based in Vancouver, BC.">
   <meta name="twitter:image" content="https://george-veras.github.io/og-image.jpg">
   <meta name="twitter:image:alt" content="George Véras Valentim, Full Stack Engineer">
 
@@ -59,7 +59,7 @@
         "url": "https://george-veras.github.io/",
         "image": "https://george-veras.github.io/george-veras-valentim.jpg",
         "jobTitle": "Senior Full Stack Engineer & Technical Lead",
-        "description": "Full-stack engineer with 18 years of experience building products at scale, from government-grade identity systems used by 40M+ Brazilians to ad platforms handling 1,200 requests per second.",
+        "description": "Full-stack engineer with 18 years of experience building products at scale, from the first version of Brazil's digital driver's license, now used by 40M+ people, to ad platforms handling 1,200 requests per second.",
         "email": "george.veras.valentim@gmail.com",
         "telephone": "+16048370524",
         "address": {
@@ -752,18 +752,17 @@
     }
     .press-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--border); }
     .press-label::after  { content: ''; display: block; flex: 1; height: 1px; background: var(--border); }
-    .press-links { display: flex; flex-wrap: wrap; gap: 7px; }
-    .press-link {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.7rem; font-weight: 600;
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      color: var(--muted); text-decoration: none;
-      padding: 5px 11px; border-radius: 8px;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    /* Oldest first, down one column and then the next, so the story keeps its order */
+    .press-list { list-style: none; margin: 0; padding: 0; columns: 2 340px; column-gap: 36px; }
+    .press-item { break-inside: avoid; padding: 11px 0 13px; border-top: 1px solid var(--border); }
+    /* The link stays inline, in the flow of the line, which is what exempts it from 2.5.8 target size */
+    .press-item a {
+      font-size: 0.82rem; font-weight: 700; color: var(--text);
+      text-decoration: underline; text-decoration-color: rgba(79,142,247,0.55); text-underline-offset: 3px;
     }
-    .press-link:hover { border-color: var(--primary); background: rgba(79,142,247,0.08); color: var(--text); }
-    .press-link.intl { border-color: rgba(0,212,180,0.2); }
-    .press-link.intl:hover { border-color: var(--accent); background: rgba(0,212,180,0.07); }
+    .press-item a:hover { text-decoration-color: var(--primary); }
+    .press-when { font-size: 0.72rem; color: var(--muted); margin-left: 6px; }
+    .press-note { font-size: 0.82rem; line-height: 1.6; color: var(--muted); margin: 4px 0 0; }
 
     /* ── Portrait carousel ── */
     .carousel {
@@ -871,6 +870,8 @@
     }
     .highlight-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
     .highlight-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.7; }
+    .highlight-desc a { color: var(--text); text-decoration: underline; text-decoration-color: rgba(79,142,247,0.55); text-underline-offset: 3px; }
+    .highlight-desc a:hover { text-decoration-color: var(--primary); }
 
     /* ─────────────────────────────────────────
        SKILLS
@@ -1158,7 +1159,7 @@
   </div>
   <p class="sr-only" data-i18n="hero.roles">Full Stack Engineer, Engineering Architect, Startup Founder, and Builder of Things.</p>
   <p class="hero-summary">
-    <span data-i18n="hero.summary">Senior full-stack engineer and technical leader with 18 years building products at national and enterprise scale, from a government identity app used by 40M+ Brazilians to ad platforms sustaining 1,200 requests per second. Known for driving engineering culture shifts (observability, accessibility, AI adoption) as much as for shipping complex systems. Based in Vancouver, BC, and open to Lead and Staff Engineer opportunities.</span>
+    <span data-i18n="hero.summary">Senior full-stack engineer and technical leader with 18 years building products at national and enterprise scale, from the first version of Brazil's digital driver's license, now used by 40M+ people, to ad platforms sustaining 1,200 requests per second. Known for driving engineering culture shifts (observability, accessibility, AI adoption) as much as for shipping complex systems. Based in Vancouver, BC, and open to Lead and Staff Engineer opportunities.</span>
   </p>
   <div class="hero-btns">
     <a href="#experience" class="btn-primary" data-i18n="hero.btn1">See my work</a>
@@ -1337,8 +1338,8 @@
           <div class="ach-title">🏆 Major Accomplishments</div>
           <ul>
             <li>Developed the <strong>first Brazilian government document production line in the cloud</strong>, Angular SPA consuming a microservices backend.</li>
-            <li>Solely designed &amp; developed <strong>eCNH</strong>, Brazil's first digital driver's license Android app, entirely alone, from scratch, through to national launch. Now used by <strong>40M+ Brazilians</strong> (≈44% of all licensed drivers).</li>
-            <li>Designed the <strong>QR Code security element</strong> now embedded in every Brazilian driver's license, and built the companion <strong>authority scanning app</strong> for police to verify document authenticity in real-time, eliminating widespread forgery.</li>
+            <li>Designed and built <strong>eCNH</strong> alone in 2016, the first working version of Brazil's digital driver's license: an Android app showing the license with a signed QR code, and an officers' app that verifies it offline. VALID presented it to the federal government in Brasília; SERPRO, the federal data service, took over the design and built the national system, now carried by <strong>40M+ Brazilians</strong>.</li>
+            <li>Designed the <strong>QR code security element</strong> on every new Brazilian driver's license since 2017: tested QR versions until one fit on the card, recovered well from damage and still carried a low-resolution copy of the driver's photo, which defeats photo-swap forgery.</li>
           </ul>
         </div>
         <div class="job-stack">
@@ -1427,9 +1428,10 @@
           <div class="highlight-icon">🪪</div>
           <div class="highlight-number">40M+</div>
           <div class="highlight-title">eCNH, Brazil's Digital Driver's License</div>
-          <div class="highlight-desc" style="margin-bottom:16px;"><strong style="color:var(--accent)">Built entirely alone.</strong> Solely designed and developed the complete first version of Brazil's digital driver's license Android app, from scratch, which was then launched nationally. It now has over <strong style="color:var(--text)">40 million users</strong>, roughly 44% of all licensed drivers in the country.</div>
-          <div class="highlight-desc" style="margin-bottom:16px;">Also solely designed the <strong style="color:var(--text)">QR Code security element</strong> now printed on the back of every Brazilian driver's license. Before it existed, forged and tampered documents were widespread, the QR code made real-time verification possible for the first time.</div>
-          <div class="highlight-desc">Built the <strong style="color:var(--text)">companion authority app</strong> for police and traffic agents to scan any physical CNH and instantly verify its authenticity against the government database, completing a full end-to-end security system, all designed and built by one engineer.</div>
+          <p class="highlight-desc" style="margin-bottom:16px;"><strong style="color:var(--accent)">Built alone, in 2016.</strong> At VALID I designed and built the first working version of Brazil's digital driver's license by myself: an Android app that shows the license with a signed <strong style="color:var(--text)">QR code</strong>, and an app for traffic officers that reads that code, printed on the card or shown on the phone, and checks its signature with no connection at all. VALID presented it to the federal government in Brasília.</p>
+          <p class="highlight-desc" style="margin-bottom:16px;">The QR code was my design too. Over many meetings we tested QR versions of different sizes until we found one that fit on the card, recovered well from damage, and could still carry a low-resolution copy of the driver's photo inside the code, which defeats one of the most common forgeries, a swapped picture.</p>
+          <p class="highlight-desc" style="margin-bottom:16px;">The signing keys for a national document have to sit in a hardware security module held by a public body, so the project went to SERPRO, the federal data processing service, which took over the design and built the production system. Since May 2017 every new license carries the QR code, with the license data and the driver's photo, and the digital license app was approved that July. Today more than <strong style="color:var(--text)">40 million Brazilians</strong> carry that app, CNH do Brasil, on their phones, and it started as the version I built with my own hands.</p>
+          <p class="highlight-desc">Ten years later I solved the officer's side of that problem again, in the open, on the standard that now exists for it: <a href="#opensource">qredential</a>.</p>
         </div>
 
         <!-- Right column: portrait carousel + document image -->
@@ -1511,25 +1513,62 @@
               <span style="color:#009B3A">gov</span><span style="color:#aaa">.</span><span style="color:#002776">br</span>
             </div>
           </div>
-          <div class="cnhcard-caption">The <strong>QR Code</strong> I designed, on the back of every Brazilian driver's license since 2017</div>
+          <div class="cnhcard-caption">The <strong>QR Code</strong> I designed, on the back of every new Brazilian driver's license since 2017</div>
         </div>
       </div><!-- end hf-right -->
       </div><!-- end hf-top -->
 
-      <!-- Full-width media coverage -->
+      <!-- Full-width public sources, oldest first, each with what it says in English.
+           gov.br pages ask visitors outside Brazil to log in, so those two point to archived copies. -->
       <div class="press-section" style="margin-top:0">
-        <div class="press-label" data-i18n="press.label">Media Coverage</div>
-        <div class="press-links">
-          <a href="https://g1.globo.com/carros/noticia/contran-aprova-carteira-de-habilitacao-digital.ghtml" target="_blank" rel="noopener noreferrer" class="press-link"><span class="sr-only">(opens in new tab) </span>G1 / Globo</a>
-          <a href="https://www.cnnbrasil.com.br/auto/cnh-do-brasil-substitui-app-carteira-digital-de-transito-veja-o-que-muda/" target="_blank" rel="noopener noreferrer" class="press-link"><span class="sr-only">(opens in new tab) </span>CNN Brasil</a>
-          <a href="https://www.techtudo.com.br/listas/2022/06/nova-cnh-2022-4-perguntas-e-respostas-sobre-o-modelo.ghtml" target="_blank" rel="noopener noreferrer" class="press-link"><span class="sr-only">(opens in new tab) </span>TechTudo</a>
-          <a href="https://www.infomoney.com.br/brasil/novas-regras-para-cnh-sem-autoescola-e-com-renovacao-automatica-valem-nesta-semana/" target="_blank" rel="noopener noreferrer" class="press-link"><span class="sr-only">(opens in new tab) </span>Infomoney</a>
-          <a href="https://agenciabrasil.ebc.com.br/geral/noticia/2022-06/carteira-nacional-de-habilitacao-tem-novo-modelo-partir-de-hoje" target="_blank" rel="noopener noreferrer" class="press-link"><span class="sr-only">(opens in new tab) </span>Agência Brasil</a>
-          <a href="https://www.serpro.gov.br/menu/noticias/noticias-2017/cnh-digital-traz-praticidade-a-motoristas" target="_blank" rel="noopener noreferrer" class="press-link"><span class="sr-only">(opens in new tab) </span>SERPRO</a>
-          <a href="https://tecnoblog.net/noticias/governo-renova-app-da-cnh-para-baratear-obtencao-do-documento/" target="_blank" rel="noopener noreferrer" class="press-link"><span class="sr-only">(opens in new tab) </span>Tecnoblog</a>
-          <a href="https://www.biometricupdate.com/202212/half-of-brazilians-now-using-mobile-id-biometrics-use-up" target="_blank" rel="noopener noreferrer" class="press-link intl"><span class="sr-only">(opens in new tab) </span>🇺🇸 Biometric Update</a>
-          <a href="https://www.riotimesonline.com/brazil-news/brazil/digital-cpf-and-cnh-available-in-brazil-in-new-android-and-iphone-app/" target="_blank" rel="noopener noreferrer" class="press-link intl"><span class="sr-only">(opens in new tab) </span>🌎 The Rio Times</a>
-        </div>
+        <div class="press-label" id="press-label" data-i18n="press.label">Public sources</div>
+        <ul class="press-list" aria-labelledby="press-label">
+          <li class="press-item">
+            <a href="https://www.legisweb.com.br/legislacao/?id=324187" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">CONTRAN Resolution 598<span class="sr-only"> (opens in new tab)</span></a>
+            <span class="press-when">amended January and May 2017 · in Portuguese</span>
+            <p class="press-note">The license regulation, with its 2017 amendments: every new license gets a QR code holding the license data and the driver's photo, and the national traffic department provides a system to validate it.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.serpro.gov.br/tema/edicao-238/motorista-ja-pode-tirar-cnh-que-contem-qr-code" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">SERPRO<span class="sr-only"> (opens in new tab)</span></a>
+            <span class="press-when">May 2017 · in Portuguese</span>
+            <p class="press-note">The QR code arrives on every new license. The federal data service explains what it carries: the driver's data and photo, signed by the national traffic department, readable offline in under a second.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://g1.globo.com/carros/noticia/contran-aprova-carteira-de-habilitacao-digital.ghtml" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">G1 / Globo<span class="sr-only"> (opens in new tab)</span></a>
+            <span class="press-when">July 2017 · in Portuguese</span>
+            <p class="press-note">Brazil's traffic council approves the digital driver's license. It can be checked by the issuer's digital signature or by its QR code, and an app for officers is in testing.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://web.archive.org/web/20260520110442/https://www.serpro.gov.br/menu/noticias/noticias-2017/cnh-digital-traz-praticidade-a-motoristas" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">SERPRO<span class="sr-only"> (opens in new tab)</span></a>
+            <span class="press-when">July 2017 · in Portuguese · archived copy</span>
+            <p class="press-note">How the digital license app works: tied to one phone with a PIN, blockable if the phone is lost, and carrying the same QR code as the printed card.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.riotimesonline.com/brazil-news/brazil/digital-cpf-and-cnh-available-in-brazil-in-new-android-and-iphone-app/" target="_blank" rel="noopener noreferrer" hreflang="en">The Rio Times<span class="sr-only"> (opens in new tab)</span></a>
+            <span class="press-when">May 2020</span>
+            <p class="press-note">The federal tax agency's Digital CPF app starts carrying the driver's license too, its authenticity confirmed through the QR code.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://agenciabrasil.ebc.com.br/geral/noticia/2022-06/carteira-nacional-de-habilitacao-tem-novo-modelo-partir-de-hoje" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">Agência Brasil<span class="sr-only"> (opens in new tab)</span></a>
+            <span class="press-when">June 2022 · in Portuguese</span>
+            <p class="press-note">A redesigned license takes effect. The QR code stays, and the license can now be issued on paper, as a digital document, or both.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.biometricupdate.com/202212/half-of-brazilians-now-using-mobile-id-biometrics-use-up" target="_blank" rel="noopener noreferrer" hreflang="en">Biometric Update<span class="sr-only"> (opens in new tab)</span></a>
+            <span class="press-when">December 2022</span>
+            <p class="press-note">A national survey finds that 51% of the Brazilians it polled keep their driver's license on their phone.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.cnnbrasil.com.br/auto/cnh-do-brasil-substitui-app-carteira-digital-de-transito-veja-o-que-muda/" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">CNN Brasil<span class="sr-only"> (opens in new tab)</span></a>
+            <span class="press-when">December 2025 · in Portuguese</span>
+            <p class="press-note">The app, until then the Carteira Digital de Trânsito, becomes CNH do Brasil and starts handling the whole process of getting a first license.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://web.archive.org/web/20260421070541/https://www.gov.br/transportes/pt-br/assuntos/noticias/2026/01/aplicativo-cnh-do-brasil-ultrapassa-40-milhoes-de-usuarios" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">Ministry of Transport<span class="sr-only"> (opens in new tab)</span></a>
+            <span class="press-when">January 2026 · in Portuguese · archived copy</span>
+            <p class="press-note">The official figure: CNH do Brasil passes 40 million users, and more than 2.5 million first-license applications have been filed.</p>
+          </li>
+        </ul>
       </div>
 
     </div>
@@ -1775,7 +1814,7 @@
       'nav.skills':       'Skills',
       'nav.contact':      'Contact',
       'nav.download':     'Download Resume',
-      'hero.summary':     'Senior full-stack engineer and technical leader with 18 years building products at national and enterprise scale, from a government identity app used by 40M+ Brazilians to ad platforms sustaining 1,200 requests per second. Known for driving engineering culture shifts (observability, accessibility, AI adoption) as much as for shipping complex systems. Based in Vancouver, BC, and open to Lead and Staff Engineer opportunities.',
+      'hero.summary':     'Senior full-stack engineer and technical leader with 18 years building products at national and enterprise scale, from the first version of Brazil\'s digital driver\'s license, now used by 40M+ people, to ad platforms sustaining 1,200 requests per second. Known for driving engineering culture shifts (observability, accessibility, AI adoption) as much as for shipping complex systems. Based in Vancouver, BC, and open to Lead and Staff Engineer opportunities.',
       'hero.btn1':        'See my work',
       'hero.btn2':        'Career Highlights',
       'hero.btn3':        'Get in touch',
@@ -1805,7 +1844,7 @@
       'testimonials.label': 'In Their Own Words',
       'testimonials.title': 'Peer Recognition',
       'testimonials.sub':   'Unsolicited feedback from colleagues across 3.5 years at Flight Centre (WhereTo).',
-      'press.label':   'Media Coverage',
+      'press.label':   'Public sources',
       'skills.cat.languages': 'Languages',
       'skills.cat.frontend':  'Frontend',
       'skills.cat.backend':   'Backend',
@@ -1862,7 +1901,7 @@
       'nav.skills':       'Competências',
       'nav.contact':      'Contato',
       'nav.download':     'Baixar Currículo',
-      'hero.summary':     'Engenheiro full stack sênior e líder técnico com 18 anos construindo produtos em escala nacional e empresarial, de um app de identidade governamental utilizado por 40M+ de brasileiros a plataformas de anúncios com 1.200 req/s. Reconhecido tanto por transformações culturais de engenharia (observabilidade, acessibilidade, adoção de IA) quanto por entregas de sistemas complexos. Baseado em Vancouver, BC, e aberto a oportunidades de Lead Engineer e Technical Lead.',
+      'hero.summary':     'Engenheiro full stack sênior e líder técnico com 18 anos construindo produtos em escala nacional e empresarial, da primeira versão da CNH digital brasileira, hoje usada por mais de 40 milhões de pessoas, a plataformas de anúncios com 1.200 req/s. Reconhecido tanto por transformações culturais de engenharia (observabilidade, acessibilidade, adoção de IA) quanto por entregas de sistemas complexos. Baseado em Vancouver, BC, e aberto a oportunidades de Lead Engineer e Technical Lead.',
       'hero.btn1':        'Ver meu trabalho',
       'hero.btn2':        'Destaques',
       'hero.btn3':        'Entrar em contato',
@@ -1892,7 +1931,7 @@
       'testimonials.label': 'Em suas palavras',
       'testimonials.title': 'Reconhecimento dos colegas',
       'testimonials.sub':   'Feedback espontâneo de colegas ao longo de 3,5 anos na Flight Centre (WhereTo).',
-      'press.label':   'Cobertura na mídia',
+      'press.label':   'Fontes públicas',
       'skills.cat.languages': 'Linguagens',
       'skills.cat.frontend':  'Front-end',
       'skills.cat.backend':   'Back-end',
@@ -1949,7 +1988,7 @@
       'nav.skills':       'Compétences',
       'nav.contact':      'Contact',
       'nav.download':     'Télécharger le CV',
-      'hero.summary':     'Ingénieur full stack senior et leader technique avec 18 ans d\'expérience dans la construction de produits à grande échelle, d\'une application d\'identité gouvernementale utilisée par 40M+ de Brésiliens aux plateformes publicitaires gérant 1 200 req/s. Reconnu autant pour les transformations de culture d\'ingénierie (observabilité, accessibilité, adoption de l\'IA) que pour la livraison de systèmes complexes. Basé à Vancouver, BC, et ouvert aux opportunités de Lead Engineer et Technical Lead.',
+      'hero.summary':     'Ingénieur full stack senior et leader technique avec 18 ans d\'expérience dans la construction de produits à grande échelle, de la première version du permis de conduire numérique brésilien, aujourd\'hui utilisé par plus de 40 millions de personnes, aux plateformes publicitaires gérant 1 200 req/s. Reconnu autant pour les transformations de culture d\'ingénierie (observabilité, accessibilité, adoption de l\'IA) que pour la livraison de systèmes complexes. Basé à Vancouver, BC, et ouvert aux opportunités de Lead Engineer et Technical Lead.',
       'hero.btn1':        'Voir mon travail',
       'hero.btn2':        'Points forts',
       'hero.btn3':        'Me contacter',
@@ -1979,7 +2018,7 @@
       'testimonials.label': 'Ils en parlent',
       'testimonials.title': 'Reconnaissance par les pairs',
       'testimonials.sub':   'Retours spontanés de collègues sur 3,5 ans chez Flight Centre (WhereTo).',
-      'press.label':   'Couverture médiatique',
+      'press.label':   'Sources publiques',
       'skills.cat.languages': 'Langages',
       'skills.cat.frontend':  'Front-end',
       'skills.cat.backend':   'Back-end',
