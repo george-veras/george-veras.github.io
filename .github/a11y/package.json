@@ -1,0 +1,13 @@
+{
+  "name": "george-veras-github-io-a11y",
+  "private": true,
+  "type": "module",
+  "description": "WCAG 2.2 AA checks for george-veras.github.io, run by .github/workflows/a11y.yml",
+  "scripts": {
+    "check": "node check.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "^4.13.0",
+    "playwright": "^1.63.0"
+  }
+}

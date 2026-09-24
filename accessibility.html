@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility statement · George Véras Valentim</title>
+  <meta name="description" content="What this site's WCAG 2.2 AA claim covers, how it was checked, and where it stops. In English, French and Portuguese.">
+  <meta name="author" content="George Véras Valentim">
+  <link rel="canonical" href="https://george-veras.github.io/accessibility.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1120; --border: #1e3a5f; --text: #e8eef8; --muted: #8a9fbe;
+      --link: #7eb8ff; --accent: #00d4b4; --btn-a: #3b6fe0;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 16px; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif; line-height: 1.7;
+    }
+    a { color: var(--link); text-underline-offset: 3px; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    :focus:not(:focus-visible) { outline: none; }
+    #content:focus { outline: none; }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 16px; z-index: 10;
+      background: var(--btn-a); color: #fff; font-weight: 700;
+      padding: 10px 20px; border-radius: 0 0 8px 8px; text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    .top {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 8px 24px; padding: 18px 24px; border-bottom: 1px solid var(--border);
+    }
+    .top .home { color: var(--text); font-weight: 800; text-decoration: none; padding: 4px 0; display: inline-block; }
+    .top .home:hover { text-decoration: underline; }
+    .langs { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+    .langs a { display: inline-block; padding: 4px 0; }
+
+    main { max-width: 760px; margin: 0 auto; padding: 16px 24px 56px; }
+    h1 { font-size: clamp(1.7rem, 4vw, 2.2rem); line-height: 1.2; margin: 28px 0 10px; }
+    h2 { font-size: 1.35rem; line-height: 1.3; margin: 40px 0 10px; }
+    h3 { font-size: 1.1rem; line-height: 1.3; margin: 30px 0 8px; }
+    .lede { color: var(--muted); font-size: 1.05rem; margin-top: 0; }
+    ul { padding-left: 1.2em; }
+    li { margin-bottom: 8px; }
+    section + section { border-top: 1px solid var(--border); margin-top: 60px; }
+
+    .claim { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 16px 0; }
+    .claim dt { color: var(--muted); }
+    .claim dd { margin: 0; overflow-wrap: anywhere; }
+    @media (max-width: 480px) {
+      .claim { grid-template-columns: 1fr; gap: 0; }
+      .claim dd { margin-bottom: 10px; }
+    }
+    .badge-note { display: flex; gap: 16px; align-items: flex-start; margin: 18px 0; }
+    .badge-note p { margin: 0; color: var(--muted); }
+    .badge { flex-shrink: 0; line-height: 0; }
+
+    footer {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 28px;
+      padding: 28px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem;
+    }
+    .site-pages { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 22px; }
+    .site-pages a { display: inline-block; padding: 4px 0; }
+    .site-pages a[aria-current="page"] { color: var(--text); text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="top">
+  <a class="home" href="./">George Véras Valentim</a>
+  <nav class="langs" aria-label="Languages on this page">
+    <a href="#en">English</a>
+    <a href="#fr" lang="fr">Français</a>
+    <a href="#pt" lang="pt-BR">Português</a>
+  </nav>
+</header>
+
+<main id="content" tabindex="-1">
+
+<section id="en" aria-labelledby="en-title">
+  <h1 id="en-title">Accessibility statement</h1>
+  <p class="lede">I built this site to conform to WCAG 2.2 at Level AA. This page says what that claim covers, how I checked it, and where it stops.</p>
+
+  <h2>The claim</h2>
+  <dl class="claim">
+    <dt>Standard</dt><dd><a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines (WCAG) 2.2</a></dd>
+    <dt>Level</dt><dd>AA</dd>
+    <dt>Date</dt><dd>23 September 2026</dd>
+    <dt>Pages</dt><dd>The portfolio home page, in English, French and Portuguese; the résumé as a web page; and this statement.</dd>
+    <dt>Not included</dt><dd>The résumés in PDF.</dd>
+    <dt>Relies on</dt><dd>HTML, CSS, JavaScript and WAI-ARIA.</dd>
+  </dl>
+  <div class="badge-note">
+    <a class="badge" href="https://www.w3.org/WAI/WCAG2AA-Conformance" title="Explanation of WCAG 2 Level AA conformance"><img height="31" width="88" src="wcag2.2AA.svg" alt="Level AA conformance, W3C Web Content Accessibility Guidelines 2.2"></a>
+    <p>The logo is a self-declaration. W3C publishes it for anyone to use and does not review or verify the claims made with it, which is why the rest of this page exists.</p>
+  </div>
+
+  <h2>How it was checked</h2>
+  <ul>
+    <li><strong>Automated rules.</strong> axe-core with the WCAG 2.2 Level A and AA rules, on the home page in all three languages, on the résumé and on this page.</li>
+    <li><strong>What rules cannot see, in a real browser.</strong> The layout at 320 pixels wide, text at 200 percent, the text spacing the standard asks for, visible focus using the actual Tab key, focus never hidden under the fixed navigation, 24 pixel targets, and the pause button really stopping everything that moves.</li>
+    <li><strong>By hand.</strong> All 55 Level A and AA success criteria, each with its result and the evidence behind it, in <a href="https://github.com/george-veras/george-veras.github.io/blob/main/.github/ACCESSIBILITY.md">the evaluation on GitHub</a>.</li>
+    <li>The automated checks run again on every change to the site.</li>
+  </ul>
+
+  <h2>What it does not cover</h2>
+  <ul>
+    <li>No testing with assistive technology. No screen reader was used, and no disabled person has tested this site.</li>
+    <li>No independent audit.</li>
+    <li>Automated testing finds roughly a third of what WCAG asks for. The evaluation by hand exists for that reason, and it is still no substitute for someone who depends on this.</li>
+  </ul>
+
+  <h2>Known limitations</h2>
+  <ul>
+    <li>In French and Portuguese, the navigation, headings and summaries are translated. The detailed work history, the quotes and a few notes are in English only, and they are marked as English so that a screen reader switches voice for them.</li>
+    <li>The eCNH screenshots show an app's screens, so they contain text. Each one is described in its alternative text.</li>
+    <li>The PDF résumés are outside this claim.</li>
+  </ul>
+
+  <h2>Feedback</h2>
+  <p>If something on this site gets in your way, email me at <a href="mailto:george.veras.valentim@gmail.com">george.veras.valentim@gmail.com</a> and tell me what you were trying to do.</p>
+</section>
+
+<section id="fr" lang="fr" aria-labelledby="fr-title">
+  <h2 id="fr-title">Déclaration d'accessibilité</h2>
+  <p class="lede">J'ai conçu ce site pour qu'il soit conforme aux WCAG 2.2, niveau AA. Cette page précise ce que couvre cette déclaration, comment je l'ai vérifiée et où elle s'arrête.</p>
+
+  <h3>La déclaration</h3>
+  <dl class="claim">
+    <dt>Norme</dt><dd><a href="https://www.w3.org/TR/WCAG22/" hreflang="en">Règles pour l'accessibilité des contenus Web (WCAG) 2.2</a></dd>
+    <dt>Niveau</dt><dd>AA</dd>
+    <dt>Date</dt><dd>23 septembre 2026</dd>
+    <dt>Pages</dt><dd>La page d'accueil du portfolio, en anglais, en français et en portugais ; le CV en page web ; et cette déclaration.</dd>
+    <dt>Hors périmètre</dt><dd>Les CV en PDF.</dd>
+    <dt>Technologies</dt><dd>HTML, CSS, JavaScript et WAI-ARIA.</dd>
+  </dl>
+  <p>Le logo W3C affiché plus haut est une autodéclaration. Le W3C le publie pour que chacun puisse l'utiliser et ne vérifie pas les déclarations qui l'emploient, d'où le reste de cette page.</p>
+
+  <h3>Comment elle a été vérifiée</h3>
+  <ul>
+    <li><strong>Règles automatiques.</strong> axe-core avec les règles de niveau A et AA des WCAG 2.2, sur la page d'accueil dans les trois langues, sur le CV et sur cette page.</li>
+    <li><strong>Ce que les règles ne voient pas, dans un vrai navigateur.</strong> La mise en page à 320 pixels de large, le texte à 200 %, l'espacement du texte demandé par la norme, le focus visible avec la vraie touche Tab, le focus jamais caché sous la navigation fixe, des cibles de 24 pixels, et le bouton pause qui arrête vraiment tout ce qui bouge.</li>
+    <li><strong>À la main.</strong> Les 55 critères de succès de niveau A et AA, chacun avec son résultat et sa justification, dans <a href="https://github.com/george-veras/george-veras.github.io/blob/main/.github/ACCESSIBILITY.md" hreflang="en">l'évaluation sur GitHub (en anglais)</a>.</li>
+    <li>Les vérifications automatiques sont relancées à chaque modification du site.</li>
+  </ul>
+
+  <h3>Ce qu'elle ne couvre pas</h3>
+  <ul>
+    <li>Aucun test avec des technologies d'assistance. Aucun lecteur d'écran n'a été utilisé, et aucune personne handicapée n'a testé ce site.</li>
+    <li>Aucun audit indépendant.</li>
+    <li>Les tests automatiques trouvent environ un tiers de ce que demandent les WCAG. L'évaluation à la main existe pour cette raison, et elle ne remplace pas pour autant une personne qui en dépend.</li>
+  </ul>
+
+  <h3>Limites connues</h3>
+  <ul>
+    <li>En français et en portugais, la navigation, les titres et les résumés sont traduits. Le parcours détaillé, les citations et quelques notes sont uniquement en anglais, et ils sont indiqués comme tels pour que le lecteur d'écran change de voix.</li>
+    <li>Les captures de l'eCNH montrent les écrans d'une application et contiennent donc du texte. Chacune est décrite dans son texte alternatif.</li>
+    <li>Les CV en PDF sont hors de cette déclaration.</li>
+  </ul>
+
+  <h3>Contact</h3>
+  <p>Si quelque chose sur ce site vous gêne, écrivez-moi à <a href="mailto:george.veras.valentim@gmail.com">george.veras.valentim@gmail.com</a> en expliquant ce que vous essayiez de faire.</p>
+</section>
+
+<section id="pt" lang="pt-BR" aria-labelledby="pt-title">
+  <h2 id="pt-title">Declaração de acessibilidade</h2>
+  <p class="lede">Construí este site para estar em conformidade com as WCAG 2.2 no nível AA. Esta página diz o que essa declaração cobre, como eu conferi e onde ela para.</p>
+
+  <h3>A declaração</h3>
+  <dl class="claim">
+    <dt>Norma</dt><dd><a href="https://www.w3.org/TR/WCAG22/" hreflang="en">Diretrizes de Acessibilidade para Conteúdo Web (WCAG) 2.2</a></dd>
+    <dt>Nível</dt><dd>AA</dd>
+    <dt>Data</dt><dd>23 de setembro de 2026</dd>
+    <dt>Páginas</dt><dd>A página inicial do portfólio, em inglês, francês e português; o currículo como página web; e esta declaração.</dd>
+    <dt>Fora do escopo</dt><dd>Os currículos em PDF.</dd>
+    <dt>Tecnologias</dt><dd>HTML, CSS, JavaScript e WAI-ARIA.</dd>
+  </dl>
+  <p>O selo do W3C mostrado acima é uma autodeclaração. O W3C o publica para qualquer pessoa usar e não revisa nem verifica as declarações feitas com ele, e é por isso que o resto desta página existe.</p>
+
+  <h3>Como foi conferido</h3>
+  <ul>
+    <li><strong>Regras automáticas.</strong> axe-core com as regras de nível A e AA das WCAG 2.2, na página inicial nos três idiomas, no currículo e nesta página.</li>
+    <li><strong>O que as regras não enxergam, num navegador de verdade.</strong> O layout com 320 pixels de largura, o texto a 200%, o espaçamento de texto que a norma pede, o foco visível usando a tecla Tab de verdade, o foco nunca escondido sob a navegação fixa, alvos de 24 pixels, e o botão de pausa parando de fato tudo o que se move.</li>
+    <li><strong>À mão.</strong> Os 55 critérios de sucesso de nível A e AA, cada um com o resultado e a evidência, na <a href="https://github.com/george-veras/george-veras.github.io/blob/main/.github/ACCESSIBILITY.md" hreflang="en">avaliação no GitHub (em inglês)</a>.</li>
+    <li>As verificações automáticas rodam de novo a cada mudança no site.</li>
+  </ul>
+
+  <h3>O que ela não cobre</h3>
+  <ul>
+    <li>Nenhum teste com tecnologia assistiva. Nenhum leitor de tela foi usado, e nenhuma pessoa com deficiência testou este site.</li>
+    <li>Nenhuma auditoria independente.</li>
+    <li>Testes automáticos encontram cerca de um terço do que as WCAG pedem. A avaliação à mão existe por isso, e mesmo assim não substitui alguém que depende disso.</li>
+  </ul>
+
+  <h3>Limitações conhecidas</h3>
+  <ul>
+    <li>Em francês e português, a navegação, os títulos e os resumos são traduzidos. O histórico profissional detalhado, as citações e algumas notas estão só em inglês, e estão marcados como inglês para que o leitor de tela troque de voz.</li>
+    <li>As capturas do eCNH mostram telas de um aplicativo, então contêm texto. Cada uma é descrita no seu texto alternativo.</li>
+    <li>Os currículos em PDF estão fora desta declaração.</li>
+  </ul>
+
+  <h3>Contato</h3>
+  <p>Se algo neste site atrapalhar você, me escreva em <a href="mailto:george.veras.valentim@gmail.com">george.veras.valentim@gmail.com</a> contando o que você tentava fazer.</p>
+</section>
+
+</main>
+
+<footer>
+  <a class="badge" href="https://www.w3.org/WAI/WCAG2AA-Conformance" title="Explanation of WCAG 2 Level AA conformance"><img height="31" width="88" src="wcag2.2AA.svg" alt="Level AA conformance, W3C Web Content Accessibility Guidelines 2.2"></a>
+  <nav class="site-pages" aria-label="Site pages">
+    <a href="./">Portfolio</a>
+    <a href="resume.html">Résumé</a>
+    <a href="accessibility.html" aria-current="page">Accessibility statement</a>
+  </nav>
+</footer>
+
+</body>
+</html>

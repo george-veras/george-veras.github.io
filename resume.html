@@ -80,13 +80,14 @@
     border-collapse: collapse;
     font-size: 9.5pt;
   }
-  table.skills tr:nth-child(even) td { background: #f4f8fc; }
-  table.skills td {
+  table.skills tr:nth-child(even) td, table.skills tr:nth-child(even) th { background: #f4f8fc; }
+  table.skills td, table.skills th {
     padding: 5px 10px;
     vertical-align: top;
     border: 1px solid #dce8f0;
   }
-  table.skills td:first-child {
+  table.skills th {
+    text-align: left;
     font-weight: 600;
     width: 30%;
     white-space: nowrap;
@@ -95,8 +96,8 @@
   /* At phone width the category column has to wrap, or the table pushes the page sideways
      (WCAG 1.4.10 reflow at 320px). */
   @media screen and (max-width: 480px) {
-    table.skills td { padding: 4px 6px; overflow-wrap: anywhere; }
-    table.skills td:first-child { white-space: normal; width: auto; }
+    table.skills td, table.skills th { padding: 4px 6px; overflow-wrap: anywhere; }
+    table.skills th { white-space: normal; width: auto; }
   }
 
   /* ── Work entries ── */
@@ -177,7 +178,17 @@
   .lang-list .lang strong { color: #1b4f72; }
 
   /* ── Print ── */
+  .site-footer {
+    margin-top: 32px; padding-top: 14px; border-top: 1px solid #dce8f0;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 26px;
+    font-size: 9.5pt;
+  }
+  .site-footer .site-pages { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+  .site-footer a { color: #1b4f72; text-underline-offset: 3px; display: inline-block; padding: 4px 0; }
+  .site-footer a[aria-current="page"] { color: #222; text-decoration: none; font-weight: 600; }
+  .site-footer .footer-badge { line-height: 0; }
   @media print {
+    .site-footer { display: none; }
     /* Aperto deliberado. Com o espacamento de tela este curriculo saia em
        CINCO paginas, e cinco paginas diluem justamente o sinal que o
        "Scope Beyond the Role" existe para dar. Cortar conteudo resolvia pouco:
@@ -189,7 +200,7 @@
     h2 { margin-bottom: 7px; padding-bottom: 2px; }
     .job { margin-bottom: 11px; }
     .job ul li, .accomplishments ul li { margin-bottom: 1px; font-size: 9.5pt; }
-    table.skills td { padding: 3px 8px; }
+    table.skills td, table.skills th { padding: 3px 8px; }
     a { color: #1b4f72 !important; }
     /* Nao quebrar uma experiencia no meio entre duas paginas. */
     .job { break-inside: avoid; }
@@ -309,11 +320,11 @@
 <section>
   <h2>Technical Summary</h2>
   <table class="skills">
-    <tr><td>Languages &amp; Runtime</td><td>JavaScript/TypeScript (18 years), Node.js, C# / .NET (9 years), Python, Golang, Java (Android), SQL</td></tr>
-    <tr><td>Product Engineering</td><td>React (7+ years), Redux, Storybook, component platforms and design systems, accessibility to <strong>WCAG 2.1 AA</strong>, testing (Jest, Cypress, Selenium)</td></tr>
-    <tr><td>Backend &amp; Architecture</td><td>NestJS, Express, Koa.js, Django, REST API design and versioning, microservice extraction from monolith, multi-tenant data and permission models, event-driven systems (RabbitMQ, SQS, Kinesis), Redis, Elasticsearch</td></tr>
-    <tr><td>Data, Cloud &amp; Operations</td><td>PostgreSQL, MySQL, MongoDB, Oracle, AWS (Lambda, SQS, S3, RDS, ECS), Azure Kubernetes (AKS), Docker, GitHub Actions, <strong>Grafana / Prometheus</strong></td></tr>
-    <tr><td>AI &amp; LLM Engineering</td><td>Production <strong>multi-agent</strong> system design (tool design, agent-to-agent handoff, human-in-the-loop escalation, evaluation and guardrails for agents acting on real client data), LLM applications on NestJS and PostgreSQL, and <strong>AI-assisted development at team scale</strong></td></tr>
+    <tr><th scope="row">Languages &amp; Runtime</th><td>JavaScript/TypeScript (18 years), Node.js, C# / .NET (9 years), Python, Golang, Java (Android), SQL</td></tr>
+    <tr><th scope="row">Product Engineering</th><td>React (7+ years), Redux, Storybook, component platforms and design systems, accessibility to <strong>WCAG 2.1 AA</strong>, testing (Jest, Cypress, Selenium)</td></tr>
+    <tr><th scope="row">Backend &amp; Architecture</th><td>NestJS, Express, Koa.js, Django, REST API design and versioning, microservice extraction from monolith, multi-tenant data and permission models, event-driven systems (RabbitMQ, SQS, Kinesis), Redis, Elasticsearch</td></tr>
+    <tr><th scope="row">Data, Cloud &amp; Operations</th><td>PostgreSQL, MySQL, MongoDB, Oracle, AWS (Lambda, SQS, S3, RDS, ECS), Azure Kubernetes (AKS), Docker, GitHub Actions, <strong>Grafana / Prometheus</strong></td></tr>
+    <tr><th scope="row">AI &amp; LLM Engineering</th><td>Production <strong>multi-agent</strong> system design (tool design, agent-to-agent handoff, human-in-the-loop escalation, evaluation and guardrails for agents acting on real client data), LLM applications on NestJS and PostgreSQL, and <strong>AI-assisted development at team scale</strong></td></tr>
   </table>
 </section>
 
@@ -469,6 +480,17 @@
      COURSES
 ════════════════════════════════════════════ -->
 
+<footer class="site-footer">
+  <!-- W3C asks for this exact link and alternative text, local copy or not -->
+  <a class="footer-badge" href="https://www.w3.org/WAI/WCAG2AA-Conformance" title="Explanation of WCAG 2 Level AA conformance">
+    <img height="31" width="88" src="wcag2.2AA.svg" alt="Level AA conformance, W3C Web Content Accessibility Guidelines 2.2">
+  </a>
+  <nav class="site-pages" aria-label="Site pages">
+    <a href="./">Portfolio</a>
+    <a href="resume.html" aria-current="page">Résumé</a>
+    <a href="accessibility.html">Accessibility statement</a>
+  </nav>
+</footer>
 
 </body>
 </html>
