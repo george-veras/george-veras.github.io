@@ -762,6 +762,8 @@
     }
     .press-item a:hover { text-decoration-color: var(--primary); }
     .press-when { font-size: 0.72rem; color: var(--muted); margin-left: 6px; }
+    /* One block per language for text with markup; the language switch shows one and hides the rest */
+    [data-lang][hidden] { display: none !important; }
     .press-note { font-size: 0.82rem; line-height: 1.6; color: var(--muted); margin: 4px 0 0; }
 
     /* ── Portrait carousel ── */
@@ -1147,7 +1149,7 @@
 <!-- ── HERO ── -->
 <div class="hero">
   <div class="hero-avatar">
-    <img src="george-veras-valentim.jpg" alt="George Véras Valentim smiling, wearing a React.js t-shirt" fetchpriority="high" width="120" height="120">
+    <img src="george-veras-valentim.jpg" alt="George Véras Valentim smiling, wearing a React.js t-shirt" data-i18n-alt="alt.photo" fetchpriority="high" width="120" height="120">
   </div>
   <h1>George <span class="gradient-text">Véras Valentim</span></h1>
   <p class="hero-location" data-i18n="hero.location">Senior Full Stack Engineer &amp; Technical Lead · Vancouver, BC</p>
@@ -1215,10 +1217,10 @@
       <div class="job-card-inner">
         <div class="job-meta">
           <div class="job-company">Flight Centre <span style="font-weight:400;color:var(--muted);font-size:0.85rem;">(WhereTo)</span></div>
-          <div class="job-dates">Dec 2022 to Present · Vancouver, BC</div>
+          <div class="job-dates" data-i18n="exp.fc.dates">Dec 2022 to Present · Vancouver, BC</div>
         </div>
-        <div class="job-role" role="heading" aria-level="3">Senior Full Stack Engineer</div>
-        <ul class="job-bullets">
+        <div class="job-role" role="heading" aria-level="3" data-i18n="exp.fc.role">Senior Full Stack Engineer</div>
+        <ul class="job-bullets" data-lang="en" lang="en">
           <li>Took ownership of the Invoices feature with <strong>nothing already built on the server side</strong>, built the entire backend from scratch over ~12 months, driving <strong>87% enterprise client adoption</strong> (1,198 of 1,709 active sites) and cutting support tickets by <strong>87%</strong> (avg. 10/month → 3/month after launch).</li>
           <li>Inherited full ownership of the platform's <strong>translation and localisation across 4 languages</strong> (English, French, Spanish, and UK English) with no handoff and no documentation when the previous owner left, delivered consistently every sprint for 3.5 years. Eventually <strong>automated the entire process</strong> so that new translations deploy to the product without any manual steps.</li>
           <li>Turned a <strong>forgotten, unused monitoring tool</strong>, no dashboards, no visibility into what was happening in production, no culture around it, into a <strong>company-wide standard</strong>. Built the first production dashboards across every major system owned; teams across the organisation independently adopted the practice as a delivery default.</li>
@@ -1229,12 +1231,44 @@
           <li>Noticed that <strong>enterprise clients were asking about accessibility</strong> in procurement evaluations and the product had no answer. Initiated and led the first accessibility programme in the platform's history, designing a 3-phase plan and delivering the foundation that all future accessibility work builds on.</li>
           <li>One of the earliest advocates for <strong>AI-assisted engineering tools</strong> on the team, applied AI to automate time-consuming tasks and shared findings with colleagues until the whole team adopted similar workflows, with teammates publicly crediting the shift in team retrospectives.</li>
         </ul>
+        <ul class="job-bullets" data-lang="pt" lang="pt-BR" hidden>
+          <li>Assumiu a funcionalidade de Faturas (Invoices) <strong>sem nada construído no lado do servidor</strong>, construiu todo o backend do zero em ~12 meses, levando a <strong>87% de adoção pelos clientes corporativos</strong> (1.198 de 1.709 sites ativos) e reduzindo os tickets de suporte em <strong>87%</strong> (média de 10/mês → 3/mês depois do lançamento).</li>
+          <li>Herdou a responsabilidade total pela <strong>tradução e localização da plataforma em 4 idiomas</strong> (inglês, francês, espanhol e inglês britânico), sem passagem de bastão nem documentação quando o responsável anterior saiu, e entregou em todos os sprints durante 3,5 anos. Depois <strong>automatizou o processo inteiro</strong>, e hoje as traduções novas chegam ao produto sem nenhum passo manual.</li>
+          <li>Transformou uma <strong>ferramenta de monitoramento esquecida e sem uso</strong>, sem dashboards, sem visibilidade do que acontecia em produção e sem cultura em torno dela, em um <strong>padrão da empresa inteira</strong>. Construiu os primeiros dashboards de produção em todos os principais sistemas do time; equipes de toda a organização adotaram a prática por conta própria como padrão de entrega.</li>
+          <li><strong>Único mantenedor e arquiteto</strong> do Instance Manager, o sistema interno responsável pela entrada de todo cliente corporativo, onde uma falha significa que nenhum cliente novo pode ser configurado. Quando o autor original saiu da empresa, passou a ser um dos dois engenheiros que o mantinham funcionando e, mais tarde, desenhou o plano completo de modernização, revisado e aprovado pela liderança técnica.</li>
+          <li>Foi o <strong>primeiro do time a trabalhar com o Claude Code</strong> e liderou a adoção para compreensão de código, revisão de arquitetura e cobertura de testes numa grande base legada, o que foi sobretudo questão de convencer engenheiros experientes a mudar a forma de trabalhar. Fora disso, desenhou e colocou em produção um <strong>sistema multiagente com LLMs</strong>: passagem de tarefas entre agentes, desenho de ferramentas, revisão humana em tudo que tem consequência, e avaliação e salvaguardas para agentes que agem sobre dados reais de clientes.</li>
+          <li>Um dos 3 engenheiros que construíram o <strong>sistema Security Alerts de ponta a ponta</strong> em 6 meses, a funcionalidade que detecta automaticamente incidentes de segurança que afetam viajantes corporativos no mundo todo e os avisa em tempo real por e-mail e notificação push. O único engenheiro a adicionar monitoramento em produção, dando à empresa sua <strong>primeira visão em tempo real de incidentes de segurança com viajantes no mundo</strong>, usada por 260+ pessoas em 200+ clientes corporativos.</li>
+          <li>Construiu a integração que conecta o WhereTo às <strong>contas financeiras corporativas dos clientes via Microsoft Dynamics 365</strong>, dando aos gestores de viagens corporativas visibilidade em tempo real dos extratos da conta dentro da própria plataforma. Foi uma das maiores entregas de uma única funcionalidade na história do produto, com suporte completo a vários países e várias moedas.</li>
+          <li>Percebeu que <strong>clientes corporativos perguntavam sobre acessibilidade</strong> nas avaliações de compra e o produto não tinha resposta. Criou e liderou o primeiro programa de acessibilidade da história da plataforma, desenhando um plano em 3 fases e entregando a fundação sobre a qual todo o trabalho de acessibilidade seguinte se apoia.</li>
+          <li>Um dos primeiros defensores de <strong>ferramentas de engenharia assistidas por IA</strong> no time: usou IA para automatizar tarefas demoradas e compartilhou os resultados com os colegas até o time inteiro adotar fluxos parecidos, com colegas creditando publicamente a mudança nas retrospectivas.</li>
+        </ul>
+        <ul class="job-bullets" data-lang="fr" lang="fr" hidden>
+          <li>Prise en charge de la fonctionnalité Invoices (factures) <strong>sans rien de construit côté serveur</strong> et construction de tout le backend de zéro en ~12 mois : <strong>87 % d'adoption par les clients entreprise</strong> (1 198 sur 1 709 sites actifs) et <strong>87 %</strong> de tickets de support en moins (moy. 10/mois → 3/mois après le lancement).</li>
+          <li>Reprise de l'entière responsabilité de la <strong>traduction et de la localisation de la plateforme en 4 langues</strong> (anglais, français, espagnol et anglais britannique), sans passation ni documentation au départ du responsable précédent, avec une livraison à chaque sprint pendant 3,5 ans, puis <strong>automatisation de tout le processus</strong> : les nouvelles traductions arrivent dans le produit sans aucune étape manuelle.</li>
+          <li>Transformation d'un <strong>outil de supervision oublié et inutilisé</strong>, sans tableaux de bord, sans visibilité sur la production et sans culture autour, en <strong>standard à l'échelle de l'entreprise</strong>. Création des premiers tableaux de bord de production sur chaque système majeur de l'équipe ; adoption spontanée de la pratique par les équipes de toute l'organisation comme standard de livraison.</li>
+          <li><strong>Seul mainteneur et architecte</strong> de l'Instance Manager, le système interne qui assure l'intégration de chaque client entreprise, où une panne signifie qu'aucun nouveau client ne peut être configuré. Après le départ de l'auteur d'origine, l'un des deux ingénieurs qui le faisaient tourner, puis concepteur du plan complet de modernisation, revu et approuvé par la direction technique.</li>
+          <li><strong>Premier de l'équipe à travailler avec Claude Code</strong> et moteur de son adoption pour la compréhension du code, la revue d'architecture et la couverture de tests sur un vaste code hérité, ce qui revenait surtout à convaincre des ingénieurs expérimentés de changer leur façon de travailler. En parallèle, conception et mise en production d'un <strong>système multi-agents à base de LLM</strong> : passage de relais entre agents, conception des outils, validation humaine pour tout ce qui a des conséquences, évaluation et garde-fous pour des agents qui agissent sur de vraies données clients.</li>
+          <li>L'un des 3 ingénieurs ayant construit le <strong>système Security Alerts de bout en bout</strong> en 6 mois, la fonctionnalité qui détecte automatiquement les incidents de sécurité touchant des voyageurs d'affaires dans le monde entier et les prévient en temps réel par e-mail et notification push. Le seul ingénieur à ajouter la supervision en production, donnant à l'entreprise sa <strong>première vue en temps réel des incidents de sécurité des voyageurs dans le monde</strong>, utilisée par plus de 260 personnes chez plus de 200 clients entreprise.</li>
+          <li>Construction de l'intégration qui relie WhereTo aux <strong>comptes financiers entreprise des clients via Microsoft Dynamics 365</strong>, avec, pour les gestionnaires de voyages d'affaires, une visibilité en temps réel sur leurs relevés de compte directement dans la plateforme : l'une des plus grosses livraisons d'une seule fonctionnalité de l'histoire du produit, avec une prise en charge complète de plusieurs pays et devises.</li>
+          <li>Lancement et direction du premier programme d'accessibilité de l'histoire de la plateforme, après avoir constaté que <strong>les clients entreprise posaient des questions sur l'accessibilité</strong> lors des évaluations d'achat, sans que le produit ait de réponse : plan en 3 phases et fondation sur laquelle repose tout le travail d'accessibilité qui a suivi.</li>
+          <li>L'un des premiers défenseurs des <strong>outils d'ingénierie assistés par l'IA</strong> dans l'équipe : utilisation de l'IA pour automatiser des tâches chronophages et partage des résultats avec les collègues jusqu'à l'adoption de méthodes semblables par toute l'équipe, un changement salué publiquement par les coéquipiers lors des rétrospectives.</li>
+        </ul>
         <div class="achievements-box">
-          <div class="ach-title">🏆 Major Accomplishments</div>
-          <ul>
+          <div class="ach-title" data-i18n="exp.ach">🏆 Major Accomplishments</div>
+          <ul data-lang="en" lang="en">
             <li>Inherited the <strong>Invoices feature with no backend in place</strong> and built it end-to-end over ~12 months. The result: <strong>87% of active enterprise clients</strong> adopted the feature (1,198 of 1,709 sites), and the volume of invoice-related support requests dropped by <strong>87%</strong>, from an average of 10 complaints per month down to 3.</li>
             <li>Joined a company with a monitoring tool already installed but completely unused, no dashboards, no visibility into production systems, no culture around it. Built the first monitoring dashboards from scratch, applied them to every system owned, and kept advocating until teams across the engineering organisation adopted the practice independently. <strong>What started as one person's initiative became a company-wide engineering standard.</strong></li>
             <li>When the original author of the <strong>Instance Manager</strong> left the company, became one of only two engineers responsible for keeping it running, the internal system that onboards every new enterprise client, with no backup if it breaks. Designed the complete plan to modernise it entirely alone: documented every risk, designed every component, estimated the full scope, and had it reviewed and approved by technical leadership. <strong>The migration is now underway.</strong></li>
+          </ul>
+          <ul data-lang="pt" lang="pt-BR" hidden>
+            <li>Herdou a <strong>funcionalidade de Faturas sem nenhum backend</strong> e a construiu de ponta a ponta em ~12 meses. O resultado: <strong>87% dos clientes corporativos ativos</strong> adotaram a funcionalidade (1.198 de 1.709 sites), e o volume de chamados de suporte sobre faturas caiu <strong>87%</strong>, de uma média de 10 reclamações por mês para 3.</li>
+            <li>Chegou a uma empresa com uma ferramenta de monitoramento já instalada, mas sem uso nenhum: sem dashboards, sem visibilidade dos sistemas em produção e sem cultura em torno dela. Construiu do zero os primeiros dashboards de monitoramento, aplicou-os a todos os sistemas do time e continuou defendendo a prática até que equipes de toda a engenharia a adotassem por conta própria. <strong>O que começou como iniciativa de uma pessoa virou padrão de engenharia da empresa inteira.</strong></li>
+            <li>Quando o autor original do <strong>Instance Manager</strong> saiu da empresa, passou a ser um dos dois únicos engenheiros responsáveis por mantê-lo funcionando, o sistema interno por onde entra todo cliente corporativo novo, sem plano B se ele quebrar. Desenhou sozinho o plano completo de modernização: documentou cada risco, projetou cada componente, estimou o escopo inteiro e levou o plano à revisão e aprovação da liderança técnica. <strong>A migração já está em andamento.</strong></li>
+          </ul>
+          <ul data-lang="fr" lang="fr" hidden>
+            <li>Reprise de la <strong>fonctionnalité Invoices sans aucun backend</strong> et construction de bout en bout en ~12 mois. Résultat : <strong>87 % des clients entreprise actifs</strong> ont adopté la fonctionnalité (1 198 sur 1 709 sites), et le volume de demandes de support liées aux factures a baissé de <strong>87 %</strong>, d'une moyenne de 10 plaintes par mois à 3.</li>
+            <li>Arrivée dans une entreprise où un outil de supervision était déjà installé mais totalement inutilisé : aucun tableau de bord, aucune visibilité sur les systèmes en production, aucune culture autour. Création de zéro des premiers tableaux de bord de supervision, appliqués à chaque système de l'équipe, et plaidoyer continu jusqu'à l'adoption spontanée de la pratique par les équipes de toute l'organisation d'ingénierie. <strong>Ce qui a commencé comme l'initiative d'une seule personne est devenu un standard d'ingénierie pour toute l'entreprise.</strong></li>
+            <li>Après le départ de l'auteur d'origine de l'<strong>Instance Manager</strong>, l'un des deux seuls ingénieurs chargés de le faire tourner, le système interne par lequel passe chaque nouveau client entreprise, sans solution de secours en cas de panne. Conception, seul, du plan complet de sa modernisation : documentation de chaque risque, conception de chaque composant, estimation de l'ensemble du périmètre, revue et approbation par la direction technique. <strong>La migration est en cours.</strong></li>
           </ul>
         </div>
         <div class="job-stack">
@@ -1248,13 +1282,23 @@
       <div class="job-card-inner">
         <div class="job-meta">
           <div class="job-company">Jungle Scout <span style="font-weight:400;color:var(--muted);font-size:0.85rem;">(Downstream / Ad Tech)</span></div>
-          <div class="job-dates">Jul 2021 to Oct 2022 · Vancouver, BC</div>
+          <div class="job-dates" data-i18n="exp.js.dates">Jul 2021 to Oct 2022 · Vancouver, BC</div>
         </div>
-        <div class="job-role" role="heading" aria-level="3">Frontend (React) Engineer</div>
-        <ul class="job-bullets">
+        <div class="job-role" role="heading" aria-level="3" data-i18n="exp.js.role">Frontend (React) Engineer</div>
+        <ul class="job-bullets" data-lang="en" lang="en">
           <li><strong>Sole front-end engineer</strong> on Downstream, Jungle Scout's acquired Ad Tech subsidiary, independently owned the entire React codebase for over a year.</li>
           <li>Introduced and built <strong>Storybook</strong> from the ground up with <strong>100+ reusable components</strong>, progressively adopted across the wider Jungle Scout organisation.</li>
           <li>Mentored and onboarded the team's second front-end engineer, establishing component standards and documentation for a smooth handoff.</li>
+        </ul>
+        <ul class="job-bullets" data-lang="pt" lang="pt-BR" hidden>
+          <li><strong>Único engenheiro front-end</strong> da Downstream, subsidiária de Ad Tech adquirida pela Jungle Scout; foi dono de toda a base de código React por mais de um ano.</li>
+          <li>Introduziu e construiu o <strong>Storybook</strong> do zero, com <strong>mais de 100 componentes reutilizáveis</strong>, adotados aos poucos em toda a Jungle Scout.</li>
+          <li>Orientou e integrou o segundo engenheiro front-end do time, estabelecendo padrões de componentes e documentação para uma passagem de bastão tranquila.</li>
+        </ul>
+        <ul class="job-bullets" data-lang="fr" lang="fr" hidden>
+          <li><strong>Seul ingénieur front-end</strong> de Downstream, filiale Ad Tech rachetée par Jungle Scout, responsable de toute la base de code React pendant plus d'un an.</li>
+          <li>Introduction et construction de <strong>Storybook</strong> de zéro, avec <strong>plus de 100 composants réutilisables</strong>, adoptés progressivement dans toute l'organisation Jungle Scout.</li>
+          <li>Encadrement et intégration du deuxième ingénieur front-end de l'équipe, avec des standards de composants et une documentation pour une passation en douceur.</li>
         </ul>
         <div class="job-stack">
           <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Storybook</span><span class="tag">Django</span><span class="tag">Docker</span><span class="tag">AWS</span>
@@ -1267,13 +1311,23 @@
       <div class="job-card-inner">
         <div class="job-meta">
           <div class="job-company">Wonder</div>
-          <div class="job-dates">Dec 2020 to May 2021 · New York (remote)</div>
+          <div class="job-dates" data-i18n="exp.wonder.dates">Dec 2020 to May 2021 · New York (remote)</div>
         </div>
-        <div class="job-role" role="heading" aria-level="3">Full Stack TypeScript Engineer</div>
-        <ul class="job-bullets">
+        <div class="job-role" role="heading" aria-level="3" data-i18n="exp.wonder.role">Full Stack TypeScript Engineer</div>
+        <ul class="job-bullets" data-lang="en" lang="en">
           <li>Joined at the founding stage of a <strong>Chrome extension</strong> that intelligently deep-crawled Google results to surface page-level summaries, dramatically cutting research time for <strong>journalists and academics</strong>.</li>
           <li>One of <strong>4 engineers</strong> on a near-greenfield codebase; built features across the full stack from React frontend to the Node.js microservice mesh powering the crawler.</li>
           <li>Introduced <strong>Storybook</strong> and built the product's <strong>dark theme</strong>, improving developer experience and UI polish.</li>
+        </ul>
+        <ul class="job-bullets" data-lang="pt" lang="pt-BR" hidden>
+          <li>Entrou na fase de fundação de uma <strong>extensão para o Chrome</strong> que rastreava em profundidade os resultados do Google e resumia cada página, reduzindo drasticamente o tempo de pesquisa de <strong>jornalistas e acadêmicos</strong>.</li>
+          <li>Um dos <strong>4 engenheiros</strong> numa base de código quase nova; construiu funcionalidades em toda a stack, do front-end React à malha de microsserviços Node.js que movia o rastreador.</li>
+          <li>Introduziu o <strong>Storybook</strong> e construiu o <strong>tema escuro</strong> do produto, melhorando a experiência de desenvolvimento e o acabamento da interface.</li>
+        </ul>
+        <ul class="job-bullets" data-lang="fr" lang="fr" hidden>
+          <li>Arrivée en phase de fondation d'une <strong>extension Chrome</strong> qui explorait en profondeur les résultats Google pour en résumer chaque page, réduisant considérablement le temps de recherche des <strong>journalistes et universitaires</strong>.</li>
+          <li>L'un des <strong>4 ingénieurs</strong> sur une base de code presque vierge : développement de fonctionnalités sur toute la pile, du front-end React au maillage de microservices Node.js qui faisait tourner le robot d'exploration.</li>
+          <li>Introduction de <strong>Storybook</strong> et création du <strong>thème sombre</strong> du produit, pour une meilleure expérience développeur et une interface plus soignée.</li>
         </ul>
         <div class="job-stack">
           <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Koa.js</span><span class="tag">Storybook</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Serverless</span><span class="tag">Redis</span><span class="tag">AWS</span>
@@ -1286,14 +1340,26 @@
       <div class="job-card-inner">
         <div class="job-meta">
           <div class="job-company">B2W Digital</div>
-          <div class="job-dates">Mar 2018 to Dec 2020 · Rio de Janeiro</div>
+          <div class="job-dates" data-i18n="exp.b2w.dates">Mar 2018 to Dec 2020 · Rio de Janeiro</div>
         </div>
-        <div class="job-role" role="heading" aria-level="3">Senior Backend Engineer</div>
-        <ul class="job-bullets">
+        <div class="job-role" role="heading" aria-level="3" data-i18n="exp.b2w.role">Senior Backend Engineer</div>
+        <ul class="job-bullets" data-lang="en" lang="en">
           <li>Built a fleet of <strong>7 domain-specific microservices</strong> (ad search, finances, user management, and more) powering ad delivery across Americanas, Submarino, and Shoptime, Latin America's largest e-commerce group.</li>
           <li>Engineered a system sustaining <strong>peaks of 1,200 ads/second</strong> during Black Friday, with auto-scaling infrastructure that adjusted dynamically based on season.</li>
           <li>Contributed to the infrastructure migration from <strong>Marathon/Mesos to Kubernetes</strong>, improving reliability and scalability of the ad platform.</li>
           <li>The team's architecture became a <strong>reference model adopted company-wide</strong> across B2W.</li>
+        </ul>
+        <ul class="job-bullets" data-lang="pt" lang="pt-BR" hidden>
+          <li>Construiu um conjunto de <strong>7 microsserviços de domínio</strong> (busca de anúncios, finanças, gestão de usuários e outros) que alimentavam a entrega de anúncios na Americanas, no Submarino e no Shoptime, o maior grupo de e-commerce da América Latina.</li>
+          <li>Projetou um sistema que sustentava <strong>picos de 1.200 anúncios por segundo</strong> na Black Friday, com infraestrutura de auto-scaling que se ajustava conforme a sazonalidade.</li>
+          <li>Contribuiu para a migração da infraestrutura de <strong>Marathon/Mesos para Kubernetes</strong>, melhorando a confiabilidade e a escalabilidade da plataforma de anúncios.</li>
+          <li>A arquitetura do time virou <strong>modelo de referência adotado em toda a B2W</strong>.</li>
+        </ul>
+        <ul class="job-bullets" data-lang="fr" lang="fr" hidden>
+          <li>Construction d'un ensemble de <strong>7 microservices métier</strong> (recherche publicitaire, finances, gestion des utilisateurs, entre autres) assurant la diffusion publicitaire sur Americanas, Submarino et Shoptime, le plus grand groupe d'e-commerce d'Amérique latine.</li>
+          <li>Conception d'un système soutenant des <strong>pics de 1 200 publicités par seconde</strong> pendant le Black Friday, avec une infrastructure à mise à l'échelle automatique ajustée selon la saison.</li>
+          <li>Participation à la migration de l'infrastructure de <strong>Marathon/Mesos vers Kubernetes</strong>, pour une plateforme publicitaire plus fiable et plus scalable.</li>
+          <li>L'architecture de l'équipe est devenue un <strong>modèle de référence adopté dans toute B2W</strong>.</li>
         </ul>
         <div class="job-stack">
           <span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Jenkins</span><span class="tag">RabbitMQ</span><span class="tag">Redis</span><span class="tag">AWS</span><span class="tag">Google Cloud</span>
@@ -1306,13 +1372,23 @@
       <div class="job-card-inner">
         <div class="job-meta">
           <div class="job-company">Panorante</div>
-          <div class="job-dates">Nov 2016 to Mar 2018 · Rio de Janeiro</div>
+          <div class="job-dates" data-i18n="exp.pan.dates">Nov 2016 to Mar 2018 · Rio de Janeiro</div>
         </div>
-        <div class="job-role" role="heading" aria-level="3">Founder &amp; Engineer</div>
-        <ul class="job-bullets">
+        <div class="job-role" role="heading" aria-level="3" data-i18n="exp.pan.role">Founder &amp; Engineer</div>
+        <ul class="job-bullets" data-lang="en" lang="en">
           <li>Founded and built a <strong>LinkedIn-style platform</strong> for construction and renovation professionals, architects, designers, painters, and electricians could create portfolio profiles and be discovered by clients.</li>
           <li>Took product from zero to <strong>4 paying clients</strong>, handling product design, engineering, marketing, and UX independently.</li>
           <li>Implemented advanced SEO with <strong>JSON-LD structured data</strong> and built with screen-reader accessibility as a first-class concern.</li>
+        </ul>
+        <ul class="job-bullets" data-lang="pt" lang="pt-BR" hidden>
+          <li>Fundou e construiu uma <strong>plataforma no estilo do LinkedIn</strong> para profissionais de construção e reforma: arquitetos, designers, pintores e eletricistas criavam perfis de portfólio e eram encontrados por clientes.</li>
+          <li>Levou o produto do zero a <strong>4 clientes pagantes</strong>, cuidando sozinho do design de produto, da engenharia, do marketing e da UX.</li>
+          <li>Implementou SEO avançado com <strong>dados estruturados JSON-LD</strong> e tratou a acessibilidade para leitores de tela como prioridade desde o início.</li>
+        </ul>
+        <ul class="job-bullets" data-lang="fr" lang="fr" hidden>
+          <li>Fondation et construction d'une <strong>plateforme dans l'esprit de LinkedIn</strong> pour les professionnels du bâtiment et de la rénovation : architectes, designers, peintres et électriciens y créaient un profil portfolio et se faisaient trouver par des clients.</li>
+          <li>De zéro à <strong>4 clients payants</strong> : conception produit, ingénierie, marketing et UX, entièrement en solo.</li>
+          <li>Mise en place d'un SEO avancé avec des <strong>données structurées JSON-LD</strong>, et accessibilité aux lecteurs d'écran traitée comme une priorité dès le départ.</li>
         </ul>
         <div class="job-stack">
           <span class="tag">.Net/C#</span><span class="tag">Node.js</span><span class="tag">Golang</span><span class="tag">React PWA</span><span class="tag">AWS</span>
@@ -1325,21 +1401,43 @@
       <div class="job-card-inner">
         <div class="job-meta">
           <div class="job-company">VALID</div>
-          <div class="job-dates">Oct 2011 to Oct 2016 · Rio de Janeiro</div>
+          <div class="job-dates" data-i18n="exp.valid.dates">Oct 2011 to Oct 2016 · Rio de Janeiro</div>
         </div>
-        <div class="job-role" role="heading" aria-level="3">Technical Leader &amp; Senior Engineering Architect</div>
-        <ul class="job-bullets">
+        <div class="job-role" role="heading" aria-level="3" data-i18n="exp.valid.role">Technical Leader &amp; Senior Engineering Architect</div>
+        <ul class="job-bullets" data-lang="en" lang="en">
           <li>Five years at Brazil's largest identity and information security company, serving federal government clients on a <strong>team of 10</strong>.</li>
           <li>Acted as <strong>senior engineering architect</strong>, designed the architecture of most systems and coordinated the developers who implemented them.</li>
           <li>Built and trained the company's <strong>first dedicated front-end team</strong> from scratch, introducing JavaScript, Angular, Sass, and Scrum.</li>
           <li>Concurrently taught a C#.Net course at Digidata (Mar to Aug 2012).</li>
         </ul>
+        <ul class="job-bullets" data-lang="pt" lang="pt-BR" hidden>
+          <li>Cinco anos na maior empresa brasileira de identificação e segurança da informação, atendendo clientes do governo federal numa <strong>equipe de 10 pessoas</strong>.</li>
+          <li>Atuou como <strong>arquiteto de engenharia sênior</strong>: projetou a arquitetura da maioria dos sistemas e coordenou os desenvolvedores que os implementaram.</li>
+          <li>Montou do zero e treinou a <strong>primeira equipe front-end dedicada</strong> da empresa, introduzindo JavaScript, Angular, Sass e Scrum.</li>
+          <li>Em paralelo, deu um curso de C#.Net na Digidata (mar. a ago. 2012).</li>
+        </ul>
+        <ul class="job-bullets" data-lang="fr" lang="fr" hidden>
+          <li>Cinq ans au sein du plus grand groupe brésilien d'identification et de sécurité de l'information, au service de clients du gouvernement fédéral, dans une <strong>équipe de 10 personnes</strong>.</li>
+          <li>Rôle d'<strong>architecte d'ingénierie senior</strong> : conception de l'architecture de la plupart des systèmes et coordination des développeurs qui les ont mis en œuvre.</li>
+          <li>Constitution de zéro et formation de la <strong>première équipe front-end dédiée</strong> de l'entreprise, avec l'introduction de JavaScript, Angular, Sass et Scrum.</li>
+          <li>En parallèle, enseignement d'un cours de C#.Net chez Digidata (mars à août 2012).</li>
+        </ul>
         <div class="achievements-box">
-          <div class="ach-title">🏆 Major Accomplishments</div>
-          <ul>
+          <div class="ach-title" data-i18n="exp.ach">🏆 Major Accomplishments</div>
+          <ul data-lang="en" lang="en">
             <li>Developed the <strong>first Brazilian government document production line in the cloud</strong>, Angular SPA consuming a microservices backend.</li>
             <li>Designed and built <strong>eCNH</strong> alone in 2016, the first working version of Brazil's digital driver's license: an Android app showing the license with a signed QR code, and an officers' app that verifies it offline. VALID presented it to the federal government in Brasília; SERPRO, the federal data service, took over the design and built the national system, now carried by <strong>40M+ Brazilians</strong>.</li>
             <li>Designed the <strong>QR code security element</strong> on every new Brazilian driver's license since 2017: tested QR versions until one fit on the card, recovered well from damage and still carried a low-resolution copy of the driver's photo, which defeats photo-swap forgery.</li>
+          </ul>
+          <ul data-lang="pt" lang="pt-BR" hidden>
+            <li>Desenvolveu a <strong>primeira linha de produção de documentos do governo brasileiro na nuvem</strong>, uma SPA em Angular consumindo um backend de microsserviços.</li>
+            <li>Projetou e construiu sozinho a <strong>eCNH</strong> em 2016, a primeira versão funcionando da carteira de motorista digital do Brasil: um app Android que mostra a CNH com um QR Code assinado, e um app para os agentes que o verifica offline. A VALID apresentou a solução ao governo federal em Brasília; o SERPRO, empresa federal de processamento de dados, assumiu o desenho e construiu o sistema nacional, hoje no bolso de <strong>mais de 40 milhões de brasileiros</strong>.</li>
+            <li>Desenhou o <strong>QR Code de segurança</strong> presente em toda CNH nova desde 2017: testou versões de QR até chegar a uma que coubesse no cartão, se recuperasse bem de danos e ainda levasse uma cópia da foto do motorista em baixa resolução, o que derruba a fraude por troca de foto.</li>
+          </ul>
+          <ul data-lang="fr" lang="fr" hidden>
+            <li>Développement de la <strong>première chaîne de production de documents du gouvernement brésilien dans le cloud</strong>, une SPA Angular consommant un backend en microservices.</li>
+            <li>Conception et construction, seul, d'<strong>eCNH</strong> en 2016, la première version fonctionnelle du permis de conduire numérique brésilien : une application Android qui affiche le permis avec un QR code signé, et une application pour les agents qui le vérifie hors ligne. Présentation par VALID au gouvernement fédéral à Brasília ; le SERPRO, le service fédéral de traitement des données, a ensuite repris la conception et construit le système national, aujourd'hui porté par <strong>plus de 40 millions de Brésiliens</strong>.</li>
+            <li>Conception de l'<strong>élément de sécurité QR code</strong> présent sur chaque nouveau permis brésilien depuis 2017 : essais de versions de QR jusqu'à en trouver une qui tienne sur la carte, résiste bien aux dommages et porte encore une copie basse résolution de la photo du conducteur, ce qui déjoue la fraude par substitution de photo.</li>
           </ul>
         </div>
         <div class="job-stack">
@@ -1355,18 +1453,18 @@
         <dl>
         <div class="early-row">
           <dt class="co">Oi Telecom</dt>
-          <dd class="ro">Systems Analyst / Consultant</dd>
-          <dd class="dt">Mar 2010 to Oct 2011</dd>
+          <dd class="ro" data-i18n="exp.oi.role">Systems Analyst / Consultant</dd>
+          <dd class="dt" data-i18n="exp.oi.dates">Mar 2010 to Oct 2011</dd>
         </div>
         <div class="early-row">
           <dt class="co">Spiderware</dt>
-          <dd class="ro">Software Developer</dd>
-          <dd class="dt">Apr 2008 to Mar 2010</dd>
+          <dd class="ro" data-i18n="exp.spider.role">Software Developer</dd>
+          <dd class="dt" data-i18n="exp.spider.dates">Apr 2008 to Mar 2010</dd>
         </div>
         <div class="early-row">
           <dt class="co">Oswaldo Cruz Foundation</dt>
-          <dd class="ro">Web &amp; Database Scholarship</dd>
-          <dd class="dt">Mar 2006 to Oct 2007</dd>
+          <dd class="ro" data-i18n="exp.fiocruz.role">Web &amp; Database Scholarship</dd>
+          <dd class="dt" data-i18n="exp.fiocruz.dates">Mar 2006 to Oct 2007</dd>
         </div>
         </dl>
       </div>
@@ -1384,27 +1482,27 @@
   <div class="testimonials-grid">
     <div class="tcard reveal">
       <blockquote class="tcard-quote">"Much deserved shoutout to you George, you did an amazing work on the Invoices Grafana Dashboard. Not only it helps the product team to get a holistic view of how the feature is used, it helps the QA team to get valuable insights."</blockquote>
-      <div class="tcard-author"><span class="tcard-name">Sankhopriya Saha</span><span class="tcard-role">QA Manager · Slack kudos channel, August 2025</span></div>
+      <div class="tcard-author"><span class="tcard-name">Sankhopriya Saha</span><span class="tcard-role" data-i18n="tm.1.role">QA Manager · Slack kudos channel, August 2025</span></div>
     </div>
     <div class="tcard reveal reveal-delay-1">
       <blockquote class="tcard-quote">"Engineering shout-out to George for working together while on vacation to solve the missing translations in prod! Going over and above to solve the world's problems!"</blockquote>
-      <div class="tcard-author"><span class="tcard-name">Eric Schoonmaker</span><span class="tcard-role">Engineering Manager · Slack kudos channel, September 2025</span></div>
+      <div class="tcard-author"><span class="tcard-name">Eric Schoonmaker</span><span class="tcard-role" data-i18n="tm.2.role">Engineering Manager · Slack kudos channel, September 2025</span></div>
     </div>
     <div class="tcard reveal reveal-delay-2">
       <blockquote class="tcard-quote">"Shout out to George jumping on unexpected tickets even frontend. Helping team to pass regression!"</blockquote>
-      <div class="tcard-author"><span class="tcard-name">Dmitriy Malets</span><span class="tcard-role">Technical Leader · Sprint 124 Retrospective</span></div>
+      <div class="tcard-author"><span class="tcard-name">Dmitriy Malets</span><span class="tcard-role" data-i18n="tm.3.role">Technical Leader · Sprint 124 Retrospective</span></div>
     </div>
     <div class="tcard reveal">
       <blockquote class="tcard-quote">"George, cheers on taking on the urgent Booking Report changes and adopting your code to their needs later in the sprint. This was a higher up ticket so it was nice to take it on and promptly solve it."</blockquote>
-      <div class="tcard-author"><span class="tcard-name">Jessica</span><span class="tcard-role">Product Manager · Sprint 121 Retrospective</span></div>
+      <div class="tcard-author"><span class="tcard-name">Jessica</span><span class="tcard-role" data-i18n="tm.4.role">Product Manager · Sprint 121 Retrospective</span></div>
     </div>
     <div class="tcard reveal reveal-delay-1">
       <blockquote class="tcard-quote">"We have started big initiative to migrate K2 to microservices. Kudo to George to gather everyone to review."</blockquote>
-      <div class="tcard-author"><span class="tcard-name">Dmitriy Malets</span><span class="tcard-role">Technical Leader · Sprint 137 Retrospective</span></div>
+      <div class="tcard-author"><span class="tcard-name">Dmitriy Malets</span><span class="tcard-role" data-i18n="tm.5.role">Technical Leader · Sprint 137 Retrospective</span></div>
     </div>
     <div class="tcard reveal reveal-delay-2">
       <blockquote class="tcard-quote">"KUDOS to @george for being super on top of the report and owning the process. That is extremely important!"</blockquote>
-      <div class="tcard-author"><span class="tcard-name">Jessica</span><span class="tcard-role">Product Manager · Sprint 131 Retrospective</span></div>
+      <div class="tcard-author"><span class="tcard-name">Jessica</span><span class="tcard-role" data-i18n="tm.6.role">Product Manager · Sprint 131 Retrospective</span></div>
     </div>
   </div>
 </section>
@@ -1427,11 +1525,25 @@
         <div class="hf-text">
           <div class="highlight-icon">🪪</div>
           <div class="highlight-number">40M+</div>
-          <div class="highlight-title">eCNH, Brazil's Digital Driver's License</div>
+          <div class="highlight-title" data-i18n="hl.ecnh.title">eCNH, Brazil's Digital Driver's License</div>
+          <div data-lang="en" lang="en">
           <p class="highlight-desc" style="margin-bottom:16px;"><strong style="color:var(--accent)">Built alone, in 2016.</strong> At VALID I designed and built the first working version of Brazil's digital driver's license by myself: an Android app that shows the license with a signed <strong style="color:var(--text)">QR code</strong>, and an app for traffic officers that reads that code, printed on the card or shown on the phone, and checks its signature with no connection at all. VALID presented it to the federal government in Brasília.</p>
           <p class="highlight-desc" style="margin-bottom:16px;">The QR code was my design too. Over many meetings we tested QR versions of different sizes until we found one that fit on the card, recovered well from damage, and could still carry a low-resolution copy of the driver's photo inside the code, which defeats one of the most common forgeries, a swapped picture.</p>
           <p class="highlight-desc" style="margin-bottom:16px;">The signing keys for a national document have to sit in a hardware security module held by a public body, so the project went to SERPRO, the federal data processing service, which took over the design and built the production system. Since May 2017 every new license carries the QR code, with the license data and the driver's photo, and the digital license app was approved that July. Today more than <strong style="color:var(--text)">40 million Brazilians</strong> carry that app, CNH do Brasil, on their phones, and it started as the version I built with my own hands.</p>
           <p class="highlight-desc">Ten years later I solved the officer's side of that problem again, in the open, on the standard that now exists for it: <a href="#opensource">qredential</a>.</p>
+          </div>
+          <div data-lang="pt" lang="pt-BR" hidden>
+          <p class="highlight-desc" style="margin-bottom:16px;"><strong style="color:var(--accent)">Sozinho, em 2016.</strong> Na VALID, projetei e construí sozinho a primeira versão funcionando da carteira de motorista digital do Brasil: um app Android que mostra a CNH com um <strong style="color:var(--text)">QR Code</strong> assinado, e um app para agentes de trânsito que lê esse código, impresso no cartão ou exibido no celular, e confere a assinatura sem nenhuma conexão. A VALID apresentou a solução ao governo federal em Brasília.</p>
+          <p class="highlight-desc" style="margin-bottom:16px;">O QR Code também foi desenho meu. Em muitas reuniões, testamos versões de QR de tamanhos diferentes até achar uma que coubesse no cartão, se recuperasse bem de danos e ainda conseguisse levar dentro do código uma cópia da foto do motorista em baixa resolução, o que derruba uma das fraudes mais comuns, a troca de foto.</p>
+          <p class="highlight-desc" style="margin-bottom:16px;">As chaves de assinatura de um documento nacional precisam ficar num módulo de segurança de hardware (HSM) sob a guarda de um órgão público, então o projeto foi para o SERPRO, a empresa federal de processamento de dados, que assumiu o desenho e construiu o sistema de produção. Desde maio de 2017 toda CNH nova traz o QR Code, com os dados da carteira e a foto do motorista, e o app da carteira digital foi aprovado em julho do mesmo ano. Hoje mais de <strong style="color:var(--text)">40 milhões de brasileiros</strong> levam esse app, o CNH do Brasil, no celular, e ele começou como a versão que eu construí com as minhas próprias mãos.</p>
+          <p class="highlight-desc">Dez anos depois, resolvi de novo o lado do agente nesse problema, em código aberto, sobre o padrão que hoje existe para isso: <a href="#opensource">qredential</a>.</p>
+          </div>
+          <div data-lang="fr" lang="fr" hidden>
+          <p class="highlight-desc" style="margin-bottom:16px;"><strong style="color:var(--accent)">Seul, en 2016.</strong> Chez VALID, j'ai conçu et construit seul la première version fonctionnelle du permis de conduire numérique brésilien : une application Android qui affiche le permis avec un <strong style="color:var(--text)">QR code</strong> signé, et une application pour les agents de la circulation qui lit ce code, imprimé sur la carte ou affiché sur le téléphone, et vérifie sa signature sans aucune connexion. VALID l'a présentée au gouvernement fédéral à Brasília.</p>
+          <p class="highlight-desc" style="margin-bottom:16px;">Le QR code, c'est aussi moi qui l'ai conçu. Au fil de nombreuses réunions, nous avons testé des versions de QR de différentes tailles jusqu'à en trouver une qui tienne sur la carte, résiste bien aux dommages et puisse encore porter une copie basse résolution de la photo du conducteur à l'intérieur du code, ce qui déjoue l'une des fraudes les plus courantes, la substitution de photo.</p>
+          <p class="highlight-desc" style="margin-bottom:16px;">Les clés de signature d'un document national doivent résider dans un module de sécurité matériel (HSM) détenu par un organisme public ; le projet est donc passé au SERPRO, le service fédéral de traitement des données, qui a repris la conception et construit le système de production. Depuis mai 2017, chaque nouveau permis porte le QR code, avec les données du permis et la photo du conducteur, et l'application du permis numérique a été approuvée en juillet de la même année. Aujourd'hui, plus de <strong style="color:var(--text)">40 millions de Brésiliens</strong> ont cette application, CNH do Brasil, sur leur téléphone, et elle a commencé comme la version que j'ai construite de mes propres mains.</p>
+          <p class="highlight-desc">Dix ans plus tard, j'ai de nouveau résolu le côté agent de ce problème, en open source, sur le standard qui existe désormais pour cela : <a href="#opensource">qredential</a>.</p>
+          </div>
         </div>
 
         <!-- Right column: portrait carousel + document image -->
@@ -1441,14 +1553,14 @@
             <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3" data-i18n-aria="aria.slide1">
               <picture>
                 <source srcset="ecnh-brasil-app-serpro-official.webp" type="image/webp">
-                <img src="ecnh-brasil-app-serpro-official.png" alt="Hand holding a smartphone displaying the official CNH do Brasil app logo, with a car blurred in the background" loading="lazy" width="768" height="401">
+                <img src="ecnh-brasil-app-serpro-official.png" alt="Hand holding a smartphone displaying the official CNH do Brasil app logo, with a car blurred in the background" data-i18n-alt="alt.ecnh1" loading="lazy" width="768" height="401">
               </picture>
             </div>
             <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3" data-i18n-aria="aria.slide2">
-              <img src="ecnh-cnh-do-brasil-app-screenshot.jpg" alt="Smartphone screen showing the CNH do Brasil app onboarding page, featuring a woman holding a digital driver's license card" loading="lazy" width="800" height="450">
+              <img src="ecnh-cnh-do-brasil-app-screenshot.jpg" alt="Smartphone screen showing the CNH do Brasil app onboarding page, featuring a woman holding a digital driver's license card" data-i18n-alt="alt.ecnh2" loading="lazy" width="800" height="450">
             </div>
             <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3" data-i18n-aria="aria.slide3">
-              <img src="ecnh-digital-drivers-license-security.jpg" alt="Smartphone displaying a digital CNH driver's license inside the eCNH app, showing document details and photo" loading="lazy" width="984" height="537">
+              <img src="ecnh-digital-drivers-license-security.jpg" alt="Smartphone displaying a digital CNH driver's license inside the eCNH app, showing document details and photo" data-i18n-alt="alt.ecnh3" loading="lazy" width="984" height="537">
             </div>
           </div>
           <div class="carousel-caption" id="ecnh-caption" aria-live="polite" aria-atomic="true" data-i18n-dynamic>CNH do Brasil, official app by SERPRO</div>
@@ -1513,7 +1625,7 @@
               <span style="color:#009B3A">gov</span><span style="color:#aaa">.</span><span style="color:#002776">br</span>
             </div>
           </div>
-          <div class="cnhcard-caption">The <strong>QR Code</strong> I designed, on the back of every new Brazilian driver's license since 2017</div>
+          <div class="cnhcard-caption"><span data-lang="en" lang="en">The <strong>QR Code</strong> I designed, on the back of every new Brazilian driver's license since 2017</span><span data-lang="pt" lang="pt-BR" hidden>O <strong>QR Code</strong> que eu desenhei, no verso de toda CNH nova desde 2017</span><span data-lang="fr" lang="fr" hidden>Le <strong>QR code</strong> que j'ai conçu, au verso de chaque nouveau permis brésilien depuis 2017</span></div>
         </div>
       </div><!-- end hf-right -->
       </div><!-- end hf-top -->
@@ -1522,7 +1634,7 @@
            gov.br pages ask visitors outside Brazil to log in, so those two point to archived copies. -->
       <div class="press-section" style="margin-top:0">
         <div class="press-label" id="press-label" data-i18n="press.label">Public sources</div>
-        <ul class="press-list" aria-labelledby="press-label">
+        <ul class="press-list" aria-labelledby="press-label" data-lang="en" lang="en">
           <li class="press-item">
             <a href="https://www.legisweb.com.br/legislacao/?id=324187" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">CONTRAN Resolution 598<span class="sr-only"> (opens in new tab)</span></a>
             <span class="press-when">amended January and May 2017 · in Portuguese</span>
@@ -1569,6 +1681,100 @@
             <p class="press-note">The official figure: CNH do Brasil passes 40 million users, and more than 2.5 million first-license applications have been filed.</p>
           </li>
         </ul>
+        <ul class="press-list" aria-labelledby="press-label" data-lang="pt" lang="pt-BR" hidden>
+          <li class="press-item">
+            <a href="https://www.legisweb.com.br/legislacao/?id=324187" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">Resolução CONTRAN 598<span class="sr-only"> (abre em nova aba)</span></a>
+            <span class="press-when">alterada em janeiro e maio de 2017</span>
+            <p class="press-note">A norma da CNH, com as alterações de 2017: toda carteira nova ganha um QR Code com os dados da CNH e a foto do motorista, e o DENATRAN oferece um sistema para validá-lo.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.serpro.gov.br/tema/edicao-238/motorista-ja-pode-tirar-cnh-que-contem-qr-code" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">SERPRO<span class="sr-only"> (abre em nova aba)</span></a>
+            <span class="press-when">maio de 2017</span>
+            <p class="press-note">O QR Code chega a toda CNH nova. O SERPRO explica o que ele carrega: os dados e a foto do motorista, assinados pelo DENATRAN, com leitura offline em menos de um segundo.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://g1.globo.com/carros/noticia/contran-aprova-carteira-de-habilitacao-digital.ghtml" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">G1 / Globo<span class="sr-only"> (abre em nova aba)</span></a>
+            <span class="press-when">julho de 2017</span>
+            <p class="press-note">O Contran aprova a CNH digital. A autenticidade pode ser conferida pela assinatura digital do emissor ou pelo QR Code, e um app para os agentes está em testes.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://web.archive.org/web/20260520110442/https://www.serpro.gov.br/menu/noticias/noticias-2017/cnh-digital-traz-praticidade-a-motoristas" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">SERPRO<span class="sr-only"> (abre em nova aba)</span></a>
+            <span class="press-when">julho de 2017 · cópia arquivada</span>
+            <p class="press-note">Como funciona o app da CNH digital: preso a um celular com PIN, bloqueável se o aparelho for perdido, e com o mesmo QR Code da carteira impressa.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.riotimesonline.com/brazil-news/brazil/digital-cpf-and-cnh-available-in-brazil-in-new-android-and-iphone-app/" target="_blank" rel="noopener noreferrer" hreflang="en">The Rio Times<span class="sr-only"> (abre em nova aba)</span></a>
+            <span class="press-when">maio de 2020 · em inglês</span>
+            <p class="press-note">O app CPF Digital, da Receita Federal, passa a guardar também a CNH, com a autenticidade confirmada pelo QR Code.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://agenciabrasil.ebc.com.br/geral/noticia/2022-06/carteira-nacional-de-habilitacao-tem-novo-modelo-partir-de-hoje" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">Agência Brasil<span class="sr-only"> (abre em nova aba)</span></a>
+            <span class="press-when">junho de 2022</span>
+            <p class="press-note">Entra em vigor o novo modelo da CNH. O QR Code continua, e a carteira agora pode ser emitida em papel, em formato digital ou nos dois.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.biometricupdate.com/202212/half-of-brazilians-now-using-mobile-id-biometrics-use-up" target="_blank" rel="noopener noreferrer" hreflang="en">Biometric Update<span class="sr-only"> (abre em nova aba)</span></a>
+            <span class="press-when">dezembro de 2022 · em inglês</span>
+            <p class="press-note">Uma pesquisa nacional mostra que 51% dos brasileiros entrevistados guardam a CNH no celular.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.cnnbrasil.com.br/auto/cnh-do-brasil-substitui-app-carteira-digital-de-transito-veja-o-que-muda/" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">CNN Brasil<span class="sr-only"> (abre em nova aba)</span></a>
+            <span class="press-when">dezembro de 2025</span>
+            <p class="press-note">O app, até então Carteira Digital de Trânsito, vira CNH do Brasil e passa a cuidar de todo o processo da primeira habilitação.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://web.archive.org/web/20260421070541/https://www.gov.br/transportes/pt-br/assuntos/noticias/2026/01/aplicativo-cnh-do-brasil-ultrapassa-40-milhoes-de-usuarios" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">Ministério dos Transportes<span class="sr-only"> (abre em nova aba)</span></a>
+            <span class="press-when">janeiro de 2026 · cópia arquivada</span>
+            <p class="press-note">O número oficial: o CNH do Brasil passa de 40 milhões de usuários, e já são mais de 2,5 milhões de pedidos de primeira habilitação.</p>
+          </li>
+        </ul>
+        <ul class="press-list" aria-labelledby="press-label" data-lang="fr" lang="fr" hidden>
+          <li class="press-item">
+            <a href="https://www.legisweb.com.br/legislacao/?id=324187" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">Résolution CONTRAN 598<span class="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+            <span class="press-when">modifiée en janvier et mai 2017 · en portugais</span>
+            <p class="press-note">La réglementation du permis, avec ses modifications de 2017 : chaque nouveau permis reçoit un QR code contenant les données du permis et la photo du conducteur, et le département national de la circulation fournit un système pour le valider.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.serpro.gov.br/tema/edicao-238/motorista-ja-pode-tirar-cnh-que-contem-qr-code" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">SERPRO<span class="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+            <span class="press-when">mai 2017 · en portugais</span>
+            <p class="press-note">Le QR code arrive sur chaque nouveau permis. Le service fédéral de traitement des données explique ce qu'il contient : les données et la photo du conducteur, signées par le département national de la circulation, lisibles hors ligne en moins d'une seconde.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://g1.globo.com/carros/noticia/contran-aprova-carteira-de-habilitacao-digital.ghtml" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">G1 / Globo<span class="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+            <span class="press-when">juillet 2017 · en portugais</span>
+            <p class="press-note">Le conseil national de la circulation approuve le permis de conduire numérique. Il peut être vérifié par la signature numérique de l'émetteur ou par son QR code, et une application pour les agents est en test.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://web.archive.org/web/20260520110442/https://www.serpro.gov.br/menu/noticias/noticias-2017/cnh-digital-traz-praticidade-a-motoristas" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">SERPRO<span class="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+            <span class="press-when">juillet 2017 · en portugais · copie archivée</span>
+            <p class="press-note">Comment fonctionne l'application du permis numérique : liée à un seul téléphone avec un code PIN, blocable en cas de perte, et portant le même QR code que la carte imprimée.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.riotimesonline.com/brazil-news/brazil/digital-cpf-and-cnh-available-in-brazil-in-new-android-and-iphone-app/" target="_blank" rel="noopener noreferrer" hreflang="en">The Rio Times<span class="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+            <span class="press-when">mai 2020 · en anglais</span>
+            <p class="press-note">L'application CPF numérique de l'administration fiscale fédérale accueille aussi le permis de conduire, dont l'authenticité est confirmée par le QR code.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://agenciabrasil.ebc.com.br/geral/noticia/2022-06/carteira-nacional-de-habilitacao-tem-novo-modelo-partir-de-hoje" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">Agência Brasil<span class="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+            <span class="press-when">juin 2022 · en portugais</span>
+            <p class="press-note">Un permis redessiné entre en vigueur. Le QR code reste, et le permis peut désormais être délivré sur papier, sous forme numérique, ou les deux.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.biometricupdate.com/202212/half-of-brazilians-now-using-mobile-id-biometrics-use-up" target="_blank" rel="noopener noreferrer" hreflang="en">Biometric Update<span class="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+            <span class="press-when">décembre 2022 · en anglais</span>
+            <p class="press-note">Une enquête nationale révèle que 51 % des Brésiliens interrogés gardent leur permis de conduire sur leur téléphone.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://www.cnnbrasil.com.br/auto/cnh-do-brasil-substitui-app-carteira-digital-de-transito-veja-o-que-muda/" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">CNN Brasil<span class="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+            <span class="press-when">décembre 2025 · en portugais</span>
+            <p class="press-note">L'application, jusque-là Carteira Digital de Trânsito, devient CNH do Brasil et prend en charge tout le parcours d'obtention d'un premier permis.</p>
+          </li>
+          <li class="press-item">
+            <a href="https://web.archive.org/web/20260421070541/https://www.gov.br/transportes/pt-br/assuntos/noticias/2026/01/aplicativo-cnh-do-brasil-ultrapassa-40-milhoes-de-usuarios" target="_blank" rel="noopener noreferrer" hreflang="pt-BR">Ministère des Transports<span class="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+            <span class="press-when">janvier 2026 · en portugais · copie archivée</span>
+            <p class="press-note">Le chiffre officiel : CNH do Brasil dépasse 40 millions d'utilisateurs, et plus de 2,5 millions de demandes de premier permis ont été déposées.</p>
+          </li>
+        </ul>
       </div>
 
     </div>
@@ -1576,27 +1782,27 @@
     <!-- Other highlight cards -->
     <div class="highlight-card reveal">
       <div class="highlight-icon">⚡</div>
-      <div class="highlight-number">1,200/s</div>
-      <div class="highlight-title">Ad Platform at Black Friday Scale</div>
-      <div class="highlight-desc">Built a microservice ad-delivery system sustaining 1,200 ads per second at peak, with auto-scaling infrastructure across Latin America's largest e-commerce group.</div>
+      <div class="highlight-number" data-i18n="hl.ads.number">1,200/s</div>
+      <div class="highlight-title" data-i18n="hl.ads.title">Ad Platform at Black Friday Scale</div>
+      <div class="highlight-desc" data-i18n="hl.ads.desc">Built a microservice ad-delivery system sustaining 1,200 ads per second at peak, with auto-scaling infrastructure across Latin America's largest e-commerce group.</div>
     </div>
     <div class="highlight-card reveal reveal-delay-1">
       <div class="highlight-icon">🧩</div>
       <div class="highlight-number">100+</div>
-      <div class="highlight-title">Storybook Component Library</div>
-      <div class="highlight-desc">Introduced and built Storybook from scratch at Jungle Scout with 100+ components, which became the front-end foundation adopted across the wider organisation.</div>
+      <div class="highlight-title" data-i18n="hl.sb.title">Storybook Component Library</div>
+      <div class="highlight-desc" data-i18n="hl.sb.desc">Introduced and built Storybook from scratch at Jungle Scout with 100+ components, which became the front-end foundation adopted across the wider organisation.</div>
     </div>
     <div class="highlight-card reveal reveal-delay-2">
       <div class="highlight-icon">☁️</div>
-      <div class="highlight-number">First</div>
-      <div class="highlight-title">Brazil's First Cloud Document Production Line</div>
-      <div class="highlight-desc">Architected and delivered the first Brazilian government document production line in the cloud, an Angular SPA consuming a microservices backend for the federal government.</div>
+      <div class="highlight-number" data-i18n="hl.cloud.number">First</div>
+      <div class="highlight-title" data-i18n="hl.cloud.title">Brazil's First Cloud Document Production Line</div>
+      <div class="highlight-desc" data-i18n="hl.cloud.desc">Architected and delivered the first Brazilian government document production line in the cloud, an Angular SPA consuming a microservices backend for the federal government.</div>
     </div>
     <div class="highlight-card reveal reveal-delay-3">
       <div class="highlight-icon">🚀</div>
       <div class="highlight-number">Panorante</div>
-      <div class="highlight-title">Startup Founder</div>
-      <div class="highlight-desc">Founded and built a LinkedIn-style platform for construction professionals from zero to paying customers, handling product, engineering, marketing, and UX solo.</div>
+      <div class="highlight-title" data-i18n="hl.pan.title">Startup Founder</div>
+      <div class="highlight-desc" data-i18n="hl.pan.desc">Founded and built a LinkedIn-style platform for construction professionals from zero to paying customers, handling product, engineering, marketing, and UX solo.</div>
     </div>
 
   </div>
@@ -1722,12 +1928,12 @@
     <div class="cert-card reveal"><div class="cert-icon">🔄</div><div><div class="cert-name">Certified ScrumMaster (CSM)</div><div class="cert-issuer">Scrum Alliance</div></div></div>
     <div class="cert-card reveal reveal-delay-1"><div class="cert-icon">🌐</div><div><div class="cert-name">Arc Certified Remote Developer</div><div class="cert-issuer">Arc.dev</div></div></div>
     <div class="cert-card reveal reveal-delay-2"><div class="cert-icon">💻</div><div><div class="cert-name">MCTS, Web Application</div><div class="cert-issuer">Microsoft</div></div></div>
-    <div class="cert-card reveal"><div class="cert-icon">🇫🇷</div><div><div class="cert-name">DELF Niveau A2</div><div class="cert-issuer">French Ministry of Education</div></div></div>
+    <div class="cert-card reveal"><div class="cert-icon">🇫🇷</div><div><div class="cert-name">DELF Niveau A2</div><div class="cert-issuer" data-i18n="cred.delf.issuer">French Ministry of Education</div></div></div>
   </div>
 
   <div class="certs-grid">
-    <div class="cert-card reveal"><div class="cert-icon">🎓</div><div><div class="cert-name">Diploma in Software Projects Management</div><div class="cert-issuer">PUC-Rio &nbsp;·&nbsp; 2011,2013</div></div></div>
-    <div class="cert-card reveal reveal-delay-1"><div class="cert-icon">🎓</div><div><div class="cert-name">Bachelor of Computer Science</div><div class="cert-issuer">Castelo Branco University &nbsp;·&nbsp; 2005,2010</div></div></div>
+    <div class="cert-card reveal"><div class="cert-icon">🎓</div><div><div class="cert-name" data-i18n="cred.puc.name">Diploma in Software Projects Management</div><div class="cert-issuer" data-i18n="cred.puc.issuer">PUC-Rio &nbsp;·&nbsp; 2011,2013</div></div></div>
+    <div class="cert-card reveal reveal-delay-1"><div class="cert-icon">🎓</div><div><div class="cert-name" data-i18n="cred.bsc.name">Bachelor of Computer Science</div><div class="cert-issuer" data-i18n="cred.bsc.issuer">Castelo Branco University &nbsp;·&nbsp; 2005,2010</div></div></div>
   </div>
 </section>
 </div>
@@ -1845,6 +2051,51 @@
       'testimonials.title': 'Peer Recognition',
       'testimonials.sub':   'Unsolicited feedback from colleagues across 3.5 years at Flight Centre (WhereTo).',
       'press.label':   'Public sources',
+      'exp.fc.dates': 'Dec 2022 to Present · Vancouver, BC',
+      'exp.fc.role': 'Senior Full Stack Engineer',
+      'exp.js.dates': 'Jul 2021 to Oct 2022 · Vancouver, BC',
+      'exp.js.role': 'Frontend (React) Engineer',
+      'exp.wonder.dates': 'Dec 2020 to May 2021 · New York (remote)',
+      'exp.wonder.role': 'Full Stack TypeScript Engineer',
+      'exp.b2w.dates': 'Mar 2018 to Dec 2020 · Rio de Janeiro',
+      'exp.b2w.role': 'Senior Backend Engineer',
+      'exp.pan.dates': 'Nov 2016 to Mar 2018 · Rio de Janeiro',
+      'exp.pan.role': 'Founder & Engineer',
+      'exp.valid.dates': 'Oct 2011 to Oct 2016 · Rio de Janeiro',
+      'exp.valid.role': 'Technical Leader & Senior Engineering Architect',
+      'exp.ach': '🏆 Major Accomplishments',
+      'exp.oi.role': 'Systems Analyst / Consultant',
+      'exp.oi.dates': 'Mar 2010 to Oct 2011',
+      'exp.spider.role': 'Software Developer',
+      'exp.spider.dates': 'Apr 2008 to Mar 2010',
+      'exp.fiocruz.role': 'Web & Database Scholarship',
+      'exp.fiocruz.dates': 'Mar 2006 to Oct 2007',
+      'tm.1.role': 'QA Manager · Slack kudos channel, August 2025',
+      'tm.2.role': 'Engineering Manager · Slack kudos channel, September 2025',
+      'tm.3.role': 'Technical Leader · Sprint 124 Retrospective',
+      'tm.4.role': 'Product Manager · Sprint 121 Retrospective',
+      'tm.5.role': 'Technical Leader · Sprint 137 Retrospective',
+      'tm.6.role': 'Product Manager · Sprint 131 Retrospective',
+      'hl.ecnh.title': 'eCNH, Brazil\'s Digital Driver\'s License',
+      'hl.ads.number': '1,200/s',
+      'hl.ads.title': 'Ad Platform at Black Friday Scale',
+      'hl.ads.desc': 'Built a microservice ad-delivery system sustaining 1,200 ads per second at peak, with auto-scaling infrastructure across Latin America\'s largest e-commerce group.',
+      'hl.sb.title': 'Storybook Component Library',
+      'hl.sb.desc': 'Introduced and built Storybook from scratch at Jungle Scout with 100+ components, which became the front-end foundation adopted across the wider organisation.',
+      'hl.cloud.number': 'First',
+      'hl.cloud.title': 'Brazil\'s First Cloud Document Production Line',
+      'hl.cloud.desc': 'Architected and delivered the first Brazilian government document production line in the cloud, an Angular SPA consuming a microservices backend for the federal government.',
+      'hl.pan.title': 'Startup Founder',
+      'hl.pan.desc': 'Founded and built a LinkedIn-style platform for construction professionals from zero to paying customers, handling product, engineering, marketing, and UX solo.',
+      'cred.delf.issuer': 'French Ministry of Education',
+      'cred.puc.name': 'Diploma in Software Projects Management',
+      'cred.puc.issuer': 'PUC-Rio  ·  2011,2013',
+      'cred.bsc.name': 'Bachelor of Computer Science',
+      'cred.bsc.issuer': 'Castelo Branco University  ·  2005,2010',
+      'alt.photo': 'George Véras Valentim smiling, wearing a React.js t-shirt',
+      'alt.ecnh1': 'Hand holding a smartphone displaying the official CNH do Brasil app logo, with a car blurred in the background',
+      'alt.ecnh2': 'Smartphone screen showing the CNH do Brasil app onboarding page, featuring a woman holding a digital driver\'s license card',
+      'alt.ecnh3': 'Smartphone displaying a digital CNH driver\'s license inside the eCNH app, showing document details and photo',
       'skills.cat.languages': 'Languages',
       'skills.cat.frontend':  'Frontend',
       'skills.cat.backend':   'Backend',
@@ -1932,6 +2183,51 @@
       'testimonials.title': 'Reconhecimento dos colegas',
       'testimonials.sub':   'Feedback espontâneo de colegas ao longo de 3,5 anos na Flight Centre (WhereTo).',
       'press.label':   'Fontes públicas',
+      'exp.fc.dates': 'dez. 2022 até hoje · Vancouver, BC',
+      'exp.fc.role': 'Engenheiro Full Stack Sênior',
+      'exp.js.dates': 'jul. 2021 a out. 2022 · Vancouver, BC',
+      'exp.js.role': 'Engenheiro Front-end (React)',
+      'exp.wonder.dates': 'dez. 2020 a mai. 2021 · Nova York (remoto)',
+      'exp.wonder.role': 'Engenheiro Full Stack TypeScript',
+      'exp.b2w.dates': 'mar. 2018 a dez. 2020 · Rio de Janeiro',
+      'exp.b2w.role': 'Engenheiro Backend Sênior',
+      'exp.pan.dates': 'nov. 2016 a mar. 2018 · Rio de Janeiro',
+      'exp.pan.role': 'Fundador e Engenheiro',
+      'exp.valid.dates': 'out. 2011 a out. 2016 · Rio de Janeiro',
+      'exp.valid.role': 'Líder Técnico e Arquiteto de Engenharia Sênior',
+      'exp.ach': '🏆 Principais conquistas',
+      'exp.oi.role': 'Analista de Sistemas / Consultor',
+      'exp.oi.dates': 'mar. 2010 a out. 2011',
+      'exp.spider.role': 'Desenvolvedor de Software',
+      'exp.spider.dates': 'abr. 2008 a mar. 2010',
+      'exp.fiocruz.role': 'Bolsista de Web e Banco de Dados',
+      'exp.fiocruz.dates': 'mar. 2006 a out. 2007',
+      'tm.1.role': 'Gerente de QA · canal de kudos no Slack, agosto de 2025',
+      'tm.2.role': 'Gerente de Engenharia · canal de kudos no Slack, setembro de 2025',
+      'tm.3.role': 'Líder Técnico · Retrospectiva da Sprint 124',
+      'tm.4.role': 'Gerente de Produto · Retrospectiva da Sprint 121',
+      'tm.5.role': 'Líder Técnico · Retrospectiva da Sprint 137',
+      'tm.6.role': 'Gerente de Produto · Retrospectiva da Sprint 131',
+      'hl.ecnh.title': 'eCNH, a carteira de motorista digital do Brasil',
+      'hl.ads.number': '1.200/s',
+      'hl.ads.title': 'Plataforma de anúncios na escala da Black Friday',
+      'hl.ads.desc': 'Construiu um sistema de entrega de anúncios em microsserviços que sustentava 1.200 anúncios por segundo no pico, com infraestrutura de auto-scaling, no maior grupo de e-commerce da América Latina.',
+      'hl.sb.title': 'Biblioteca de componentes no Storybook',
+      'hl.sb.desc': 'Introduziu e construiu o Storybook do zero na Jungle Scout, com mais de 100 componentes, que viraram a base de front-end adotada em toda a organização.',
+      'hl.cloud.number': 'Primeira',
+      'hl.cloud.title': 'A primeira linha de produção de documentos na nuvem do Brasil',
+      'hl.cloud.desc': 'Projetou e entregou a primeira linha de produção de documentos do governo brasileiro na nuvem, uma SPA em Angular consumindo um backend de microsserviços para o governo federal.',
+      'hl.pan.title': 'Fundador de startup',
+      'hl.pan.desc': 'Fundou e construiu uma plataforma no estilo do LinkedIn para profissionais da construção, do zero até clientes pagantes, cuidando sozinho de produto, engenharia, marketing e UX.',
+      'cred.delf.issuer': 'Ministério da Educação da França',
+      'cred.puc.name': 'Pós-graduação em Gestão de Projetos de Software',
+      'cred.puc.issuer': 'PUC-Rio  ·  2011 a 2013',
+      'cred.bsc.name': 'Bacharelado em Ciência da Computação',
+      'cred.bsc.issuer': 'Universidade Castelo Branco  ·  2005 a 2010',
+      'alt.photo': 'George Véras Valentim sorrindo, com uma camiseta do React.js',
+      'alt.ecnh1': 'Mão segurando um celular com o logo oficial do app CNH do Brasil, com um carro desfocado ao fundo',
+      'alt.ecnh2': 'Tela de celular com a página de boas-vindas do app CNH do Brasil, mostrando uma mulher segurando uma carteira de motorista digital',
+      'alt.ecnh3': 'Celular exibindo uma CNH digital dentro do app eCNH, com os dados do documento e a foto',
       'skills.cat.languages': 'Linguagens',
       'skills.cat.frontend':  'Front-end',
       'skills.cat.backend':   'Back-end',
@@ -2019,6 +2315,51 @@
       'testimonials.title': 'Reconnaissance par les pairs',
       'testimonials.sub':   'Retours spontanés de collègues sur 3,5 ans chez Flight Centre (WhereTo).',
       'press.label':   'Sources publiques',
+      'exp.fc.dates': 'déc. 2022 à aujourd\'hui · Vancouver, C.-B.',
+      'exp.fc.role': 'Ingénieur Full Stack Senior',
+      'exp.js.dates': 'juil. 2021 à oct. 2022 · Vancouver, C.-B.',
+      'exp.js.role': 'Ingénieur Front-end (React)',
+      'exp.wonder.dates': 'déc. 2020 à mai 2021 · New York (à distance)',
+      'exp.wonder.role': 'Ingénieur Full Stack TypeScript',
+      'exp.b2w.dates': 'mars 2018 à déc. 2020 · Rio de Janeiro',
+      'exp.b2w.role': 'Ingénieur Backend Senior',
+      'exp.pan.dates': 'nov. 2016 à mars 2018 · Rio de Janeiro',
+      'exp.pan.role': 'Fondateur et ingénieur',
+      'exp.valid.dates': 'oct. 2011 à oct. 2016 · Rio de Janeiro',
+      'exp.valid.role': 'Leader technique et architecte d\'ingénierie senior',
+      'exp.ach': '🏆 Réalisations majeures',
+      'exp.oi.role': 'Analyste système / consultant',
+      'exp.oi.dates': 'mars 2010 à oct. 2011',
+      'exp.spider.role': 'Développeur logiciel',
+      'exp.spider.dates': 'avr. 2008 à mars 2010',
+      'exp.fiocruz.role': 'Boursier web et bases de données',
+      'exp.fiocruz.dates': 'mars 2006 à oct. 2007',
+      'tm.1.role': 'Responsable QA · canal Slack de remerciements, août 2025',
+      'tm.2.role': 'Responsable de l\'ingénierie · canal Slack de remerciements, septembre 2025',
+      'tm.3.role': 'Leader technique · Rétrospective du sprint 124',
+      'tm.4.role': 'Responsable produit · Rétrospective du sprint 121',
+      'tm.5.role': 'Leader technique · Rétrospective du sprint 137',
+      'tm.6.role': 'Responsable produit · Rétrospective du sprint 131',
+      'hl.ecnh.title': 'eCNH, le permis de conduire numérique du Brésil',
+      'hl.ads.number': '1 200/s',
+      'hl.ads.title': 'Plateforme publicitaire à l\'échelle du Black Friday',
+      'hl.ads.desc': 'Système de diffusion publicitaire en microservices soutenant 1 200 publicités par seconde en pointe, avec une infrastructure à mise à l\'échelle automatique, pour le plus grand groupe d\'e-commerce d\'Amérique latine.',
+      'hl.sb.title': 'Bibliothèque de composants Storybook',
+      'hl.sb.desc': 'Introduction et construction de Storybook de zéro chez Jungle Scout, avec plus de 100 composants, devenus le socle front-end adopté dans toute l\'organisation.',
+      'hl.cloud.number': 'Première',
+      'hl.cloud.title': 'La première chaîne de production de documents dans le cloud au Brésil',
+      'hl.cloud.desc': 'Conception et livraison de la première chaîne de production de documents du gouvernement brésilien dans le cloud, une SPA Angular consommant un backend en microservices pour le gouvernement fédéral.',
+      'hl.pan.title': 'Fondateur de startup',
+      'hl.pan.desc': 'Fondation et construction d\'une plateforme dans l\'esprit de LinkedIn pour les professionnels du bâtiment, de zéro jusqu\'aux premiers clients payants, avec le produit, l\'ingénierie, le marketing et l\'UX en solo.',
+      'cred.delf.issuer': 'Ministère français de l\'Éducation nationale',
+      'cred.puc.name': 'Diplôme de 3e cycle en gestion de projets logiciels',
+      'cred.puc.issuer': 'PUC-Rio  ·  2011 à 2013',
+      'cred.bsc.name': 'Licence en informatique',
+      'cred.bsc.issuer': 'Université Castelo Branco  ·  2005 à 2010',
+      'alt.photo': 'George Véras Valentim souriant, portant un t-shirt React.js',
+      'alt.ecnh1': 'Main tenant un téléphone qui affiche le logo officiel de l\'application CNH do Brasil, avec une voiture floue en arrière-plan',
+      'alt.ecnh2': 'Écran de téléphone montrant la page d\'accueil de l\'application CNH do Brasil, avec une femme qui tient un permis de conduire numérique',
+      'alt.ecnh3': 'Téléphone affichant un permis CNH numérique dans l\'application eCNH, avec les données du document et la photo',
       'skills.cat.languages': 'Langages',
       'skills.cat.frontend':  'Front-end',
       'skills.cat.backend':   'Back-end',
@@ -2071,6 +2412,12 @@
       const key = el.getAttribute('data-i18n-aria');
       if (i18n[lang] && i18n[lang][key]) el.setAttribute('aria-label', i18n[lang][key]);
     });
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      const key = el.getAttribute('data-i18n-alt');
+      if (i18n[lang] && i18n[lang][key]) el.setAttribute('alt', i18n[lang][key]);
+    });
+    // text with bold and links has one block per language, since textContent would drop the markup
+    document.querySelectorAll('[data-lang]').forEach(el => { el.hidden = el.getAttribute('data-lang') !== lang; });
     // toggle active button + aria-pressed
     ['en','fr','pt'].forEach(l => {
       const btn = document.getElementById('btn-' + l);
