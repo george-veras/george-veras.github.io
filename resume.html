@@ -50,6 +50,11 @@
     text-decoration: none;
   }
   .contact-line a:hover { text-decoration: underline; }
+  /* On screen the links need more than colour to stand out from the text around them, which is
+     nearly the same luminance (WCAG 1.4.1). Print keeps its own look: this page is also the PDF. */
+  @media screen {
+    .contact-line a { text-decoration: underline; text-underline-offset: 2px; }
+  }
   .contact-sep { margin: 0 6px; color: #aaa; }
 
   /* ── Sections ── */
@@ -86,6 +91,12 @@
     width: 30%;
     white-space: nowrap;
     color: #1b4f72;
+  }
+  /* At phone width the category column has to wrap, or the table pushes the page sideways
+     (WCAG 1.4.10 reflow at 320px). */
+  @media screen and (max-width: 480px) {
+    table.skills td { padding: 4px 6px; overflow-wrap: anywhere; }
+    table.skills td:first-child { white-space: normal; width: auto; }
   }
 
   /* ── Work entries ── */
