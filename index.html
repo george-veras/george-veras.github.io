@@ -203,7 +203,8 @@
       --btn-b:       #6a4fe8;
     }
 
-    html { scroll-behavior: smooth; }
+    /* Anchors and focus land below the fixed nav instead of under it (WCAG 2.4.11) */
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -221,14 +222,15 @@
     /* ─────────────────────────────────────────
        NAVBAR
     ───────────────────────────────────────── */
-    nav {
+    /* #navbar, not nav: the footer has a nav of its own that must not become fixed */
+    #navbar {
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
       padding: 18px 48px;
       display: flex; align-items: center; justify-content: space-between;
       transition: background 0.3s, box-shadow 0.3s;
     }
-    nav.scrolled {
+    #navbar.scrolled {
       background: rgba(11,17,32,0.92);
       backdrop-filter: blur(12px);
       box-shadow: 0 1px 0 var(--border);
@@ -802,7 +804,7 @@
     }
     .carousel-dot::before {
       content: ''; width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.55); /* 3:1 or better as a control (WCAG 1.4.11) */
       transition: background 0.2s, transform 0.2s;
     }
     .carousel-dot.active::before { background: #fff; transform: scale(1.4); }
@@ -991,6 +993,18 @@
       color: var(--muted); font-size: 0.8rem;
       border-top: 1px solid var(--border);
     }
+    .footer-links {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 12px 28px; margin-top: 18px;
+    }
+    .footer-badge { display: inline-block; line-height: 0; }
+    .site-pages { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 22px; }
+    /* Underlined because they sit in a line of text (1.4.1), 24px tall as targets (2.5.8) */
+    .site-pages a {
+      color: var(--tag-text); text-decoration: underline; text-underline-offset: 3px;
+      display: inline-block; padding: 4px 0;
+    }
+    .site-pages a[aria-current="page"] { color: var(--text); text-decoration: none; font-weight: 600; }
 
     /* ─────────────────────────────────────────
        BACK TO TOP
@@ -1017,7 +1031,7 @@
     @media (max-width: 767px) {
 
       /* NAV */
-      nav { padding: 12px 16px; }
+      #navbar { padding: 12px 16px; }
       .nav-links { display: none; }
       .lang-btn { padding: 4px 8px; font-size: 0.7rem; }
 
@@ -1107,11 +1121,11 @@
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     <li>
       <div class="dl-wrap">
-        <button class="nav-cta" style="cursor:pointer;border:none;" data-i18n="nav.download" aria-expanded="false" aria-haspopup="true">Download Resume <span class="dl-arrow" aria-hidden="true">▾</span></button>
+        <button class="nav-cta" style="cursor:pointer;border:none;" data-i18n="nav.download" aria-expanded="false">Download Resume <span class="dl-arrow" aria-hidden="true">▾</span></button>
         <div class="dl-menu">
-          <a href="george-veras-valentim-resume.pdf" download="George_Veras_Valentim_Resume.pdf">🇬🇧 English PDF</a>
-          <a href="george-veras-valentim-resume-fr.pdf" download="George_Veras_Valentim_CV_FR.pdf">🇫🇷 PDF Français</a>
-          <a href="george-veras-valentim-curriculo-pt.pdf" download="George_Veras_Valentim_Curriculo_PT.pdf">🇧🇷 PDF Português Brasileiro</a>
+          <a href="george-veras-valentim-resume.pdf" download="George_Veras_Valentim_Resume.pdf" lang="en">🇬🇧 English PDF</a>
+          <a href="george-veras-valentim-resume-fr.pdf" download="George_Veras_Valentim_CV_FR.pdf" lang="fr">🇫🇷 PDF Français</a>
+          <a href="george-veras-valentim-curriculo-pt.pdf" download="George_Veras_Valentim_Curriculo_PT.pdf" lang="pt-BR">🇧🇷 PDF Português Brasileiro</a>
         </div>
       </div>
     </li>
@@ -1435,10 +1449,10 @@
               <img src="ecnh-digital-drivers-license-security.jpg" alt="Smartphone displaying a digital CNH driver's license inside the eCNH app, showing document details and photo" loading="lazy" width="984" height="537">
             </div>
           </div>
-          <div class="carousel-caption" id="ecnh-caption" aria-live="polite" aria-atomic="true">CNH do Brasil, official app by SERPRO</div>
+          <div class="carousel-caption" id="ecnh-caption" aria-live="polite" aria-atomic="true" data-i18n-dynamic>CNH do Brasil, official app by SERPRO</div>
           <button class="carousel-btn prev" onclick="carouselMove('ecnh',-1)" aria-label="Previous slide" data-i18n-aria="aria.prev">&#8249;</button>
           <button class="carousel-btn next" onclick="carouselMove('ecnh', 1)" aria-label="Next slide" data-i18n-aria="aria.next">&#8250;</button>
-          <div class="carousel-dots" id="ecnh-dots" role="tablist" aria-label="Carousel slides" data-i18n-aria="aria.dots"></div>
+          <div class="carousel-dots" id="ecnh-dots" role="group" aria-label="Carousel slides" data-i18n-aria="aria.dots"></div>
           <button class="carousel-pause-btn" id="ecnh-pause" aria-label="Pause slideshow">⏸</button>
         </div>
 
@@ -1693,14 +1707,14 @@
         <span data-i18n="contact.email">Email me</span>
       </a>
       <div class="dl-wrap">
-        <button class="contact-link" style="cursor:pointer;border:none;background:var(--card);border:1px solid var(--border);" aria-label="LinkedIn profile, choose language" data-i18n-aria="aria.linkedin" aria-expanded="false" aria-haspopup="true">
+        <button class="contact-link" style="cursor:pointer;border:none;background:var(--card);border:1px solid var(--border);" aria-label="LinkedIn profile, choose language" data-i18n-aria="aria.linkedin" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn <span class="dl-arrow" aria-hidden="true">▾</span>
         </button>
         <div class="dl-menu" id="linkedin-menu">
-          <a href="https://www.linkedin.com/in/george-veras/?locale=en_US" target="_blank" rel="noopener noreferrer">🇬🇧 English<span class="sr-only"> (opens in new tab)</span></a>
-          <a href="https://www.linkedin.com/in/george-veras/?locale=fr_FR" target="_blank" rel="noopener noreferrer">🇫🇷 Français<span class="sr-only"> (opens in new tab)</span></a>
-          <a href="https://www.linkedin.com/in/george-veras/?locale=pt_BR" target="_blank" rel="noopener noreferrer">🇧🇷 Português<span class="sr-only"> (opens in new tab)</span></a>
+          <a href="https://www.linkedin.com/in/george-veras/?locale=en_US" target="_blank" rel="noopener noreferrer" lang="en">🇬🇧 English<span class="sr-only" lang="en"> (opens in new tab)</span></a>
+          <a href="https://www.linkedin.com/in/george-veras/?locale=fr_FR" target="_blank" rel="noopener noreferrer" lang="fr">🇫🇷 Français<span class="sr-only" lang="en"> (opens in new tab)</span></a>
+          <a href="https://www.linkedin.com/in/george-veras/?locale=pt_BR" target="_blank" rel="noopener noreferrer" lang="pt-BR">🇧🇷 Português<span class="sr-only" lang="en"> (opens in new tab)</span></a>
         </div>
       </div>
       <a href="https://github.com/george-veras" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub profile (opens in new tab)" data-i18n-aria="aria.github">
@@ -1708,14 +1722,14 @@
         <span data-i18n="contact.github">GitHub</span>
       </a>
       <div class="dl-wrap">
-        <button class="contact-link" style="cursor:pointer;border:1px solid var(--border);background:var(--card);" aria-label="Download resume, choose language" data-i18n-aria="aria.download" aria-expanded="false" aria-haspopup="true">
+        <button class="contact-link" style="cursor:pointer;border:1px solid var(--border);background:var(--card);" aria-label="Download resume, choose language" data-i18n-aria="aria.download" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           <span data-i18n="contact.download">Download Resume</span> <span class="dl-arrow" aria-hidden="true">▾</span>
         </button>
         <div class="dl-menu">
-          <a href="george-veras-valentim-resume.pdf" download="George_Veras_Valentim_Resume.pdf">🇬🇧 English PDF</a>
-          <a href="george-veras-valentim-resume-fr.pdf" download="George_Veras_Valentim_CV_FR.pdf">🇫🇷 PDF Français</a>
-          <a href="george-veras-valentim-curriculo-pt.pdf" download="George_Veras_Valentim_Curriculo_PT.pdf">🇧🇷 PDF Português Brasileiro</a>
+          <a href="george-veras-valentim-resume.pdf" download="George_Veras_Valentim_Resume.pdf" lang="en">🇬🇧 English PDF</a>
+          <a href="george-veras-valentim-resume-fr.pdf" download="George_Veras_Valentim_CV_FR.pdf" lang="fr">🇫🇷 PDF Français</a>
+          <a href="george-veras-valentim-curriculo-pt.pdf" download="George_Veras_Valentim_Curriculo_PT.pdf" lang="pt-BR">🇧🇷 PDF Português Brasileiro</a>
         </div>
       </div>
     </div>
@@ -1726,6 +1740,17 @@
 
 <footer>
   <span data-i18n="footer.text">Built by George Véras Valentim · george-veras.github.io</span>
+  <div class="footer-links">
+    <!-- W3C asks for this exact link and alternative text, local copy or not -->
+    <a class="footer-badge" lang="en" href="https://www.w3.org/WAI/WCAG2AA-Conformance" title="Explanation of WCAG 2 Level AA conformance">
+      <img height="31" width="88" src="wcag2.2AA.svg" alt="Level AA conformance, W3C Web Content Accessibility Guidelines 2.2">
+    </a>
+    <nav class="site-pages" aria-label="Site pages" data-i18n-aria="aria.sitepages">
+      <a href="./" aria-current="page" data-i18n="footer.home">Portfolio</a>
+      <a href="resume.html" hreflang="en" data-i18n="footer.resume">Résumé</a>
+      <a href="accessibility.html" data-i18n="footer.a11y">Accessibility statement</a>
+    </nav>
+  </div>
 </footer>
 
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top" data-i18n-aria="aria.backtop">↑</button>
@@ -1815,6 +1840,10 @@
       'aria.download':    'Download resume, choose language',
       'aria.backtop':     'Back to top',
       'aria.langchanged': 'Language changed to English',
+      'aria.sitepages':   'Site pages',
+      'footer.home':      'Portfolio',
+      'footer.resume':    'Résumé',
+      'footer.a11y':      'Accessibility statement',
     },
     pt: {
       "oss.q.tagdeps": "Zero dependências",
@@ -1898,6 +1927,10 @@
       'aria.download':    'Baixar currículo, escolha o idioma',
       'aria.backtop':     'Voltar ao topo',
       'aria.langchanged': 'Idioma alterado para português',
+      'aria.sitepages':   'Páginas do site',
+      'footer.home':      'Portfólio',
+      'footer.resume':    'Currículo (em inglês)',
+      'footer.a11y':      'Declaração de acessibilidade',
     },
     fr: {
       "oss.q.tagdeps": "Zéro dépendance",
@@ -1981,6 +2014,10 @@
       'aria.download':    'Télécharger le CV, choisir la langue',
       'aria.backtop':     'Retour en haut',
       'aria.langchanged': 'Langue changée en français',
+      'aria.sitepages':   'Pages du site',
+      'footer.home':      'Portfolio',
+      'footer.resume':    'CV (en anglais)',
+      'footer.a11y':      'Déclaration d\'accessibilité',
     }
   };
 
@@ -2028,6 +2065,27 @@
   // A string from the dictionary in whatever language the page is showing, for labels that code
   // sets at run time rather than markup
   function t(key) { return (i18n[rolesLang] && i18n[rolesLang][key]) || i18n.en[key]; }
+
+  // Text with no translation is English in every language the page is shown in: the detailed
+  // experience, the quotes, the notes. Mark it once, so a screen reader reading the Portuguese or
+  // French page switches voice for it instead of reading English with Portuguese rules (WCAG
+  // 3.1.2). Anything already carrying a lang, translated with data-i18n, or rewritten by code is
+  // left alone. A mixed element gets its loose text wrapped rather than the whole element marked.
+  (function markEnglishOnly() {
+    const skip = 'script,style,[aria-hidden="true"],[role="img"],[lang]:not(html),[data-i18n],[data-i18n-dynamic]';
+    const loose = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const n = walker.currentNode;
+      if (/[A-Za-z]{2}/.test(n.textContent) && n.parentElement && !n.parentElement.closest(skip)) loose.push(n);
+    }
+    for (const n of loose) {
+      const p = n.parentElement;
+      if (p.closest('[lang]:not(html)')) continue;
+      if (!p.querySelector('[data-i18n],[data-i18n-dynamic],[lang]')) p.setAttribute('lang', 'en');
+      else { const s = document.createElement('span'); s.lang = 'en'; n.replaceWith(s); s.append(n); }
+    }
+  })();
 
   // ── Dropdown click-toggle
   document.querySelectorAll('.dl-wrap button').forEach(btn => {
@@ -2248,9 +2306,7 @@
     for (let i = 0; i < slides; i++) {
       const d = document.createElement('button');
       d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      d.setAttribute('role', 'tab');
       d.setAttribute('aria-label', t('aria.gotoslide').replace('{n}', i + 1));
-      d.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       d.onclick = () => carouselGo(id, i);
       dotsEl.appendChild(d);
     }
@@ -2305,7 +2361,6 @@
     cap.textContent = caption(id, c.index);
     document.querySelectorAll(`#${id}-dots .carousel-dot`).forEach((d, i) => {
       d.classList.toggle('active', i === c.index);
-      d.setAttribute('aria-selected', i === c.index ? 'true' : 'false');
     });
     labelDots(id);
     // Update slide visibility for screen readers

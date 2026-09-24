@@ -1,0 +1,31 @@
+name: accessibility
+
+# The site claims WCAG 2.2 AA in accessibility.html. This keeps the part of that claim a machine
+# can check from breaking quietly: see .github/a11y/check.mjs, and .github/ACCESSIBILITY.md for
+# the evaluation by hand that it guards.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wcag:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .github/a11y
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: .github/a11y/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node check.mjs
