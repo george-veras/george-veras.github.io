@@ -1,0 +1,25 @@
+# George Véras Valentim
+
+> Staff Full Stack Engineer & Technical Lead based in Richmond, BC, Canada (Vancouver area), with 18 years of experience building products at national and enterprise scale. He built, alone at VALID, the first working version of eCNH, Brazil's digital driver's license, now used by 40M+ people, and built ad platforms sustaining 1,200 requests per second at B2W. Open to Lead and Staff Engineer opportunities.
+
+## About
+
+- [Portfolio](https://georgeveras.com/): career history, highlights and skills. Core stack: TypeScript, React, Node.js, NestJS, Express, GraphQL, PostgreSQL, MongoDB, Python, distributed systems and advertising systems.
+- [Resume (HTML)](https://georgeveras.com/resume.html): the full resume on one page.
+
+## Resume PDFs
+
+- [Resume in English](https://georgeveras.com/george-veras-valentim-resume-2026-11-10.pdf)
+- [CV en français](https://georgeveras.com/george-veras-valentim-resume-fr-2026-11-10.pdf)
+- [Currículo em português](https://georgeveras.com/george-veras-valentim-curriculo-pt-2026-11-10.pdf)
+
+## Projects
+
+- [qredential](https://github.com/george-veras/qredential): his open-source project for offline QR credential verification, revisiting in the open, on the current standard, the officer-side verification problem he first solved for Brazil's digital driver's license.
+- [Mandato](https://usemandato.com): his current venture.
+
+## Contact
+
+- [LinkedIn](https://www.linkedin.com/in/george-veras)
+- [GitHub](https://github.com/george-veras)
+- [Contact section of the portfolio](https://georgeveras.com/#contact)
